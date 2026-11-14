@@ -1,0 +1,2752 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.21)  13 NOV 2026 20:54
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**libro.tex
+(./libro.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/bk11.clo
+File: bk11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@chapter=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+) (./preambulo.tex
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count284
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2078.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2080.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2082.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2083.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2084.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2086.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2111.
+\U@D=\dimen149
+\l@unhyphenated=\language6
+
+(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count285
+
+(/usr/share/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+Package babel Info: Importing font and identification data for spanish
+(babel)             from babel-es.ini. Reported on input line 4330.
+
+(/usr/share/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks19
+\es@quotdepth=\count286
+))
+LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) 
+on input line 4.
+LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1)
+ on input line 4.
+
+(/usr/share/texmf-dist/tex/latex/newpx/newpxtext.sty
+Package: newpxtext 2025/06/07 v1.542 LaTeX and unicode LaTeX support for TeXGyr
+ePagellaX (Michael Sharpe)
+
+`newpxtext' v1.542, 2025/06/07 Text macros taking advantage of TeXGyre Pagella 
+and its extensions (msharpe) (/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+) (/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+)
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/share/texmf-dist/tex/latex/xpatch/xpatch.sty
+(/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2026-01-19 L3 programming layer (loader) 
+
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count287
+))
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+
+(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count288
+))
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks20
+\XKV@tempa@toks=\toks21
+\XKV@tempb@toks=\toks22
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count289
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texmf-dist/tex/generic/xstring/xstring.tex
+\xs_counta=\count290
+\xs_countb=\count291
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+)
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+LaTeX Font Info:    Setting zplLF sub-encoding to TS1/0 on input line 40.
+LaTeX Font Info:    Setting zplTLF sub-encoding to TS1/0 on input line 40.
+LaTeX Font Info:    Setting zplOsF sub-encoding to TS1/0 on input line 40.
+LaTeX Font Info:    Setting zplTOsF sub-encoding to TS1/0 on input line 40.
+\zpl@cnt=\count292
+
+(/usr/share/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+Package: fontaxes 2026-01-02 v2.0.2 Font selection axes (deprecated)
+Applying: [2024-11-01] Use figureversions if present on input line 74.
+
+(/usr/share/texmf-dist/tex/latex/figureversions/figureversions.sty
+Package: figureversions 2025-04-29 v1.0.1 Figure versions
+)
+Already applied: [0000-00-00] Fall back to v1 on input line 76.
+)
+\zpl@sixem=\dimen150
+\zpl@y=\dimen151
+\zpl@x=\dimen152
+\zpl@tmpdima=\dimen153
+\zpl@tmpdimb=\dimen154
+\zpl@tmpdimc=\dimen155
+\zpl@tmpdimd=\dimen156
+\zpl@tmpdime=\dimen157
+\zpl@tmpdimf=\dimen158
+\zpl@dimA=\dimen159
+\zpl@dimAA=\dimen160
+\zpl@dimB=\dimen161
+\zpl@dimBB=\dimen162
+\zpl@dimC=\dimen163
+LaTeX Info: Redefining \oldstylenums on input line 807.
+LaTeX Font Info:    Trying to load font information for T1+zplLF on input line 
+815.
+
+(/usr/share/texmf-dist/tex/latex/newpx/t1zpllf.fd
+File: t1zpllf.fd 2021/05/25 v1.0 font definition file for T1/zpl/lf
+)
+LaTeX Font Info:    Trying to load font information for T1+zplTLF on input line
+ 816.
+
+(/usr/share/texmf-dist/tex/latex/newpx/t1zpltlf.fd
+File: t1zpltlf.fd 2021/05/25 v1.0 font definition file for T1/zpl/tlf
+)
+LaTeX Font Info:    Trying to load font information for T1+zplOsF on input line
+ 817.
+
+(/usr/share/texmf-dist/tex/latex/newpx/t1zplosf.fd
+File: t1zplosf.fd 2021/05/25 v1.0 font definition file for T1/zpl/osf
+)
+LaTeX Font Info:    Trying to load font information for T1+zplTOsF on input lin
+e 818.
+
+(/usr/share/texmf-dist/tex/latex/newpx/t1zpltosf.fd
+File: t1zpltosf.fd 2021/05/25 v1.0 font definition file for T1/zpl/tosf
+))
+(/usr/share/texmf-dist/tex/latex/newpx/newpxmath.sty
+Package: newpxmath 2025/10/30 v1.551 LaTeX math support for newpx (Michael Shar
+pe)
+
+`newpxmath' v1.551, 2025/10/30 Math macros based on pxfonts (msharpe)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks23
+\ex@=\dimen164
+))
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen165
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count293
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count294
+\leftroot@=\count295
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count296
+\DOTSCASE@=\count297
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen166
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count298
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count299
+\dotsspace@=\muskip17
+\c@parentequation=\count300
+\dspbrk@lvl=\count301
+\tag@help=\toks24
+\row@=\count302
+\column@=\count303
+\maxfields@=\count304
+\andhelp@=\toks25
+\eqnshift@=\dimen167
+\alignsep@=\dimen168
+\tagshift@=\dimen169
+\tagwidth@=\dimen170
+\totwidth@=\dimen171
+\lineht@=\dimen172
+\@envbody=\toks26
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks27
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(/usr/share/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
+)
+\px@tA=\toks28
+\px@tB=\toks29
+\px@su=\read3
+\px@Isdigit=\count305
+
+amsthm NOT loaded
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 224.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/minzpl/m/n on input line 224.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/minzpl/m/n on input line 224.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/minzpl/m/n --> OT1/minzpl/b/n on input line 225.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 228.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> T1/qhv/m/n on input line 228.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> T1/qhv/m/n on input line 228.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 229.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/minzpl/m/it on input line 229.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/minzpl/m/it on input line 229.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 230.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> T1/npxtt/m/n on input line 230.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> T1/npxtt/m/n on input line 230.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 232.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/minzpl/b/n on input line 232.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/minzpl/b/n on input line 232.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/minzpl/m/it --> OT1/minzpl/b/it on input line 233.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  T1/qhv/m/n --> T1/qhv/b/n on input line 235.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  T1/npxtt/m/n --> T1/npxtt/b/n on input line 236.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 247.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/npxmi/m/it on input line 247.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/npxmi/m/it on input line 247.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/npxmi/m/it --> OML/npxmi/b/it on input line 248.
+\symlettersA=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
+(Font)                  U/npxmia/m/it --> U/npxmia/b/it on input line 266.
+Now handling font encoding LMS ...
+... no UTF-8 mapping file for font encoding LMS
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 276.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 276.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> LMS/npxsy/m/n on input line 276.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 276.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> LMS/npxsy/m/n on input line 276.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  LMS/npxsy/m/n --> LMS/npxsy/b/n on input line 277.
+\symAMSm=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `AMSm' in version `bold'
+(Font)                  U/npxsym/m/n --> U/npxsym/b/n on input line 297.
+\symsymbolsC=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
+(Font)                  U/npxsyc/m/n --> U/npxsyc/b/n on input line 319.
+Now handling font encoding LMX ...
+... no UTF-8 mapping file for font encoding LMX
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 339.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 3
+39.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> LMX/npxexx/m/n on input line 339.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 339
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> LMX/npxexx/m/n on input line 339.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  LMX/npxexx/m/n --> LMX/npxexx/b/n on input line 340.
+\symlargesymbolsPXA=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `largesymbolsPXA' in version `bold'
+
+(Font)                  U/npxexa/m/n --> U/npxexa/b/n on input line 347.
+\px@cntz=\count306
+\px@IsAlNum=\count307
+\px@sbptoks=\toks30
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 502.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 503.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 504.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 505.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 510.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 511.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 513.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 515.
+LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 519.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 520.
+LaTeX Font Info:    Redeclaring math symbol \parallel on input line 521.
+LaTeX Font Info:    Redeclaring math delimiter \Arrowvert on input line 522.
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 548.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 562.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 563.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 564.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 565.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 566.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 567.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 568.
+LaTeX Font Info:    Redeclaring math accent \check on input line 569.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 573.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 574.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 1631.
+LaTeX Info: Redefining \Bbbk on input line 2208.
+LaTeX Info: Redefining \not on input line 2548.
+) (/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+\MT@toks=\toks31
+\MT@tempbox=\box55
+\MT@count=\count308
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks32
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen173
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count309
+
+(/usr/share/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip54
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count310
+\Gm@cntv=\count311
+\c@Gm@tempcnt=\count312
+\Gm@bindingoffset=\dimen174
+\Gm@wd@mp=\dimen175
+\Gm@odd@mp=\dimen176
+\Gm@even@mp=\dimen177
+\Gm@layoutwidth=\dimen178
+\Gm@layoutheight=\dimen179
+\Gm@layouthoffset=\dimen180
+\Gm@layoutvoffset=\dimen181
+\Gm@dimlist=\toks33
+)
+(/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
+
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count313
+\calc@Bcount=\count314
+\calc@Adimen=\dimen182
+\calc@Bdimen=\dimen183
+\calc@Askip=\skip55
+\calc@Bskip=\skip56
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count315
+\calc@Cskip=\skip57
+)
+(/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count316
+\l_MT_multwidth_dim=\dimen184
+\origjot=\skip58
+\l_MT_shortvdotswithinadjustabove_dim=\dimen185
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen186
+\l_MT_above_intertext_sep=\dimen187
+\l_MT_below_intertext_sep=\dimen188
+\l_MT_above_shortintertext_sep=\dimen189
+\l_MT_below_shortintertext_sep=\dimen190
+\xmathstrut@box=\box56
+\xmathstrut@dim=\dimen191
+)
+(/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen192
+\lightrulewidth=\dimen193
+\cmidrulewidth=\dimen194
+\belowrulesep=\dimen195
+\belowbottomsep=\dimen196
+\aboverulesep=\dimen197
+\abovetopsep=\dimen198
+\cmidrulesep=\dimen199
+\cmidrulekern=\dimen256
+\defaultaddspace=\dimen257
+\@cmidla=\count317
+\@cmidlb=\count318
+\@aboverulesep=\dimen258
+\@belowrulesep=\dimen259
+\@thisruleclass=\count319
+\@lastruleclass=\count320
+\@thisrulewidth=\dimen260
+)
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen261
+\ar@mcellbox=\box57
+\extrarowheight=\dimen262
+\NC@list=\toks34
+\extratabsurround=\skip59
+\backup@length=\skip60
+\ar@cellbox=\box58
+)
+(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip61
+\multirow@cntb=\count321
+\multirow@dima=\skip62
+\bigstrutjot=\dimen263
+)
+(/usr/share/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
+\LTleft=\skip63
+\LTright=\skip64
+\LTpre=\skip65
+\LTpost=\skip66
+\LTchunksize=\count322
+\LTcapwidth=\dimen264
+\LT@head=\box59
+\LT@firsthead=\box60
+\LT@foot=\box61
+\LT@lastfoot=\box62
+\LT@gbox=\box63
+\LT@cols=\count323
+\LT@rows=\count324
+\c@LT@tables=\count325
+\c@LT@chunks=\count326
+\LT@p@ftn=\toks35
+)
+(/usr/share/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+\TX@col@width=\dimen265
+\TX@old@table=\dimen266
+\TX@old@col=\dimen267
+\TX@target=\dimen268
+\TX@delta=\dimen269
+\TX@cols=\count327
+\TX@ftn=\toks36
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+)
+\Gin@req@height=\dimen270
+\Gin@req@width=\dimen271
+)
+(/usr/share/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
+\everycr=\toks37
+\minrowclearance=\skip67
+\rownum=\count328
+)
+(/usr/share/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\enitkv@toks@=\toks38
+\labelindent=\skip68
+\enit@outerparindent=\dimen272
+\enit@toks=\toks39
+\enit@inbox=\box64
+\enit@count@id=\count329
+\enitdp@description=\count330
+)
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip69
+\f@nch@offset@elh=\skip70
+\f@nch@offset@erh=\skip71
+\f@nch@offset@olh=\skip72
+\f@nch@offset@orh=\skip73
+\f@nch@offset@elf=\skip74
+\f@nch@offset@erf=\skip75
+\f@nch@offset@olf=\skip76
+\f@nch@offset@orf=\skip77
+\f@nch@height=\skip78
+\f@nch@footalignment=\skip79
+\f@nch@widthL=\skip80
+\f@nch@widthC=\skip81
+\f@nch@widthR=\skip82
+\@temptokenb=\toks40
+)
+(/usr/share/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2025/01/04 v2.17 Sectioning titles
+\ttl@box=\box65
+\beforetitleunit=\skip83
+\aftertitleunit=\skip84
+\ttl@plus=\dimen273
+\ttl@minus=\dimen274
+\ttl@toksa=\toks41
+\titlewidth=\dimen275
+\titlewidthlast=\dimen276
+\titlewidthfirst=\dimen277
+)
+(/usr/share/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/share/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen278
+\captionmargin=\dimen279
+\caption@leftmargin=\dimen280
+\caption@rightmargin=\dimen281
+\caption@width=\dimen282
+\caption@indent=\dimen283
+\caption@parindent=\dimen284
+\caption@hangindent=\dimen285
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count331
+\c@continuedfloat=\count332
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+(/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count333
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count334
+)
+(/usr/share/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks42
+\pgfutil@tempdima=\dimen286
+\pgfutil@tempdimb=\dimen287
+)
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box66
+)
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks43
+\pgfkeys@temptoks=\toks44
+
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.te
+x
+\pgfkeys@tmptoks=\toks45
+))
+\pgf@x=\dimen288
+\pgf@y=\dimen289
+\pgf@xa=\dimen290
+\pgf@ya=\dimen291
+\pgf@xb=\dimen292
+\pgf@yb=\dimen293
+\pgf@xc=\dimen294
+\pgf@yc=\dimen295
+\pgf@xd=\dimen296
+\pgf@yd=\dimen297
+\w@pgf@writea=\write3
+\r@pgf@reada=\read4
+\c@pgf@counta=\count335
+\c@pgf@countb=\count336
+\c@pgf@countc=\count337
+\c@pgf@countd=\count338
+\t@pgf@toka=\toks46
+\t@pgf@tokb=\toks47
+\t@pgf@tokc=\toks48
+\pgf@sys@id@count=\count339
+ (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count340
+\pgfsyssoftpath@bigbuffer@items=\count341
+)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen298
+\pgfmath@count=\count342
+\pgfmath@box=\box67
+\pgfmath@toks=\toks49
+\pgfmath@stack@operand=\toks50
+\pgfmath@stack@operation=\toks51
+)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code
+.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.te
+x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
+.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count343
+))
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen299
+\pgf@picmaxx=\dimen300
+\pgf@picminy=\dimen301
+\pgf@picmaxy=\dimen302
+\pgf@pathminx=\dimen303
+\pgf@pathmaxx=\dimen304
+\pgf@pathminy=\dimen305
+\pgf@pathmaxy=\dimen306
+\pgf@xx=\dimen307
+\pgf@xy=\dimen308
+\pgf@yx=\dimen309
+\pgf@yy=\dimen310
+\pgf@zx=\dimen311
+\pgf@zy=\dimen312
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen313
+\pgf@path@lasty=\dimen314
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen315
+\pgf@shorten@start@additional=\dimen316
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box68
+\pgf@hbox=\box69
+\pgf@layerbox@main=\box70
+\pgf@picture@serial@count=\count344
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen317
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.t
+ex
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen318
+\pgf@pt@y=\dimen319
+\pgf@pt@temp=\dimen320
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.te
+x
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen321
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen322
+\pgf@sys@shading@range@num=\count345
+\pgf@shadingcount=\count346
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box71
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box72
+)
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen323
+\pgf@nodesepend=\dimen324
+)
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen325
+\pgffor@skip=\dimen326
+\pgffor@stack=\toks52
+\pgffor@toks=\toks53
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
+x
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count347
+\pgfplotmarksize=\dimen327
+)
+\tikz@lastx=\dimen328
+\tikz@lasty=\dimen329
+\tikz@lastxsaved=\dimen330
+\tikz@lastysaved=\dimen331
+\tikz@lastmovetox=\dimen332
+\tikz@lastmovetoy=\dimen333
+\tikzleveldistance=\dimen334
+\tikzsiblingdistance=\dimen335
+\tikz@figbox=\box73
+\tikz@figbox@bg=\box74
+\tikz@tempbox=\box75
+\tikz@tempbox@bg=\box76
+\tikztreelevel=\count348
+\tikznumberofchildren=\count349
+\tikznumberofcurrentchild=\count350
+\tikz@fig@count=\count351
+ (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count352
+\pgfmatrixcurrentcolumn=\count353
+\pgf@matrix@numberofcolumns=\count354
+)
+\tikz@expandcount=\count355
+
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+topaths.code.tex
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (/usr/share/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2025/08/14 v1.18.2 Data Visualization (1.18.2)
+
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks54
+\t@pgfplots@tokb=\toks55
+\t@pgfplots@tokc=\toks56
+\pgfplots@tmpa=\dimen336
+\c@pgfplots@coordindex=\count356
+\c@pgfplots@scanlineindex=\count357
+
+(/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_l
+oader.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_p
+gfutil-common-lists.tex))
+(/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure
+.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure
+ext.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.te
+x
+\c@pgfplotsarray@tmp=\count358
+)
+(/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.t
+ex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.t
+ex
+\c@pgfplotstable@counta=\count359
+\t@pgfplotstable@a=\toks57
+)
+(/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.te
+x) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading
+.code.tex
+\c@pgfplotslibrarysurf@no=\count360
+
+(/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.
+pgfsys-pdftex.def)))
+(/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex)))
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+decorations.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen337
+\pgfdecoratedremainingdistance=\dimen338
+\pgfdecoratedinputsegmentcompleteddistance=\dimen339
+\pgfdecoratedinputsegmentremainingdistance=\dimen340
+\pgf@decorate@distancetomove=\dimen341
+\pgf@decorate@repeatstate=\count361
+\pgfdecorationsegmentamplitude=\dimen342
+\pgfdecorationsegmentlength=\dimen343
+)
+\tikz@lib@dec@box=\box77
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+decorations.pathmorphing.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorati
+ons.pathmorphing.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+decorations.pathreplacing.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorati
+ons.pathreplacing.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua
+.code.tex)
+\pgfplots@numplots=\count362
+\pgfplots@xmin@reg=\dimen344
+\pgfplots@xmax@reg=\dimen345
+\pgfplots@ymin@reg=\dimen346
+\pgfplots@ymax@reg=\dimen347
+\pgfplots@zmin@reg=\dimen348
+\pgfplots@zmax@reg=\dimen349
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+plotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
+
+(/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks58
+\verbatim@line=\toks59
+\verbatim@in@stream=\read5
+)
+(/usr/share/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(/usr/share/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box78
+\tcb@upperbox=\box79
+\tcb@lowerbox=\box80
+\tcb@phantombox=\box81
+\c@tcbbreakpart=\count363
+\c@tcblayer=\count364
+\c@tcolorbox@number=\count365
+\l__tcobox_tmpa_box=\box82
+\l__tcobox_tmpa_dim=\dimen350
+\tcb@temp=\box83
+\tcb@temp=\box84
+\tcb@temp=\box85
+\tcb@temp=\box86
+
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '6.9.0'
+\c@tcbrastercolumn=\count366
+\c@tcbrasterrow=\count367
+\c@tcbrasternum=\count368
+\c@tcbraster=\count369
+) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.9.0'
+(/usr/share/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
+Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
+
+(/usr/share/texmf-dist/tex/latex/tikzfill/tikzfill-common.sty
+Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
+)
+(/usr/share/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.tex
+File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
+\l__tikzfill_img_box=\box87
+))
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.9.0'
+)) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
+(/usr/share/texmf-dist/tex/latex/pdfcol/pdfcol.sty
+Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
+
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+))
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box88
+\tcb@totalupperbox=\box89
+\tcb@totallowerbox=\box90
+)
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '6.9.0'
+) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.9.0'
+) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '6.9.0'
+\tcbfitdim=\dimen351
+\tcb@lowerfitdim=\dimen352
+\tcb@upperfitdim=\dimen353
+\tcb@cur@hbadness=\count370
+) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.tex
+Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.9.0'
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '6.9.0'
+(/usr/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count371
+\lst@gtempboxa=\box91
+\lst@token=\toks60
+\lst@length=\count372
+\lst@currlwidth=\dimen354
+\lst@column=\count373
+\lst@pos=\count374
+\lst@lostspace=\dimen355
+\lst@width=\dimen356
+\lst@newlines=\count375
+\lst@lineno=\count376
+\lst@maxwidth=\dimen357
+
+(/usr/share/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
+)
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+\c@lstnumber=\count377
+\lst@skipnumbers=\count378
+\lst@framebox=\box92
+)
+(/usr/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2025/11/14 1.11b listings configuration
+))
+Package: listings 2025/11/14 1.11b (Carsten Heinz)
+
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcblistingscore.code.tex
+Library (tcolorbox): 'tcblistingscore.code.tex' version '6.9.0'
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '6.9.0'
+)
+\c@tcblisting=\count379
+)) (/usr/share/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty
+Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
+
+(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+
+(/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+))))
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex
+Library (tcolorbox): 'tcbexternal.code.tex' version '6.9.0'
+) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbmagazine.code.tex
+Library (tcolorbox): 'tcbmagazine.code.tex' version '6.9.0'
+) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbvignette.code.tex
+Library (tcolorbox): 'tcbvignette.code.tex' version '6.9.0'
+
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+fadings.code.tex
+File: tikzlibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
+File: pgflibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
+Library (tcolorbox): 'tcbposter.code.tex' version '6.9.0'
+)) (/usr/share/texmf-dist/tex/latex/siunitx/siunitx.sty
+Package: siunitx 2025-07-09 v3.4.14 A comprehensive (SI) units package
+\l__siunitx_number_uncert_offset_int=\count380
+\l__siunitx_number_exponent_fixed_int=\count381
+\l__siunitx_number_min_decimal_int=\count382
+\l__siunitx_number_min_integer_int=\count383
+\l__siunitx_number_round_precision_int=\count384
+\l__siunitx_number_lower_threshold_int=\count385
+\l__siunitx_number_upper_threshold_int=\count386
+\l__siunitx_number_group_first_int=\count387
+\l__siunitx_number_group_size_int=\count388
+\l__siunitx_number_group_minimum_int=\count389
+\l__siunitx_angle_tmp_dim=\dimen358
+\l__siunitx_angle_marker_box=\box93
+\l__siunitx_angle_unit_box=\box94
+\l__siunitx_compound_count_int=\count390
+
+(/usr/share/texmf-dist/tex/latex/translations/translations.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
+ (CN)
+)
+\l__siunitx_table_tmp_box=\box95
+\l__siunitx_table_tmp_dim=\dimen359
+\l__siunitx_table_column_width_dim=\dimen360
+\l__siunitx_table_integer_box=\box96
+\l__siunitx_table_decimal_box=\box97
+\l__siunitx_table_uncert_box=\box98
+\l__siunitx_table_before_box=\box99
+\l__siunitx_table_after_box=\box100
+\l__siunitx_table_before_dim=\dimen361
+\l__siunitx_table_carry_dim=\dimen362
+\l__siunitx_unit_tmp_int=\count391
+\l__siunitx_unit_position_int=\count392
+\l__siunitx_unit_total_int=\count393
+)
+(/usr/share/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2025/03/13 v1.3e reserve vertical space
+)
+(/usr/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+
+(/usr/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+))
+(/usr/share/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowinset=\dimen363
+\pgfarrowlength=\dimen364
+\pgfarrowwidth=\dimen365
+\pgfarrowlinewidth=\dimen366
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+calc.code.tex
+File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+positioning.code.tex
+File: tikzlibrarypositioning.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+patterns.code.tex
+File: tikzlibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
+File: pgflibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geomet
+ric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.c
+ode.tex
+File: pgflibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+fit.code.tex
+File: tikzlibraryfit.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+backgrounds.code.tex
+File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@layerbox@background=\box101
+\pgf@layerboxsaved@background=\box102
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shadings.code.tex
+File: tikzlibraryshadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryshadings.code.tex
+File: pgflibraryshadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+matrix.code.tex
+File: tikzlibrarymatrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.fillbetwee
+n.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfcontrib/tikzlibraryfillbetween.c
+ode.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+intersections.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.t
+ex
+\pgf@intersect@solutions=\count394
+))
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfcontrib/tikzlibrarydecorations.s
+oftclip.code.tex
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfcontrib/pgflibraryfillbetween.co
+de.tex)))
+(/usr/share/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.decoration
+s.softclip.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.colormaps.
+code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.statistics
+.code.tex)
+\c@ejemplo=\count395
+) (/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
+
+(/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count396
+)
+\@linkdim=\dimen367
+\Hy@linkcounter=\count397
+\Hy@pagecounter=\count398
+
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count399
+
+(/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4468.
+\c@Hy@tempcnt=\count400
+LaTeX Info: Redefining \url on input line 4807.
+\XeTeXLinkMargin=\dimen368
+
+(/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count401
+\Field@Width=\dimen369
+\Fld@charsize=\dimen370
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring ON on input line 6102.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
+\Hy@abspage=\count402
+\c@Item=\count403
+\c@Hfootnote=\count404
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
+\Fld@listcount=\count405
+\c@bookmark@seq@number=\count406
+
+(/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip85
+)
+(./datos/peru_macros.tex) (./datos/peru_modelos_macros.tex)
+(./datos/peru_regiones_macros.tex) (./datos/peru_noaa20_macros.tex)
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 10.
+
+(build/libro.aux
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+Package babel Info: 'spanish' activates 'spanish' shorthands.
+(babel)             Reported on input line 7.
+)
+\openout1 = `libro.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 10.
+LaTeX Font Info:    Trying to load font information for OML+npxmi on input line
+ 10.
+ (/usr/share/texmf-dist/tex/latex/newpx/omlnpxmi.fd
+File: omlnpxmi.fd 2013/03/21 Fontinst v1.933 font definitions for OML/npxmi.
+)
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/npxexa/m/n on input line 10.
+LaTeX Font Info:    Trying to load font information for U+npxexa on input line 
+10.
+
+(/usr/share/texmf-dist/tex/latex/newpx/unpxexa.fd
+File: unpxexa.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxexa.
+)
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 10.
+LaTeX Font Info:    Trying to load font information for LMS+npxsy on input line
+ 10.
+
+(/usr/share/texmf-dist/tex/latex/newpx/lmsnpxsy.fd
+File: lmsnpxsy.fd 2016/07/04 Fontinst v1.933 font definitions for LMS/npxsy.
+)
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 10.
+LaTeX Font Info:    Trying to load font information for LMX+npxexx on input lin
+e 10.
+
+(/usr/share/texmf-dist/tex/latex/newpx/lmxnpxexx.fd
+File: lmxnpxexx.fd 2016/07/04 Fontinst v1.933 font definitions for LMX/npxexx.
+)
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Info: Redefining \. on input line 10.
+LaTeX Info: Redefining \% on input line 10.
+
+(/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count407
+\scratchdimen=\dimen371
+\scratchbox=\box103
+\nofMPsegments=\count408
+\nofMParguments=\count409
+\everyMPshowfont=\toks61
+\MPscratchCnt=\count410
+\MPscratchDim=\dimen372
+\MPnumerator=\count411
+\makeMPintoPDFobject=\count412
+\everyMPtoPDFconversion=\toks62
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\c@mv@tabular=\count413
+\c@mv@boldtabular=\count414
+LaTeX Info: Command `\dddot' is already robust on input line 10.
+LaTeX Info: Command `\ddddot' is already robust on input line 10.
+LaTeX Info: Redefining \microtypecontext on input line 10.
+Package microtype Info: Applying patch `item' on input line 10.
+Package microtype Info: Applying patch `toc' on input line 10.
+Package microtype Info: Applying patch `eqnum' on input line 10.
+Package microtype Info: Applying patch `footnote' on input line 10.
+Package microtype Info: Applying patch `verbatim' on input line 10.
+LaTeX Info: Redefining \microtypesetup on input line 10.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+Package microtype Info: Patching command `\showhyphens'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(/usr/share/texmf-dist/tex/latex/microtype/mt-ppl.cfg
+File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(73.97733pt, 691.40172pt, 79.6678pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=691.40172pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-24.29266pt
+* \headheight=15.0pt
+* \headsep=14.0pt
+* \topskip=11.0pt
+* \footskip=27.46295pt
+* \marginparwidth=62.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
+
+\c@lstlisting=\count415
+
+(/usr/share/texmf-dist/tex/latex/translations/translations-basic-dictionary-spa
+nish.trsl
+File: translations-basic-dictionary-spanish.trsl (spanish translation file `tra
+nslations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' f
+or `spanish'. on input line 10.
+Package hyperref Info: Link coloring ON on input line 10.
+ (build/libro.out) (build/libro.out)
+\@outlinefile=\write4
+\openout4 = `libro.out'.
+
+ (./capitulos/portada.tex
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 25
+.
+
+(/usr/share/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
+File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
+)
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 10.29301pt on input line 25.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `qhv' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
+(Font)              scaled to size 10.29301pt on input line 25.
+LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
+(Font)              scaled to size 37.6001pt on input line 25.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 13.53603pt on input line 29.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 9.40002pt on input line 34.
+LaTeX Font Info:    Font shape `T1/qhv/m/it' will be
+(Font)              scaled to size 9.40002pt on input line 35.
+LaTeX Font Info:    Trying to load font information for TS1+qhv on input line 3
+6.
+
+(/usr/share/texmf-dist/tex/latex/tex-gyre/ts1qhv.fd
+File: ts1qhv.fd 2009/09/25 v1.2 font definition file for TS1/qhv
+)
+LaTeX Font Info:    Font shape `TS1/qhv/m/n' will be
+(Font)              scaled to size 9.40002pt on input line 36.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `qhv' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [1
+
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
+/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-
+ts1.enc}])
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 14.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 24.88pt on input line 14.
+
+(build/libro.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/sc' will be
+(Font)              scaled to size 10.95pt on input line 2.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/zpltlf/b/sc/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 3.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 3.
+LaTeX Font Info:    Trying to load font information for OT1+minzpl on input lin
+e 5.
+ (/usr/share/texmf-dist/tex/latex/newpx/ot1minzpl.fd
+File: ot1minzpl.fd 2021/05/25 v1.0 font definition file for OT1/minzpl/TLF
+)
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 10.95pt on input line 5.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `minzpl' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 8.0pt on input line 5.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 6.1pt on input line 5.
+LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
+5.
+
+(/usr/share/texmf-dist/tex/latex/newpx/unpxmia.fd
+File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
+5.
+
+(/usr/share/texmf-dist/tex/latex/newpx/unpxsym.fd
+File: unpxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/npxsym.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
+5.
+
+(/usr/share/texmf-dist/tex/latex/newpx/unpxsyc.fd
+File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
+)
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 30.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/sc' will be
+(Font)              scaled to size 10.0pt on input line 30.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/zpltlf/m/sc/10'.
+(microtype)             Ignoring protrusion settings for this character.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.I}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.30 ...y ventanas atmosféricas}{19}{section.3.2}
+                                                  % [1
+
+{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/share/texmf-d
+ist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
+LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 
+62.
+ (/usr/share/texmf-dist/tex/latex/newpx/t1npxtt.fd
+File: t1npxtt.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
+(Font)              scaled to size 10.95pt on input line 62.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `npxtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Info: Redefining \. on input line 66.
+LaTeX Info: Redefining \% on input line 66.
+Package babel Info: 'spanish' activates 'spanish' shorthands.
+(babel)             Reported on input line 66.
+
+[2]
+LaTeX Info: Redefining \. on input line 104.
+LaTeX Info: Redefining \% on input line 104.
+ [3]
+LaTeX Info: Redefining \. on input line 140.
+LaTeX Info: Redefining \% on input line 140.
+ [4]
+LaTeX Info: Redefining \. on input line 178.
+LaTeX Info: Redefining \% on input line 178.
+ [5]
+LaTeX Info: Redefining \. on input line 214.
+LaTeX Info: Redefining \% on input line 214.
+ [6])
+\tf@toc=\write5
+\openout5 = `libro.toc'.
+
+ (./capitulos/00_prefacio.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [7]
+LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
+(Font)              scaled to size 10.95pt on input line 5.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 15.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 15.
+LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
+(Font)              scaled to size 9.40002pt on input line 39.
+ [8
+
+])
+LaTeX Info: Redefining \. on input line 17.
+LaTeX Info: Redefining \% on input line 17.
+ [9]
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 20.74pt on input line 19.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 20.74pt on input line 19.
+ [1
+
+
+]
+(./capitulos/01_problema.tex
+Cap\'{\i }tulo 1.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
+(Font)              scaled to size 10.95pt on input line 19.
+[2
+
+]
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 75.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 9.0pt on input line 76.
+LaTeX Info: Redefining \. on input line 106.
+LaTeX Info: Redefining \% on input line 106.
+ [3{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/tex
+mf-dist/fonts/enc/dvips/newpx/px-lms.enc}]
+<figuras/camp_color.jpg, id=1203, 1003.75pt x 1003.75pt>
+File: figuras/camp_color.jpg Graphic file (type jpg)
+<use figuras/camp_color.jpg>
+Package pdftex.def Info: figuras/camp_color.jpg  used on input line 119.
+(pdftex.def)             Requested size: 145.68144pt x 145.67021pt.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 9.0pt on input line 120.
+<figuras/camp_falso.jpg, id=1204, 1003.75pt x 1003.75pt>
+File: figuras/camp_falso.jpg Graphic file (type jpg)
+<use figuras/camp_falso.jpg>
+Package pdftex.def Info: figuras/camp_falso.jpg  used on input line 123.
+(pdftex.def)             Requested size: 145.68144pt x 145.67021pt.
+<figuras/camp_focos.jpg, id=1205, 1003.75pt x 1003.75pt>
+File: figuras/camp_focos.jpg Graphic file (type jpg)
+<use figuras/camp_focos.jpg>
+Package pdftex.def Info: figuras/camp_focos.jpg  used on input line 127.
+(pdftex.def)             Requested size: 145.68144pt x 145.67021pt.
+<figuras/camp_zoom.jpg, id=1206, 843.15pt x 843.15pt>
+File: figuras/camp_zoom.jpg Graphic file (type jpg)
+<use figuras/camp_zoom.jpg>
+Package pdftex.def Info: figuras/camp_zoom.jpg  used on input line 133.
+(pdftex.def)             Requested size: 227.62206pt x 227.61494pt.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
+(Font)              scaled to size 10.0pt on input line 145.
+LaTeX Font Info:    Trying to load font information for TS1+zpltlf on input lin
+e 155.
+
+(/usr/share/texmf-dist/tex/latex/newpx/ts1zpltlf.fd
+File: ts1zpltlf.fd 2021/11/24 v1.0 fd file for TS1/zpltlf
+)
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 155.
+
+(/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 155.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 6.1pt on input line 155.
+LaTeX Info: Redefining \. on input line 159.
+LaTeX Info: Redefining \% on input line 159.
+ [4 <./figuras/camp_color.jpg> <./figuras/camp_falso.jpg> <./figuras/camp_focos
+.jpg> <./figuras/camp_zoom.jpg>]
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 10.0pt on input line 206.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 7.3pt on input line 206.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 5.5pt on input line 206.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 206.
+LaTeX Info: Redefining \. on input line 216.
+LaTeX Info: Redefining \% on input line 216.
+ [5{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+LaTeX Info: Redefining \. on input line 277.
+LaTeX Info: Redefining \% on input line 277.
+
+[6]
+PGFPlots: reading {datos/peru_calendario.csv}
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 6.2pt on input line 317.
+LaTeX Info: Redefining \. on input line 332.
+LaTeX Info: Redefining \% on input line 332.
+ [7]
+LaTeX Info: Redefining \. on input line 392.
+LaTeX Info: Redefining \% on input line 392.
+ [8]) (./capitulos/02_radiacion.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [9]
+Cap\'{\i }tulo 2.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 11.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 11.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 31.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 31.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 32.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 32.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 9.0pt on input line 50.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 50.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 5.5pt on input line 50.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 55.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 56.
+[10
+
+]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 100.
+LaTeX Info: Redefining \. on input line 118.
+LaTeX Info: Redefining \% on input line 118.
+ [11]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 140.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 141.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 145.
+Package pgfplots info on input line 157: Using 'lua backend=false' for axis: xm
+ode=log unsupported (yet).
+Package pgfplots info on input line 157: Using 'lua backend=false' for axis: ym
+ode=log unsupported (yet).
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 170.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 170.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 170.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 170.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 174.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 174.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 174.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 174.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 179.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 186.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 190.
+LaTeX Info: Redefining \. on input line 200.
+LaTeX Info: Redefining \% on input line 200.
+ [12]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 201.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 210.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 225.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 225.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 226.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 226.
+LaTeX Info: Redefining \. on input line 234.
+LaTeX Info: Redefining \% on input line 234.
+ [13]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 243.
+LaTeX Info: Redefining \. on input line 283.
+LaTeX Info: Redefining \% on input line 283.
+ [14]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 285.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 286.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 294.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 313.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 313.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 314.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 315.
+Package pgfplots info on input line 328: Using 'lua backend=false' for axis: ym
+ode=log unsupported (yet).
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 332.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 332.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 335.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 335.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 335.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 335.
+LaTeX Info: Redefining \. on input line 354.
+LaTeX Info: Redefining \% on input line 354.
+ [15]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 357.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 358.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 359.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 359.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 370.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 374.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 375.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 377.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 382.
+) (./capitulos/03_atmosfera.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [16]
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [17]
+Cap\'{\i }tulo 3.
+(./figuras/esquema_atmosfera.tex) [18
+
+]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 78.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 78.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 78.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 86.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 87.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 88.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 89.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 90.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 90.
+LaTeX Info: Redefining \. on input line 101.
+LaTeX Info: Redefining \% on input line 101.
+ [19]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 108.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 119.
+LaTeX Info: Redefining \. on input line 132.
+LaTeX Info: Redefining \% on input line 132.
+ [20]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 134.
+Package pgfplots info on input line 159: Using 'lua backend=false' for axis: xm
+ode=log unsupported (yet).
+Package pgfplots info on input line 159: Using 'lua backend=false' for axis: ym
+ode=log unsupported (yet).
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 167.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 167.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 167.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 167.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 172.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 172.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 172.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 172.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 178.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 8.0pt on input line 178.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 6.1pt on input line 178.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 181.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 183.
+LaTeX Info: Redefining \. on input line 189.
+LaTeX Info: Redefining \% on input line 189.
+ [21]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 201.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 201.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 230.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 231.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 231.
+LaTeX Info: Redefining \. on input line 248.
+LaTeX Info: Redefining \% on input line 248.
+ [22]
+<figuras/peru_selva_color.jpg, id=1396, 1003.75pt x 1003.75pt>
+File: figuras/peru_selva_color.jpg Graphic file (type jpg)
+<use figuras/peru_selva_color.jpg>
+Package pdftex.def Info: figuras/peru_selva_color.jpg  used on input line 252.
+(pdftex.def)             Requested size: 220.79367pt x 220.79504pt.
+<figuras/peru_selva_infrarrojo.jpg, id=1397, 1003.75pt x 1003.75pt>
+File: figuras/peru_selva_infrarrojo.jpg Graphic file (type jpg)
+<use figuras/peru_selva_infrarrojo.jpg>
+Package pdftex.def Info: figuras/peru_selva_infrarrojo.jpg  used on input line 
+256.
+(pdftex.def)             Requested size: 220.79367pt x 220.79504pt.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 280.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 282.
+LaTeX Info: Redefining \. on input line 294.
+LaTeX Info: Redefining \% on input line 294.
+ [23 <./figuras/peru_selva_color.jpg> <./figuras/peru_selva_infrarrojo.jpg>]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 306.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 307.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 310.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 311.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 321.
+)
+LaTeX Info: Redefining \. on input line 24.
+LaTeX Info: Redefining \% on input line 24.
+ [24] [25
+
+]
+(./capitulos/04_orbitas.tex
+Cap\'{\i }tulo 4.
+[26
+
+]
+LaTeX Info: Redefining \. on input line 108.
+LaTeX Info: Redefining \% on input line 108.
+ [27]
+LaTeX Info: Redefining \. on input line 163.
+LaTeX Info: Redefining \% on input line 163.
+ [28]
+LaTeX Info: Redefining \. on input line 245.
+LaTeX Info: Redefining \% on input line 245.
+ [29]
+LaTeX Info: Redefining \. on input line 322.
+LaTeX Info: Redefining \% on input line 322.
+ [30]
+LaTeX Info: Redefining \. on input line 353.
+LaTeX Info: Redefining \% on input line 353.
+ [31]) (./capitulos/05_escaneo.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [32]
+Cap\'{\i }tulo 5.
+[33
+
+]
+LaTeX Info: Redefining \. on input line 131.
+LaTeX Info: Redefining \% on input line 131.
+ [34] (./figuras/esquema_geometria_curva.tex)
+LaTeX Info: Redefining \. on input line 169.
+LaTeX Info: Redefining \% on input line 169.
+ [35]
+LaTeX Info: Redefining \. on input line 218.
+LaTeX Info: Redefining \% on input line 218.
+ [36]
+PGFPlots: reading {figuras/pixel_modis.dat}
+PGFPlots: reading {figuras/pixel_viirs.dat}
+PGFPlots: reading {figuras/pixel_modis.dat}
+PGFPlots: reading {figuras/pixel_viirs.dat}
+LaTeX Font Info:    Font shape `T1/npxtt/b/n' in size <14.4> not available
+(Font)              Font shape `T1/npxtt/bx/n' tried instead on input line 286.
+
+LaTeX Font Info:    Font shape `T1/npxtt/bx/n' will be
+(Font)              scaled to size 14.4pt on input line 286.
+LaTeX Font Info:    Font shape `T1/npxtt/b/n' in size <10> not available
+(Font)              Font shape `T1/npxtt/bx/n' tried instead on input line 297.
+
+LaTeX Font Info:    Font shape `T1/npxtt/bx/n' will be
+(Font)              scaled to size 10.0pt on input line 297.
+LaTeX Info: Redefining \. on input line 305.
+LaTeX Info: Redefining \% on input line 305.
+ [37]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 322.
+LaTeX Info: Redefining \. on input line 327.
+LaTeX Info: Redefining \% on input line 327.
+ [38])
+(./capitulos/06_modis_viirs.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [39]
+Cap\'{\i }tulo 6.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 40.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 41.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 42.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 44.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 45.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 46.
+[40
+
+]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 71.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 91.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 91.
+LaTeX Info: Redefining \. on input line 101.
+LaTeX Info: Redefining \% on input line 101.
+ [41]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 117.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 118.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 119.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 120.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 128.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 157.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 157.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 157.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 157.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 157.
+LaTeX Info: Redefining \. on input line 182.
+LaTeX Info: Redefining \% on input line 182.
+ [42]
+LaTeX Info: Redefining \. on input line 210.
+LaTeX Info: Redefining \% on input line 210.
+ [43]
+<figuras/wv_viirs.jpg, id=1573, 1104.125pt x 1104.125pt>
+File: figuras/wv_viirs.jpg Graphic file (type jpg)
+<use figuras/wv_viirs.jpg>
+Package pdftex.def Info: figuras/wv_viirs.jpg  used on input line 231.
+(pdftex.def)             Requested size: 220.79367pt x 220.78738pt.
+<figuras/wv_modis.jpg, id=1574, 1104.125pt x 1104.125pt>
+File: figuras/wv_modis.jpg Graphic file (type jpg)
+<use figuras/wv_modis.jpg>
+Package pdftex.def Info: figuras/wv_modis.jpg  used on input line 241.
+(pdftex.def)             Requested size: 220.79367pt x 220.78738pt.
+LaTeX Info: Redefining \. on input line 270.
+LaTeX Info: Redefining \% on input line 270.
+ [44 <./figuras/wv_viirs.jpg> <./figuras/wv_modis.jpg>]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 299.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 299.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 300.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 300.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 320.
+LaTeX Info: Redefining \. on input line 322.
+LaTeX Info: Redefining \% on input line 322.
+
+[45])
+LaTeX Info: Redefining \. on input line 29.
+LaTeX Info: Redefining \% on input line 29.
+ [46] [47
+
+] (./capitulos/07_deteccion.tex
+Cap\'{\i }tulo 7.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 14.4pt on input line 41.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 10.5pt on input line 41.
+LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
+(Font)              scaled to size 7.9pt on input line 41.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 55.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 65.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 66.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 66.
+[48
+
+]
+Package pgfplots info on input line 83: Using 'lua backend=false' for axis: xmo
+de=log unsupported (yet).
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 93.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 93.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 98.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 98.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 98.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 98.
+LaTeX Info: Redefining \. on input line 104.
+LaTeX Info: Redefining \% on input line 104.
+ [49]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 114.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 121.
+LaTeX Info: Redefining \. on input line 168.
+LaTeX Info: Redefining \% on input line 168.
+ [50]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 233.
+LaTeX Info: Redefining \. on input line 252.
+LaTeX Info: Redefining \% on input line 252.
+ [51]
+LaTeX Info: Redefining \. on input line 299.
+LaTeX Info: Redefining \% on input line 299.
+ [52]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 304.
+LaTeX Info: Redefining \. on input line 329.
+LaTeX Info: Redefining \% on input line 329.
+ [53]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 361.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 361.
+LaTeX Info: Redefining \. on input line 380.
+LaTeX Info: Redefining \% on input line 380.
+ [54]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 399.
+) (./capitulos/08_frp.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [55]
+Cap\'{\i }tulo 8.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 9.
+[56
+
+]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 52.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 58.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 61.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 82.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 82.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 101.
+LaTeX Info: Redefining \. on input line 104.
+LaTeX Info: Redefining \% on input line 104.
+ [57]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 109.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 150.
+LaTeX Info: Redefining \. on input line 154.
+LaTeX Info: Redefining \% on input line 154.
+ [58]
+LaTeX Info: Redefining \. on input line 215.
+LaTeX Info: Redefining \% on input line 215.
+ [59]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 215.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 220.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 234.
+) (./capitulos/09_errores.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [60]
+Cap\'{\i }tulo 9.
+[61
+
+]
+Package pgfplots info on input line 85: Using 'lua backend=false' for axis: xmo
+de=log unsupported (yet).
+LaTeX Info: Redefining \. on input line 132.
+LaTeX Info: Redefining \% on input line 132.
+ [62]
+LaTeX Info: Redefining \. on input line 149.
+LaTeX Info: Redefining \% on input line 149.
+ [63]
+LaTeX Info: Redefining \. on input line 197.
+LaTeX Info: Redefining \% on input line 197.
+ [64]
+Package pgfplots info on input line 212: Using 'lua backend=false' for axis: x 
+coord trafo unsupported.
+LaTeX Info: Redefining \. on input line 264.
+LaTeX Info: Redefining \% on input line 264.
+ [65]
+LaTeX Info: Redefining \. on input line 302.
+LaTeX Info: Redefining \% on input line 302.
+ [66]) (./capitulos/10_firms.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [67]
+Cap\'{\i }tulo 10.
+[68
+
+]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 124.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 124.
+LaTeX Info: Redefining \. on input line 127.
+LaTeX Info: Redefining \% on input line 127.
+ [69]
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 146.
+LaTeX Info: Symbol \textmu not provided by
+            font family zpltlf in TS1 encoding.
+            Default family used instead on input line 146.
+LaTeX Info: Redefining \. on input line 175.
+LaTeX Info: Redefining \% on input line 175.
+ [70]
+LaTeX Info: Redefining \. on input line 222.
+LaTeX Info: Redefining \% on input line 222.
+ [71]
+LaTeX Info: Redefining \. on input line 291.
+LaTeX Info: Redefining \% on input line 291.
+ [72]
+LaTeX Info: Redefining \. on input line 319.
+LaTeX Info: Redefining \% on input line 319.
+ [73])
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
+ [74] [75
+
+] (./capitulos/11_estadistica.tex
+Cap\'{\i }tulo 11.
+[76
+
+]
+LaTeX Info: Redefining \. on input line 100.
+LaTeX Info: Redefining \% on input line 100.
+ [77]
+LaTeX Info: Redefining \. on input line 169.
+LaTeX Info: Redefining \% on input line 169.
+ [78]
+LaTeX Info: Redefining \. on input line 238.
+LaTeX Info: Redefining \% on input line 238.
+ [79]
+LaTeX Info: Redefining \. on input line 277.
+LaTeX Info: Redefining \% on input line 277.
+ [80]
+Package pgfplots info on input line 317: Using 'lua backend=false' for axis: xm
+ode=log unsupported (yet).
+Package pgfplots info on input line 317: Using 'lua backend=false' for axis: ym
+ode=log unsupported (yet).
+LaTeX Info: Redefining \. on input line 366.
+LaTeX Info: Redefining \% on input line 366.
+ [81]
+LaTeX Info: Redefining \. on input line 397.
+LaTeX Info: Redefining \% on input line 397.
+ [82]
+LaTeX Info: Redefining \. on input line 434.
+LaTeX Info: Redefining \% on input line 434.
+ [83]
+LaTeX Info: Redefining \. on input line 495.
+LaTeX Info: Redefining \% on input line 495.
+ [84]
+LaTeX Info: Redefining \. on input line 543.
+LaTeX Info: Redefining \% on input line 543.
+ [85])
+(./capitulos/12_armonizacion.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [86]
+Cap\'{\i }tulo 12.
+[87
+
+]
+LaTeX Info: Redefining \. on input line 122.
+LaTeX Info: Redefining \% on input line 122.
+ [88]
+Package pgfplots info on input line 170: Using 'lua backend=false' for axis: xm
+ode=log unsupported (yet).
+LaTeX Info: Redefining \. on input line 191.
+LaTeX Info: Redefining \% on input line 191.
+ [89]
+LaTeX Info: Redefining \. on input line 235.
+LaTeX Info: Redefining \% on input line 235.
+ [90]
+LaTeX Info: Redefining \. on input line 291.
+LaTeX Info: Redefining \% on input line 291.
+ [91]
+LaTeX Info: Redefining \. on input line 360.
+LaTeX Info: Redefining \% on input line 360.
+ [92]
+LaTeX Info: Redefining \. on input line 406.
+LaTeX Info: Redefining \% on input line 406.
+ [93]
+LaTeX Info: Redefining \. on input line 497.
+LaTeX Info: Redefining \% on input line 497.
+ [94]
+LaTeX Info: Redefining \. on input line 527.
+LaTeX Info: Redefining \% on input line 527.
+ [95]
+LaTeX Info: Redefining \. on input line 557.
+LaTeX Info: Redefining \% on input line 557.
+ [96])
+(./capitulos/13_calendario.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [97]
+Cap\'{\i }tulo 13.
+[98
+
+]
+LaTeX Info: Redefining \. on input line 95.
+LaTeX Info: Redefining \% on input line 95.
+ [99]
+LaTeX Info: Redefining \. on input line 145.
+LaTeX Info: Redefining \% on input line 145.
+ [100]
+<figuras/peru_calendario.pdf, id=2104, 455.30101pt x 411.939pt>
+File: figuras/peru_calendario.pdf Graphic file (type pdf)
+<use figuras/peru_calendario.pdf>
+Package pdftex.def Info: figuras/peru_calendario.pdf  used on input line 173.
+(pdftex.def)             Requested size: 455.24411pt x 411.90025pt.
+LaTeX Info: Redefining \. on input line 194.
+LaTeX Info: Redefining \% on input line 194.
+ [101]
+LaTeX Info: Redefining \. on input line 194.
+LaTeX Info: Redefining \% on input line 194.
+ [102 <./figuras/peru_calendario.pdf>]
+<figuras/peru_perfil.pdf, id=2144, 455.30101pt x 281.85298pt>
+File: figuras/peru_perfil.pdf Graphic file (type pdf)
+<use figuras/peru_perfil.pdf>
+Package pdftex.def Info: figuras/peru_perfil.pdf  used on input line 212.
+(pdftex.def)             Requested size: 455.24411pt x 281.82648pt.
+LaTeX Info: Redefining \. on input line 230.
+LaTeX Info: Redefining \% on input line 230.
+ [103 <./figuras/peru_perfil.pdf>]
+LaTeX Info: Redefining \. on input line 282.
+LaTeX Info: Redefining \% on input line 282.
+ [104]
+<figuras/peru_acumulado.pdf, id=2186, 455.30101pt x 267.39899pt>
+File: figuras/peru_acumulado.pdf Graphic file (type pdf)
+<use figuras/peru_acumulado.pdf>
+Package pdftex.def Info: figuras/peru_acumulado.pdf  used on input line 309.
+(pdftex.def)             Requested size: 455.24411pt x 267.37384pt.
+LaTeX Info: Redefining \. on input line 322.
+LaTeX Info: Redefining \% on input line 322.
+ [105 <./figuras/peru_acumulado.pdf>]
+LaTeX Info: Redefining \. on input line 375.
+LaTeX Info: Redefining \% on input line 375.
+ [106]
+LaTeX Info: Redefining \. on input line 423.
+LaTeX Info: Redefining \% on input line 423.
+ [107])
+LaTeX Info: Redefining \. on input line 40.
+LaTeX Info: Redefining \% on input line 40.
+ [108]
+[109
+
+] (./capitulos/14_aplicacion.tex
+Cap\'{\i }tulo 14.
+[110
+
+]
+LaTeX Info: Redefining \. on input line 118.
+LaTeX Info: Redefining \% on input line 118.
+ [111]
+LaTeX Info: Redefining \. on input line 155.
+LaTeX Info: Redefining \% on input line 155.
+ [112]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 170.
+LaTeX Info: Redefining \. on input line 212.
+LaTeX Info: Redefining \% on input line 212.
+ [113]
+<figuras/peru_validacion.pdf, id=2295, 455.30101pt x 368.57701pt>
+File: figuras/peru_validacion.pdf Graphic file (type pdf)
+<use figuras/peru_validacion.pdf>
+Package pdftex.def Info: figuras/peru_validacion.pdf  used on input line 284.
+(pdftex.def)             Requested size: 455.24411pt x 368.54234pt.
+LaTeX Info: Redefining \. on input line 298.
+LaTeX Info: Redefining \% on input line 298.
+ [114]
+LaTeX Info: Redefining \. on input line 298.
+LaTeX Info: Redefining \% on input line 298.
+ [115 <./figuras/peru_validacion.pdf>]
+PGFPlots: reading {datos/peru_razon_mensual.dat}
+LaTeX Info: Redefining \. on input line 360.
+LaTeX Info: Redefining \% on input line 360.
+ [116]
+PGFPlots: reading {datos/peru_modelos_prueba.dat}
+PGFPlots: reading {datos/peru_modelos_prueba.dat}
+PGFPlots: reading {datos/peru_modelos_prueba.dat}
+LaTeX Info: Redefining \. on input line 432.
+LaTeX Info: Redefining \% on input line 432.
+
+[117]
+LaTeX Info: Redefining \. on input line 484.
+LaTeX Info: Redefining \% on input line 484.
+ [118]
+LaTeX Info: Redefining \. on input line 545.
+LaTeX Info: Redefining \% on input line 545.
+ [119]
+LaTeX Info: Redefining \. on input line 591.
+LaTeX Info: Redefining \% on input line 591.
+ [120]
+LaTeX Info: Redefining \. on input line 648.
+LaTeX Info: Redefining \% on input line 648.
+ [121]) (./capitulos/A_glosario.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [122]
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [123]
+Ap\'{e}ndice A.
+[124
+
+]
+LaTeX Info: Redefining \. on input line 73.
+LaTeX Info: Redefining \% on input line 73.
+ [125]
+LaTeX Info: Redefining \. on input line 116.
+LaTeX Info: Redefining \% on input line 116.
+ [126]
+LaTeX Info: Redefining \. on input line 156.
+LaTeX Info: Redefining \% on input line 156.
+ [127]) (./capitulos/B_formulas.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [128]
+Ap\'{e}ndice B.
+[129
+
+]
+LaTeX Info: Redefining \. on input line 107.
+LaTeX Info: Redefining \% on input line 107.
+ [130]
+LaTeX Info: Redefining \. on input line 161.
+LaTeX Info: Redefining \% on input line 161.
+ [131]) (./capitulos/C_fuentes.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [132]
+Ap\'{e}ndice C.
+[133
+
+]
+LaTeX Info: Redefining \. on input line 93.
+LaTeX Info: Redefining \% on input line 93.
+ [134]
+LaTeX Info: Redefining \. on input line 138.
+LaTeX Info: Redefining \% on input line 138.
+ [135]
+LaTeX Info: Redefining \. on input line 186.
+LaTeX Info: Redefining \% on input line 186.
+ [136]
+LaTeX Info: Redefining \. on input line 244.
+LaTeX Info: Redefining \% on input line 244.
+ [137])
+LaTeX Info: Redefining \. on input line 48.
+LaTeX Info: Redefining \% on input line 48.
+ [138] (build/libro.aux
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2020/03/25>
+ ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
+Package rerunfilecheck Info: File `libro.out' has not changed.
+(rerunfilecheck)             Checksum: B7C3D9D064BE66397EA51C1988724174;44044.
+ ) 
+Here is how much of TeX's memory you used:
+ 58246 strings out of 469453
+ 1329467 string characters out of 5469036
+ 2027046 words of memory out of 5000000
+ 84730 multiletter control sequences out of 15000+600000
+ 806195 words of font info for 472 fonts, out of 8000000 for 9000
+ 40 hyphenation exceptions out of 8191
+ 91i,20n,120p,1002b,2627s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/newpx/NewPXMI.pfb></usr/share/texmf
+-dist/fonts/type1/public/newpx/NewPXMI_gnu.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/newpx/pxmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/pxsy
+s.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></usr/share/t
+exmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/tex-gyre/qhvri.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
+/sfrm0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><
+/usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texm
+f-dist/fonts/type1/public/txfonts/t1xbtt.pfb></usr/share/texmf-dist/fonts/type1
+/public/txfonts/t1xtt.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs
+.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/share/texmf
+-dist/fonts/type1/public/newpx/zplbi.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/newpx/zplr.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on build/libro.pdf (148 pages, 1579439 bytes).
+PDF statistics:
+ 2837 PDF objects out of 2984 (max. 8388607)
+ 2503 compressed objects within 26 object streams
+ 675 named destinations out of 1000 (max. 500000)
+ 82403 words of extra memory for PDF output out of 89155 (max. 10000000)
+

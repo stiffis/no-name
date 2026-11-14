@@ -1,0 +1,143 @@
+{
+  "regla": "sierra >= 2000 m o entre cumbres; costa al oeste; selva al este",
+  "relieve": [
+    {
+      "archivo": "6_17_31.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/17/31.png",
+      "sha256": "16e376fd58f57267122feac3cb45341866ae77bd1f91545e1a738c91f7a193df"
+    },
+    {
+      "archivo": "6_17_32.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/17/32.png",
+      "sha256": "000e2f0faf8d46cc203813c48caa74631e529c1d1d7d960a34fd55ca9df9e247"
+    },
+    {
+      "archivo": "6_17_33.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/17/33.png",
+      "sha256": "204892e997cf0932f9f8a6084d0c04a7dc3062a48b15e33b989738d468e26527"
+    },
+    {
+      "archivo": "6_17_34.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/17/34.png",
+      "sha256": "cff4cbad6d1d67087524f322f67f79dc321840b6adbed1f98d7a6b6858090e2a"
+    },
+    {
+      "archivo": "6_17_35.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/17/35.png",
+      "sha256": "0f2b19290bd1bba80e6f5629844c025e72f6819ef8533f7fcb748978f21cc160"
+    },
+    {
+      "archivo": "6_18_31.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/18/31.png",
+      "sha256": "02449ad8fa660c618f8cf73a89d5b5830482c105a253d7d6b5d833724964dbdd"
+    },
+    {
+      "archivo": "6_18_32.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/18/32.png",
+      "sha256": "202cbced48324122a6b30ca8d064b142a34a0543c5abbcf2bf1a17bae18c85df"
+    },
+    {
+      "archivo": "6_18_33.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/18/33.png",
+      "sha256": "8c70cabe3760049f28d56a6169a3fd4da1f6da94f4f07027edea64510f9544c0"
+    },
+    {
+      "archivo": "6_18_34.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/18/34.png",
+      "sha256": "82e6020b444c7ae2df76d661f599b9a8bf33ee3acae5bb92ef4448c7cfe44b44"
+    },
+    {
+      "archivo": "6_18_35.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/18/35.png",
+      "sha256": "a9270e07ec68a5f11206ada32d25ae8bcf7d88d7f4fc53913299ac5a5ec3924a"
+    },
+    {
+      "archivo": "6_19_31.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/19/31.png",
+      "sha256": "5659ba811cbb4329ac83b567cac6145f520effa92cbb1eba3001938ecbd20c74"
+    },
+    {
+      "archivo": "6_19_32.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/19/32.png",
+      "sha256": "acd7223c38d895196d8002039d2f856894419051b1d324d3f3419d4031ab8993"
+    },
+    {
+      "archivo": "6_19_33.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/19/33.png",
+      "sha256": "6b7b5f556b581902d72635511b3fd25684cbd71f809fe7137229acf8ddd0b7f1"
+    },
+    {
+      "archivo": "6_19_34.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/19/34.png",
+      "sha256": "6b9def237702626f3d093f2c446de0c2e07e4e97bb6a0465951788b21a88de4f"
+    },
+    {
+      "archivo": "6_19_35.png",
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/19/35.png",
+      "sha256": "da25f9d044b88c5c9a585273eda3ad2cb89c8e4d47911cb67a71f56ab156a280"
+    }
+  ],
+  "ajuste": [
+    2018,
+    2019,
+    2020
+  ],
+  "prueba": [
+    2021,
+    2022
+  ],
+  "regiones": {
+    "costa": {
+      "aqua_ajuste": 1159,
+      "viirs_ajuste": 10130,
+      "unica": {
+        "r": 8.740293356341674
+      },
+      "potencia": {
+        "alfa": 42.051636165767725,
+        "beta": 0.5538879615034394,
+        "meses_usados": 36
+      },
+      "wape_unica": 26.37303861572824,
+      "sesgo_unica": -16.25499712395743,
+      "wape_potencia": 13.091218642842472,
+      "sesgo_potencia": -6.282398847547505
+    },
+    "sierra": {
+      "aqua_ajuste": 6498,
+      "viirs_ajuste": 32825,
+      "unica": {
+        "r": 5.05155432440751
+      },
+      "potencia": {
+        "alfa": 22.132723683031365,
+        "beta": 0.7344992867925157,
+        "meses_usados": 35
+      },
+      "wape_unica": 20.917744644310343,
+      "sesgo_unica": 40.185954652713676,
+      "wape_potencia": 16.169990754384887,
+      "sesgo_potencia": 30.751612017168075
+    },
+    "selva": {
+      "aqua_ajuste": 18851,
+      "viirs_ajuste": 81233,
+      "unica": {
+        "r": 4.309214365285661
+      },
+      "potencia": {
+        "alfa": 19.95142486780498,
+        "beta": 0.7717267183246072,
+        "meses_usados": 36
+      },
+      "wape_unica": 19.75689687799828,
+      "sesgo_unica": 58.92507028804826,
+      "wape_potencia": 8.543285729654594,
+      "sesgo_potencia": -105.19983317297343
+    }
+  },
+  "suma_regional": {
+    "unica": 17.628162253183355,
+    "potencia": 7.476541673803192
+  }
+}

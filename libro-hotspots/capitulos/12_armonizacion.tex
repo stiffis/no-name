@@ -1,0 +1,573 @@
+\chapter{Estrategias de armonización}\label{cap:armonizacion}
+
+\objetivos{
+\begin{itemize}
+  \item Elegir y justificar una unidad de conteo, una cuadrícula y un conjunto de satélites.
+  \item Construir celdas-día con fuego a partir de una tabla de focos.
+  \item Estimar razones de calibración por estratos y estabilizarlas cuando hay pocos datos.
+  \item Encadenar calibraciones para cubrir todo el registro y propagar su incertidumbre.
+  \item Diagnosticar si una serie armonizada es creíble y enunciar sus limitaciones.
+\end{itemize}}
+
+\section{Cuatro decisiones}
+
+Todo lo anterior converge aquí. Armonizar los dos registros exige tomar cuatro decisiones, en
+este orden, y cada una se apoya en capítulos anteriores (figura~\ref{fig:decisiones}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=6mm]
+  \node[caja,fill=cieloClaro,text width=3.1cm] (a) {\textbf{1. Qué se cuenta}\\ unidad de actividad};
+  \node[caja,fill=cieloClaro,text width=3.1cm,right=of a] (b) {\textbf{2. Dónde y cuándo}\\ cuadrícula y periodo};
+  \node[caja,fill=cieloClaro,text width=3.1cm,right=of b] (c) {\textbf{3. Con qué ojos}\\ satélites y filtros};
+  \node[caja,fill=bosqueClaro,text width=3.1cm,right=of c] (d) {\textbf{4. Cómo se enlaza}\\ calibración en el solape};
+  \draw[flujo] (a)--(b); \draw[flujo] (b)--(c); \draw[flujo] (c)--(d);
+\end{tikzpicture}
+\caption{Las cuatro decisiones de una armonización.}
+\label{fig:decisiones}
+\end{figure}
+
+Las tres primeras buscan que los dos sensores midan, en lo posible, \emph{la misma cosa}. Solo
+la cuarta es estadística. Cuanto mejor se resuelvan las primeras, menos trabajo le queda a la
+calibración y más creíble es el resultado.
+
+\section{Primera decisión: la unidad de conteo}
+
+Hay tres candidatas.
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[Número de focos.] La más directa y la peor. Mezcla actividad con tamaño de píxel, número
+  de satélites y duplicados (tabla~\ref{tab:multiple}).
+  \item[Celdas-día con fuego.] Se superpone una cuadrícula fija y se cuenta, para cada celda y
+  cada día, si hubo al menos una detección.
+  \item[Resumen de potencia radiativa.] Puede resumirse la FRP por pasada comparable.
+  Sumar potencias de instantes distintos no produce energía ni corrige el número de
+  oportunidades de observación; hay que definir el muestreo temporal.
+\end{description}
+
+\begin{definicion}{celda-día con fuego}
+Dada una cuadrícula fija, una celda-día con fuego es un par (celda, día local) en el que el
+sensor registró al menos una detección. La actividad de una región en un periodo es el número de
+celdas-día con fuego que contiene.
+\end{definicion}
+
+\begin{ejemplo}{de focos a celdas-día}
+La figura~\ref{fig:celdadia} muestra las detecciones de un mismo día en una zona cubierta por
+una cuadrícula de $4\times4$ celdas. Cuenta focos y celdas-día para cada sensor.
+\solucion MODIS registró 4 focos, que caen en 3 celdas distintas. VIIRS registró 14 focos, en 5
+celdas distintas.
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+ & MODIS & VIIRS & Razón VIIRS/MODIS \\
+\midrule
+Focos & 4 & 14 & 3,5 \\
+Celdas-día con fuego & 3 & 5 & 1,7 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Al cambiar de unidad, la razón entre sensores cae de 3,5 a 1,7. Lo que desapareció es la parte
+de la diferencia que no era información: el incendio grande de la esquina, que VIIRS reparte en
+ocho focos y MODIS en dos, cuenta ahora una celda para ambos. Lo que queda (dos celdas que solo
+ve VIIRS) puede reflejar sensibilidad, cobertura o momento de observación; no se atribuye
+toda la diferencia a una sola causa sin comprobarla.
+\end{ejemplo}
+
+\begin{atencion}[Cuánto reduce de verdad: el caso de Perú]
+El ejemplo anterior está construido para que el efecto se vea. Con datos reales la reducción
+puede ser mucho menor. En Perú, entre 2018 y 2020 y con los filtros del
+capítulo~\ref{cap:calendario}, Suomi NPP registró 5,5 veces más focos diurnos que Aqua
+(\num{201257} frente a \num{36546}); en celdas-día de $0{,}05^\circ$ la razón es
+\PeruRatio{} (\PeruAjusteVIIRS{} frente a \PeruAjusteAqua{}). El cambio de unidad recorta
+la diferencia solo un 15\,{}\%. En un país donde predominan las quemas pequeñas, casi toda
+la ventaja de VIIRS consiste en fuegos que MODIS no registra, no en contar varias veces el
+mismo. La celda-día sigue siendo la unidad correcta, pero no hace por sí sola el trabajo de
+la calibración.
+\end{atencion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=1.15cm,y=1.15cm]
+  \foreach \sx/\tit/\col in {0/MODIS/modis,6.2/VIIRS/viirs}{
+    \begin{scope}[shift={(\sx,0)}]
+      \node[font=\small\bfseries,\col] at (2,4.4) {\tit};
+      \ifdim\sx pt=0pt
+        \foreach \i/\j in {0/3,2/1,3/0}{\fill[\col!25] (\i,\j) rectangle ++(1,1);}
+        \foreach \x/\y in {0.4/3.5,0.75/3.3,2.5/1.45,3.4/0.5}{\fill[\col] (\x,\y) circle (0.09);}
+      \else
+        \foreach \i/\j in {0/3,2/1,3/0,1/1,3/2}{\fill[\col!25] (\i,\j) rectangle ++(1,1);}
+        \foreach \x/\y in {0.2/3.7,0.35/3.55,0.5/3.4,0.65/3.25,0.8/3.1,0.3/3.3,0.55/3.65,0.75/3.5,
+            2.45/1.5,2.6/1.35,3.4/0.5,3.55/0.4,1.5/1.6,3.6/2.4}{\fill[\col] (\x,\y) circle (0.07);}
+      \fi
+      \foreach \k in {0,...,4}{\draw[ceniza] (\k,0)--(\k,4); \draw[ceniza] (0,\k)--(4,\k);}
+    \end{scope}
+  }
+\end{tikzpicture}
+\caption{Las detecciones de un día en una misma zona (ejemplo ilustrativo). Los puntos son
+focos; las celdas sombreadas son celdas-día con fuego.}
+\label{fig:celdadia}
+\end{figure}
+
+La celda-día reduce la multiplicidad cuando varias detecciones comparten celda y día.
+Puede reducir la sobredispersión, pero no elimina dependencias ni cambios de celda
+por geolocalización. Añadir satélites sigue aumentando la probabilidad de registrar
+alguna detección, aunque se tome la unión. La interpretación precisa es <<días con
+alguna detección en esta celda bajo esta selección de plataformas>>.
+
+Tiene también un coste: \textbf{satura}. Una celda con una quema y una celda con veinte cuentan
+igual. Cuanto mayor es la celda, más actividad distinta queda fundida en un solo <<sí>>.
+
+\section{Segunda decisión: la cuadrícula}
+
+\subsection{Cuadrícula geográfica regular}
+
+La cuadrícula más simple divide el mapa en celdas de lado fijo en grados de latitud y longitud.
+Si el lado es $\Delta$ grados y el origen está en la latitud $-90^\circ$ y la longitud
+$-180^\circ$, los índices de la celda que contiene un punto son
+\begin{equation}\label{eq:indice}
+  i = \left\lfloor \frac{\text{lat} + 90}{\Delta} \right\rfloor,
+  \qquad
+  j = \left\lfloor \frac{\text{lon} + 180}{\Delta} \right\rfloor,
+\end{equation}
+donde $\lfloor\cdot\rfloor$ es la parte entera hacia abajo. Es una operación trivial, que se
+aplica a millones de filas en una fracción de segundo.
+
+¿Cuánto mide una celda en kilómetros? Un grado de latitud equivale siempre a unos 111,3~km. Un
+grado de longitud equivale a esa misma distancia en el ecuador y se estrecha hacia los polos:
+\begin{equation}\label{eq:grado}
+  1^\circ\text{ de latitud} \approx \SI{111.3}{\kilo\metre},
+  \qquad
+  1^\circ\text{ de longitud} \approx \SI{111.3}{\kilo\metre}\times\cos(\text{lat}) .
+\end{equation}
+
+\begin{ejemplo}{una celda sobre Huancayo}
+Para una cuadrícula de $\Delta = 0{,}05^\circ$, halla los índices de la celda que contiene a
+Huancayo (latitud $-12{,}07^\circ$, longitud $-75{,}21^\circ$) y sus dimensiones.
+\solucion Índices: $i = \lfloor (-12{,}07 + 90)/0{,}05 \rfloor = \lfloor 1558{,}6 \rfloor =
+1558$; $j = \lfloor (-75{,}21 + 180)/0{,}05 \rfloor = \lfloor 2095{,}8 \rfloor = 2095$.
+Dimensiones: de norte a sur, $0{,}05 \times 111{,}3 = \SI{5.57}{\kilo\metre}$; de este a oeste,
+$5{,}57 \times \cos(12{,}07^\circ) = 5{,}57 \times 0{,}978 = \SI{5.44}{\kilo\metre}$. La celda
+mide unos $5{,}6 \times 5{,}4$~km, casi \SI{30}{\kilo\metre\squared}.
+\end{ejemplo}
+
+En las latitudes del Perú la deformación es pequeña (el coseno va de 1,00 en el ecuador a 0,95
+en Tacna), por lo que una rejilla en grados puede ser una aproximación práctica. Para
+comparar densidades se consideran las áreas reales. Para un producto global
+habría que compensar el estrechamiento de las celdas hacia los polos o usar una cuadrícula de
+igual área.
+
+\subsection{El tamaño de la celda}
+
+Es la decisión con más consecuencias y no tiene una respuesta única. La
+figura~\ref{fig:tamano-celda} resume el compromiso.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=6.6cm,xmode=log,xmin=0.3,xmax=120,ymin=0.8,ymax=4.2,
+  xlabel={Lado de la celda (km)},ylabel={Razón VIIRS/MODIS en celdas-día},
+  xtick={0.375,1,5,10,25,50,100},xticklabels={{0,4},1,5,10,25,50,100},
+  grid=major,grid style={ceniza!15},samples=100,domain=0.3:120]
+\addplot[fuego,very thick] {1+2.6/(1+(x/4)^0.9)};
+\addplot[ceniza,dashed] {1};
+\fill[bosque,opacity=0.13] (axis cs:4,0.8) rectangle (axis cs:12,4.2);
+\node[font=\footnotesize,align=center] at (axis cs:7,3.75) {intervalo\\ razonable};
+\node[font=\footnotesize,align=left,anchor=west,fill=white,inner sep=2pt] at (axis cs:0.36,1.7) {celda más fina que\\ el píxel de MODIS:\\ razón cercana a\\ la de los focos};
+\node[font=\footnotesize,align=right,anchor=east] at (axis cs:110,2.4) {celda enorme:\\ casi todo satura,\\ se pierde detalle};
+\end{axis}
+\end{tikzpicture}
+\caption{Cómo cambia la razón entre sensores con el tamaño de la celda (curva esquemática). Con
+celdas muy pequeñas la celda-día equivale a contar focos; con celdas muy grandes ambos sensores
+dicen <<sí>> casi siempre y la razón tiende a 1, a costa de borrar toda la estructura espacial.}
+\label{fig:tamano-celda}
+\end{figure}
+
+Tres criterios acotan la elección:
+
+\begin{itemize}
+  \item \textbf{Relacionada con la huella.} Conviene estudiar escalas mayores que la
+  dimensión gruesa de MODIS lejos del nadir (casi 5~km). Aun así, un fuego junto al borde
+  puede cambiar de celda; ninguna rejilla elimina ese efecto por completo.
+  \item \textbf{Suficientes datos por celda.} Por la ecuación~\eqref{eq:rel}, una celda con
+  pocas celdas-día al año tiene estimaciones muy inciertas.
+  \item \textbf{Adecuada al uso.} Un gestor provincial no necesita más detalle que unos
+  kilómetros.
+\end{itemize}
+
+Un lado entre 0,05$^\circ$ y 0,1$^\circ$ (aproximadamente 5--11~km) es un punto de partida
+para comparar variantes regionales, no una resolución validada de antemano. Se estudia
+cómo cambian los indicadores al variar el tamaño y se documenta su unidad.
+
+\begin{parareto}
+Guarda los datos en la cuadrícula \emph{fina} (por ejemplo 0,05$^\circ$) y agrega hacia arriba
+cuando el usuario elija un área: distrito, provincia, región. La calibración, en cambio, se
+estima en unidades grandes, donde hay datos suficientes. Son dos resoluciones distintas para dos
+tareas distintas, y confundirlas es un error frecuente.
+\end{parareto}
+
+\subsection{La resolución temporal}
+
+La celda-día fija el día como unidad mínima; aquí elegimos el \emph{día local}
+(capítulo~\ref{cap:firms}). Para presentar, se agrega a semanas o a meses. Hay una sutileza: las
+semanas no encajan en los meses ni en los años. Una opción cómoda es dividir cada año en
+periodos fijos de ocho días (46 por año) o trabajar con el \emph{día del año} (de 1 a 365) y
+aplicar una media móvil.
+
+\section{Tercera decisión: satélites y filtros}
+
+Con lo visto en los capítulos~\ref{cap:orbitas} y~\ref{cap:errores}, la configuración que
+produce los dos registros más parecidos es:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+ & Era MODIS & Era VIIRS \\
+\midrule
+Satélite & Aqua & Suomi NPP \\
+Motivo & \multicolumn{2}{>{\raggedright\arraybackslash}p{10cm}}{horas nominales próximas (13:30 y 01:30); verificar pasadas reales y deriva} \\
+Tipo & \texttt{type = 0} & \texttt{type = 0} \\
+Confianza & $\geq 30$ & nominal y alta \\
+Día y noche & por separado & por separado \\
+Colección & 6.1 & 2 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Queda un problema: Aqua no tiene datos antes de mediados de 2002. Para los primeros años solo
+existe Terra, que observa a otra hora. La solución es otra calibración, entre Terra y Aqua, en
+\emph{su} periodo común, que es larguísimo. La serie completa se arma entonces en tres tramos
+enlazados (figura~\ref{fig:cadena}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.5cm,y=0.75cm]
+  \draw[->,thick] (0,0)--(27.5,0);
+  \foreach \a in {2000,2004,2008,2012,2016,2020,2024}{\pgfmathsetmacro{\x}{\a-2000}\draw (\x,0.12)--(\x,-0.12) node[below,font=\footnotesize]{\a};}
+  \fill[modis!85] (0.85,3.6) rectangle (26.5,4.1); \node[left,font=\small] at (0.6,3.85) {Terra};
+  \fill[modis!55] (2.5,2.3) rectangle (26.5,2.8); \node[left,font=\small] at (0.6,2.55) {Aqua};
+  \fill[viirs!80] (12.05,1.0) rectangle (26.5,1.5); \node[left,font=\small] at (0.6,1.25) {Suomi NPP};
+  \draw[thick,<->,>={Stealth[length=1.3mm]}] (5,2.9)--(5,3.5)
+    node[midway,left,font=\footnotesize] {$r_1$};
+  \draw[thick,<->,>={Stealth[length=1.3mm]}] (15,1.6)--(15,2.2)
+    node[midway,right,font=\footnotesize] {$r_2$};
+  \node[font=\footnotesize,align=center,text width=5.4cm] at (6.5,5.1)
+    {\textbf{Calibración $r_1$}\\Terra $\to$ Aqua, 2003--2011};
+  \node[font=\footnotesize,align=center,text width=5.4cm] at (20,5.1)
+    {\textbf{Calibración $r_2$}\\Aqua $\to$ Suomi NPP, 2012--2020};
+  \draw[fuego,line width=2.2pt] (0.85,-1.6)--(2.5,-1.6); \draw[brasa,line width=2.2pt] (2.5,-1.6)--(12.05,-1.6); \draw[bosque,line width=2.2pt] (12.05,-1.6)--(26.5,-1.6);
+  \node[font=\footnotesize,fuego,align=center] at (1.6,-2.4) {Terra\\ $\times r_1 r_2$};
+  \node[font=\footnotesize,brasa!70!black] at (7.2,-2.2) {Aqua $\times\, r_2$};
+  \node[font=\footnotesize,bosque] at (19,-2.2) {Suomi NPP, tal cual};
+  \node[left,font=\small\bfseries] at (0.6,-1.6) {Serie};
+\end{tikzpicture}
+\caption{Calibración encadenada. Para expresar toda la serie en la escala de Suomi NPP, los años
+de Aqua se multiplican por $r_2$ y los años en que solo hay Terra por $r_1 r_2$.
+Los periodos ilustran una estrategia; la calibración real peruana del
+capítulo~\ref{cap:aplicacion} utiliza un intervalo de ajuste distinto.}
+\label{fig:cadena}
+\end{figure}
+
+Cada eslabón añade incertidumbre. Si las incertidumbres relativas de $r_1$ y de $r_2$ son
+$u_1$ y $u_2$ y son independientes, la del producto $r_1 r_2$ es
+\begin{equation}\label{eq:cuadratura}
+  u_{12} \simeq \sqrt{u_1^2 + u_2^2} .
+\end{equation}
+
+\begin{ejemplo}{incertidumbre de una cadena}
+Las razones se estimaron con incertidumbres estándar relativas del 5\,{}\% para $r_1$ y del 4\,{}\% para
+$r_2$. ¿Cuál es la incertidumbre de calibración de los años 2000--2002?
+\solucion $u_{12} = \sqrt{0{,}05^2 + 0{,}04^2} = \sqrt{0{,}0041} = 0{,}064$, es decir, un
+6,4\,{}\%. Los años más antiguos son los de mayor incertidumbre de calibración, y además los de
+menos observaciones. Conviene mostrarlos con una banda de error más ancha, o incluso empezar la
+serie en 2003 y decirlo.
+\end{ejemplo}
+
+\begin{atencion}[Terra y Aqua no difieren solo en un factor]
+La pasada de las 10:30 ve otro momento del ciclo diurno, y la proporción entre lo que arde a
+media mañana y a primera hora de la tarde depende del tipo de fuego. La razón $r_1$ varía con la
+región y la estación tanto o más que $r_2$. Si no hay tiempo de tratarla con cuidado, es
+legítimo y más honesto limitar la serie a 2003 en adelante.
+\end{atencion}
+
+\section{Cuarta decisión: la calibración en el solape}
+
+\subsection{En qué dirección convertir}
+
+Hay que elegir una escala común, y hay dos opciones.
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[Llevar MODIS a la escala de VIIRS.] Se multiplican los conteos antiguos por la razón.
+  La serie queda en una escala VIIRS especificada. El cambio posterior de plataforma
+  necesita otra evaluación: Suomi NPP dejó de entregar datos nuevos en noviembre de 2026.
+  Los años antiguos se convierten en una estimación de actividad equivalente que
+  MODIS nunca observó: se supone que los fuegos pequeños guardaban entonces la misma proporción
+  con los grandes que durante el solape.
+  \item[Llevar VIIRS a la escala de MODIS.] Se transforman los conteos recientes en un
+  índice equivalente, con incertidumbre y posible pérdida de sensibilidad, ligado a la
+  escala MODIS. Tampoco es una nueva observación directa.
+\end{description}
+
+Ambas direcciones requieren validación. Una constante común aplicada a un valor y a su
+propia referencia se cancela en una anomalía relativa; esto no garantiza equivalencia
+si la referencia mezcla épocas o las razones cambian por estrato. El objetivo no es
+forzar continuidad, sino reducir discrepancias de observación sin borrar cambios reales.
+Aquí se ilustra la conversión a una escala VIIRS, declarando sus supuestos.
+
+\subsection{Estratificar}
+
+La lección repetida de los capítulos~\ref{cap:modisviirs} y~\ref{cap:deteccion} es que la razón
+entre sensores depende del tipo de fuego. La forma práctica de recogerlo es
+\termino{estratificar}: dividir los datos en grupos donde el tipo de fuego sea homogéneo y
+estimar una razón para cada uno.
+
+\begin{definicion}{estrato}
+Un estrato es un subconjunto de los datos definido por variables que se sospecha que influyen en
+la relación que se quiere estimar. Aquí, combinaciones de zona geográfica, época del año y día o
+noche.
+\end{definicion}
+
+Para el Perú, una estratificación geográfica natural son las tres grandes regiones, costa,
+sierra y selva, o los departamentos. En el tiempo, los meses o los trimestres. La
+tabla~\ref{tab:estratos} muestra el aspecto que tiene el resultado.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{4}{c}{Razón Suomi NPP / Aqua, celdas-día diurnas} \\
+\cmidrule{2-5}
+Zona & ene--mar & abr--jun & jul--sep & oct--dic \\
+\midrule
+Sierra central & (2,9) & 2,4 & 1,9 & 2,1 \\
+Selva central & (2,2) & 1,9 & 1,5 & 1,6 \\
+Costa & (3,4) & (3,1) & 2,8 & (3,0) \\
+\bottomrule
+\end{tabular}
+\caption{Aspecto de una tabla de calibración estratificada (valores ilustrativos, no medidos).
+Entre paréntesis, estratos con tan pocos datos que su razón no es fiable.}
+\label{tab:estratos}
+\end{table}
+
+Una tabla así, con valores reales, ya es un resultado interesante: la razón baja en plena
+temporada, cuando hay fuegos mayores, y sube fuera de ella. Es la física del
+capítulo~\ref{cap:deteccion} hecha visible.
+
+Los valores de la tabla son inventados y, para Perú, demasiado bajos. Con datos reales
+(sección~\ref{sec:peru-modelos}) la razón nacional mensual entre celdas-día de Suomi NPP y de
+Aqua va de \PeruRazonMin{} en septiembre a \PeruRazonMax{} en marzo. El patrón, en cambio, es
+el previsto: mínima en plena temporada y máxima fuera de ella.
+
+\subsection{Estratos con pocos datos}
+
+Estratificar tiene un precio. Cuantos más estratos, menos datos en cada uno, y una razón
+calculada con seis celdas-día es ruido (ecuación~\eqref{eq:rel}). Hay dos remedios, que pueden
+combinarse.
+
+\textbf{Retroceso jerárquico.} Se fija un mínimo de datos, por ejemplo 100 celdas-día de MODIS
+en el estrato. Si un estrato no lo alcanza, se usa la razón del nivel superior: del trimestre al
+año, del departamento a la región natural, de la región al país.
+
+\textbf{Contracción hacia la razón general.} En lugar de un salto brusco, se mezcla
+gradualmente la razón del estrato con la general:
+\begin{equation}\label{eq:contraccion}
+  r_s = \frac{Y_s + k\,r_g}{X_s + k},
+\end{equation}
+donde $X_s$ e $Y_s$ son las sumas de MODIS y de VIIRS en el estrato, $r_g$ es la razón general y
+$k$ es una constante que se elige (del orden de unas decenas). La fórmula equivale a añadir al
+estrato un pseudoconteo $k$ en la escala MODIS, no necesariamente $k$ observaciones
+independientes. Si el estrato
+tiene muchos datos ($X_s \gg k$), manda su propia razón; si tiene pocos, manda la general.
+
+\begin{ejemplo}{contracción de una razón}
+Un estrato tiene $X_s = 6$ celdas-día de MODIS y $Y_s = 30$ de VIIRS. La razón general de su
+región es $r_g = 2{,}9$. Calcula la razón cruda y la contraída con $k = 20$. Repite para un
+estrato con $X_s = 600$ e $Y_s = 3000$.
+\solucion Primer estrato: razón cruda $30/6 = 5{,}0$. Contraída: $(30 + 20\times2{,}9)/(6+20) =
+88/26 = 3{,}4$. Con solo seis observaciones no se le da crédito al valor extremo. Segundo
+estrato: razón cruda $5{,}0$; contraída $(3000 + 58)/(600+20) = 4{,}9$. Con seiscientas
+observaciones, la razón propia se impone.
+\end{ejemplo}
+
+\subsection{Acercar los sensores antes de calibrar}
+
+Una razón estadística compensa las diferencias en promedio. Otra vía, complementaria, es reducir
+las diferencias \emph{físicamente}, descartando de VIIRS lo que MODIS no podría haber visto. La
+celda-día ya lo hace en parte. Una segunda herramienta es un umbral de potencia.
+
+Como el área mínima detectable es proporcional al área del píxel (ecuación~\eqref{eq:amin}), y
+la FRP es proporcional al área y a la cuarta potencia de la temperatura, MODIS tiene un límite
+inferior aproximado de FRP por debajo del cual casi nunca detecta. Si de VIIRS se eliminan las
+celdas cuya FRP de una pasada comparable queda por debajo de un umbral $F_0$, podría
+reducirse parte de la diferencia de sensibilidad. No se suman pasadas de todo un día
+como si fueran simultáneas. El umbral se estudia con datos de ajuste y se evalúa fuera
+de muestra; una razón cercana a 1 por sí sola no demuestra acuerdo entre detecciones
+(figura~\ref{fig:umbral}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=12.5cm,height=6.2cm,xmin=0,xmax=30,ymin=0.6,ymax=2.6,
+  xlabel={Umbral de FRP aplicado a las celdas-día de VIIRS, $F_0$ (MW)},
+  ylabel={Razón VIIRS filtrado / MODIS},
+  legend style={at={(0.97,0.95)},anchor=north east,font=\small,draw=ceniza!40},
+  grid=major,grid style={ceniza!15},samples=80,domain=0:30]
+\addplot[bosque,very thick] {0.72+1.55*exp(-x/6.5)};
+\addplot[brasa,very thick,dashed] {0.80+1.05*exp(-x/5)};
+\addplot[ceniza,dashed] {1};
+\legend{fuera de temporada,en temporada}
+\end{axis}
+\end{tikzpicture}
+\caption{Efecto esperado de un umbral de potencia (curvas esquemáticas). Al subir el umbral, las
+detecciones de VIIRS que MODIS no habría captado desaparecen y la razón se acerca a 1. Si se
+sube demasiado, se eliminan también fuegos que MODIS sí ve.}
+\label{fig:umbral}
+\end{figure}
+
+\begin{atencion}[Un método con supuestos]
+El umbral de FRP no es un procedimiento estándar: es una idea razonable, basada en la física del
+libro, cuya eficacia hay que comprobar con los datos. Sus supuestos son discutibles (la FRP de
+VIIRS proviene de píxeles de 750~m; el límite de MODIS depende del ángulo de barrido). Si lo
+usas, muéstralo como una variante comparada con la razón simple, no como una verdad.
+\end{atencion}
+
+\section{La receta completa}
+
+La figura~\ref{fig:receta} reúne el procedimiento.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=4mm,
+  paso/.style={caja,text width=12cm,align=left,fill=cieloClaro}]
+  \node[paso] (a) {\textbf{1. Limpiar} cada tabla de focos (figura~\ref{fig:limpieza}) y convertir a día local.};
+  \node[paso,below=of a] (b) {\textbf{2. Asignar celda} a cada foco con la ecuación~\eqref{eq:indice}.};
+  \node[paso,below=of b] (c) {\textbf{3. Reducir a presencias}: una fila por (plataforma, celda, día, franja); conservar por separado información de pasadas y cobertura.};
+  \node[paso,below=of c] (d) {\textbf{4. Separar el solape} en años de ajuste y años de prueba.};
+  \node[paso,below=of d] (e) {\textbf{5. Estimar razones} por estrato con los años de ajuste (razón de sumas, con contracción).};
+  \node[paso,below=of e] (f) {\textbf{6. Validar}: comparar años de prueba y medir sesgo y MAE; usar métricas relativas con denominadores válidos.};
+  \node[paso,below=of f] (g) {\textbf{7. Reestimar} las razones con todo el solape y construir la serie completa.};
+  \node[paso,below=of g,fill=bosqueClaro] (h) {\textbf{8. Diagnosticar} la serie y adjuntar su incertidumbre.};
+  \foreach \u/\v in {a/b,b/c,c/d,d/e,e/f,f/g,g/h}{\draw[flujo] (\u)--(\v);}
+\end{tikzpicture}
+\caption{Procedimiento de armonización de principio a fin.}
+\label{fig:receta}
+\end{figure}
+
+\section{Diagnósticos: ¿es creíble la serie?}
+
+Una serie armonizada debe superar tres comprobaciones antes de mostrarse a nadie.
+
+\textbf{Discrepancias en el empalme.} Una ruptura coincidente con el cambio de sensor
+merece investigación, pero puede coexistir con un cambio real de actividad. Se comparan
+en el solape MODIS convertido y VIIRS observado, con sus errores y cobertura. No se
+suaviza la serie solo para obligar a desaparecer un salto.
+
+\textbf{Estabilidad de la razón en el tiempo.} Se calcula la razón VIIRS/MODIS de cada año del
+solape. Si la calibración es válida, esos valores oscilan alrededor de una constante. Una
+tendencia sostenida (figura~\ref{fig:estabilidad}) puede reflejar cambios de mezcla de
+fuegos, cobertura, procesamiento u hora de paso; hay que investigar antes de extrapolar.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=6cm,xmin=2011.5,xmax=2024.5,ymin=1.2,ymax=3.2,
+  xlabel={Año},ylabel={Razón anual VIIRS/MODIS},
+  xtick={2012,2014,2016,2018,2020,2022,2024},x tick label style={/pgf/number format/1000 sep=},
+  legend style={at={(0.03,0.96)},anchor=north west,font=\small,draw=ceniza!40},
+  grid=major,grid style={ceniza!15}]
+\addplot[bosque,very thick,mark=*] coordinates {(2012,1.92)(2013,1.85)(2014,1.97)(2015,1.88)(2016,1.94)(2017,1.86)(2018,1.93)(2019,1.9)(2020,1.96)};
+\addplot[fuego,very thick,mark=square*] coordinates {(2020,1.96)(2021,2.08)(2022,2.24)(2023,2.47)(2024,2.71)};
+\legend{estable: calibración válida,tendencia: algo cambia en un sensor}
+\draw[ceniza,dashed] (axis cs:2011.5,1.91)--(axis cs:2024.5,1.91);
+\end{axis}
+\end{tikzpicture}
+\caption{Diagnóstico de estabilidad (datos ilustrativos). Mientras la razón anual fluctúa
+alrededor de un valor fijo, este diagnóstico no detecta una deriva. Si cambia, se
+investigan causas: la deriva orbital es una posibilidad y no fija por sí sola el signo. En
+Perú, la razón anual real entre 2013 y 2024 oscila entre 4,0 y 5,5 sin tendencia clara
+(\texttt{datos/peru\_anual.csv}): la variación de un año a otro es grande y está ligada a
+cuánta actividad hubo.}
+\label{fig:estabilidad}
+\end{figure}
+
+\textbf{Residuos sin estructura.} Los errores de la validación, agrupados por mes del año y por
+zona, no deben mostrar un patrón. Si el método sobrestima siempre agosto y subestima siempre
+abril, falta estratificar por estación.
+
+\section{Limitaciones que hay que declarar}
+
+Ninguna armonización es perfecta, y un trabajo serio enumera lo que no resuelve. Para la receta
+de este capítulo:
+
+\begin{enumerate}
+  \item \textbf{Supone proporciones constantes.} Se asume que la mezcla de fuegos pequeños y
+  grandes en la era MODIS era la misma que en el solape. Si las prácticas agrícolas cambiaron,
+  la reconstrucción de los años antiguos es incorrecta, y los datos no permiten saberlo.
+  \item \textbf{No recupera información.} Los fuegos que MODIS no vio se compensan en promedio,
+  no se recuperan. La estimación solo es defendible en escalas donde se haya validado;
+  no localiza retrospectivamente cada fuego omitido.
+  \item \textbf{No corrige las nubes.} Un mes muy nuboso aparece como un mes de poca actividad.
+  \item \textbf{Depende de las pasadas elegidas.} Las horas nominales pueden derivar y
+  las pasadas no capturan toda la evolución del fuego.
+  \item \textbf{La unidad satura.} Las celdas-día no distinguen una quema de muchas en la misma
+  celda.
+\end{enumerate}
+
+\begin{parareto}
+Estas cinco frases, puestas en una diapositiva o en la documentación, no debilitan el proyecto:
+lo fortalecen. Muestran que el equipo entiende sus datos, que es exactamente lo que busca un
+reto de armonización propuesto por quienes producen esos datos.
+\end{parareto}
+
+\resumen
+
+\begin{itemize}
+  \item Armonizar exige cuatro decisiones: \textbf{unidad}, \textbf{cuadrícula},
+  \textbf{satélites y filtros}, y \textbf{calibración}.
+  \item La \textbf{celda-día con detección} reduce multiplicidad dentro de una clave;
+  no iguala sensibilidad ni cobertura y puede saturar.
+  \item Una cuadrícula en grados se indexa con una división entera. Un lado de 0,05$^\circ$ a
+  0,1$^\circ$ es razonable para uso regional.
+  \item La pareja \textbf{Aqua / Suomi NPP} comparte hora de paso. Los años anteriores a 2002
+  requieren una segunda calibración con Terra, y las incertidumbres se suman en cuadratura.
+  \item La razón se estima \textbf{por estratos} de zona y época, con retroceso jerárquico o
+  contracción cuando hay pocos datos.
+  \item Un \textbf{umbral de FRP} puede acercar físicamente VIIRS a MODIS, con supuestos que hay
+  que comprobar.
+  \item Toda serie armonizada debe pasar tres diagnósticos: continuidad en el empalme,
+  estabilidad de la razón y residuos sin estructura.
+  \item Las limitaciones se declaran.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item En una celda, un día, Suomi NPP registra 9 focos, NOAA-20 registra 11 y Aqua registra 2.
+  ¿Cuántos focos y cuántas celdas-día aporta cada sensor? ¿Y si se juntan los dos VIIRS?
+  \item Calcula los índices de celda, con $\Delta = 0{,}1^\circ$, de un foco en latitud
+  $-6{,}48^\circ$ y longitud $-76{,}37^\circ$ (Tarapoto). ¿Cuánto mide esa celda en kilómetros?
+  \item ¿Cuántas celdas de $0{,}05^\circ$ cubren aproximadamente el departamento de Junín (unos
+  \SI{44000}{\kilo\metre\squared})? Si en un año hay 3000 celdas-día con fuego en el
+  departamento, ¿cuántas tocan en promedio a cada celda? ¿Qué te dice eso sobre calcular
+  estadísticas celda a celda?
+  \item Explica con la figura~\ref{fig:tamano-celda} por qué no conviene una celda de 500~m ni
+  una de 100~km.
+  \item Una cadena de calibración tiene tres eslabones con incertidumbres relativas del 3\,{}\%,
+  el 5\,{}\% y el 6\,{}\%. Calcula la incertidumbre del producto.
+  \item Aplica la ecuación~\eqref{eq:contraccion} con $k = 30$ y $r_g = 2{,}0$ a tres estratos:
+  $(X, Y) = (3, 15)$, $(40, 100)$ y $(900, 1500)$. Comenta.
+  \item Para un calendario que solo muestra anomalías relativas dentro de cada época, ¿importa
+  si se convierte MODIS a escala VIIRS o al revés? ¿Y para una gráfica de la tendencia de 2003 a
+  hoy?
+  \item La razón anual VIIRS/MODIS de tu región es estable de 2012 a 2019 y crece un 8\,{}\% cada
+  año desde 2021. Propón una causa, una forma de comprobarla con las columnas de los datos y una
+  decisión sobre qué años usar para calibrar.
+\end{enumerate}
+
+\lecturas
+
+Los artículos de los algoritmos y las guías explican las diferencias físicas entre
+sensores.\fuente{giglio2016}\fuente{schroeder2014} La receta de razones y celdas-día
+es una propuesta didáctica que debe validarse, no un procedimiento oficial tomado
+de esos artículos. Los métodos de continuidad de área quemada no se trasladan sin
+más a fuego activo. El capítulo~\ref{cap:aplicacion} prueba una línea base real en Perú.

@@ -1,0 +1,549 @@
+\chapter{Estadística para armonizar}\label{cap:estadistica}
+
+\objetivos{
+\begin{itemize}
+  \item Tratar un conteo de focos como una variable aleatoria y estimar su incertidumbre.
+  \item Explicar qué es la sobredispersión y por qué los fuegos la presentan.
+  \item Estimar la relación entre dos series con una razón, una recta y una ley de potencia, y
+  elegir entre ellas.
+  \item Calcular un intervalo de confianza por remuestreo.
+  \item Validar un método de calibración separando datos de ajuste y datos de prueba.
+\end{itemize}}
+
+\section{Por qué hace falta estadística}
+
+Armonizar es estimar una relación entre dos series de conteos y usarla para predecir. Cada
+parte de esa frase es estadística: los conteos fluctúan aunque el fenómeno no cambie; una
+relación estimada con datos finitos tiene incertidumbre; y una predicción hay que comprobarla
+con datos que no se usaron para construirla. Este capítulo reúne las herramientas mínimas. No
+exige conocimientos previos más allá de la media.
+
+\section{Un conteo es una variable aleatoria}
+
+Supón que en una celda, cada agosto, las condiciones son idénticas: mismo clima, mismos
+agricultores, mismas costumbres. Aun así, el número de focos de cada agosto no sería el mismo.
+Un año la pasada coincide con tres quemas y otro con cinco; un día clave está nublado. El conteo
+observado es una realización de un proceso con azar.
+
+\begin{definicion}{variable aleatoria, valor esperado y varianza}
+Una \textbf{variable aleatoria} es una cantidad cuyo valor depende del azar. Su \textbf{valor
+esperado} $\mu$ es el promedio que se obtendría repitiendo la observación infinitas veces. Su
+\textbf{varianza} $\sigma^2$ mide cuánto se dispersan los valores alrededor de $\mu$; su raíz
+cuadrada, $\sigma$, es la \textbf{desviación estándar} y tiene las mismas unidades que la
+variable.
+\end{definicion}
+
+Lo que interesa del fuego no es el conteo de un mes concreto, sino el valor esperado que hay
+detrás: la <<actividad típica>>. El conteo es una estimación ruidosa de él.
+
+\subsection{El modelo de Poisson}
+
+El modelo más simple para un conteo de sucesos que ocurren de forma independiente y a un ritmo
+medio constante es la \termino{distribución de Poisson}. La probabilidad de observar exactamente
+$k$ sucesos cuando se esperan $\mu$ es
+\begin{equation}
+  P(k) = \frac{\mu^k e^{-\mu}}{k!} .
+\end{equation}
+Tiene una propiedad que conviene memorizar: \textbf{su varianza es igual a su media},
+\begin{equation}\label{eq:poisson-var}
+  \sigma^2 = \mu \quad\Longrightarrow\quad \sigma = \sqrt{\mu}.
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=6.2cm,ybar,bar width=4.2pt,xmin=-0.7,xmax=30.7,ymin=0,ymax=0.25,
+  xlabel={Número de focos observado $k$},ylabel={Probabilidad},
+  ytick={0,0.1,0.2},yticklabels={0,{0,1},{0,2}},
+  legend style={at={(0.97,0.95)},anchor=north east,font=\small,draw=ceniza!40},axis lines*=left,
+  declare function={pois(\k,\m)=exp(\k*ln(\m)-\m-lnGamma(\k+1));
+    lnGamma(\z)=(\z-0.5)*ln(\z)-\z+0.9189385+1/(12*\z);}]
+\addplot[fill=cielo!70,draw=none,samples at={0,...,30}] {pois(x,3)};
+\addplot[fill=fuego!70,draw=none,samples at={0,...,30}] {pois(x,15)};
+\legend{$\mu = 3$,$\mu = 15$}
+\end{axis}
+\end{tikzpicture}
+\caption{Distribución de Poisson para dos valores esperados. Con $\mu = 3$ no es raro observar
+0 o 7; con $\mu = 15$ lo habitual es caer entre 8 y 23.}
+\label{fig:poisson}
+\end{figure}
+
+De la ecuación~\eqref{eq:poisson-var} sale la regla práctica más útil de todo el capítulo. Si
+se observan $N>0$ sucesos bajo Poisson, la estimación de máxima verosimilitud de $\mu$
+es $N$ y una aproximación a su error estándar es $\sqrt{N}$. Su tamaño relativo es
+\begin{equation}\label{eq:rel}
+  \frac{\sigma}{\mu} \approx \frac{\sqrt{N}}{N} = \frac{1}{\sqrt{N}} .
+\end{equation}
+
+\begin{ejemplo}{cuánto fiarse de un conteo}
+Tres celdas registran en un mes 25, 400 y 10\,000 focos. ¿Cuál es la incertidumbre relativa de
+cada conteo según el modelo de Poisson?
+\solucion $1/\sqrt{25} = 0{,}20$; $1/\sqrt{400} = 0{,}05$; $1/\sqrt{10000} = 0{,}01$. Es decir,
+un 20\,{}\%, un 5\,{}\% y un 1\,{}\%. Con 25 focos, una diferencia del 30\,{}\% entre dos años puede
+ser puro azar. Para reducir la incertidumbre a la mitad hacen falta cuatro veces más datos.
+\end{ejemplo}
+
+\begin{parareto}
+La ecuación~\eqref{eq:rel} gobierna el compromiso central del diseño: \textbf{cuanto más fina la
+resolución espacial y temporal, menos focos por casilla y más ruido}. Un calendario semanal por
+distrito puede tener casillas con cinco focos, cuyo ruido es del 45\,{}\%. Antes de fijar la
+resolución de la aplicación, mira cuántas detecciones caen en una casilla típica. Si son pocas,
+agrupa más (meses en lugar de semanas, provincias en lugar de distritos) o muestra la
+incertidumbre.
+\end{parareto}
+
+\subsection{Sobredispersión}
+
+El modelo de Poisson supone sucesos independientes. Los focos no lo son: un incendio grande
+genera decenas de focos de golpe, y un día seco y ventoso dispara muchas quemas a la vez. Los
+focos llegan en racimos, y eso hace que los conteos varíen más de lo que predice Poisson.
+
+\begin{definicion}{sobredispersión}
+Un conteo está sobredisperso cuando su varianza es mayor que su media. El \emph{índice de
+dispersión} $D = \sigma^2/\mu$ vale 1 para Poisson y es mayor que 1 con sobredispersión.
+\end{definicion}
+
+\begin{ejemplo}{medir la sobredispersión}
+Los conteos de agosto de una celda en diez años fueron: 12, 31, 8, 45, 19, 102, 15, 27, 9, 38.
+Calcula la media, la varianza y el índice de dispersión.
+\solucion La media es $\bar{x} = 306/10 = 30{,}6$. La varianza muestral,
+$s^2 = \frac{1}{n-1}\sum (x_i - \bar{x})^2$, resulta $s^2 = 7074{,}4/9 = 786{,}0$, y la
+desviación estándar $s = 28{,}0$. El índice de dispersión es $D = 786{,}0/30{,}6 \approx 26$.
+Si el proceso fuera de Poisson, la desviación estándar sería $\sqrt{30{,}6} = 5{,}5$; la real es
+cinco veces mayor.
+\end{ejemplo}
+
+La regla $1/\sqrt{N}$ es una referencia bajo Poisson, no un límite universal. En un
+proceso sobredisperso puede subestimar mucho la variabilidad. Un enfoque es estimar la
+variabilidad directamente a partir de los datos, por ejemplo con remuestreo
+(sección~\ref{sec:bootstrap}). El otro es cambiar la unidad de conteo por una que agrupe menos:
+contar celdas-día con detección puede reducir la multiplicidad, aunque no elimina
+dependencias ni garantiza una distribución Poisson.
+
+\section{Describir una distribución asimétrica}
+
+Los conteos del ejemplo anterior tienen un rasgo típico: casi todos son pequeños y uno es
+enorme. La distribución es \termino{asimétrica}, con una cola larga hacia la derecha. En esas
+condiciones la media y la desviación estándar describen mal lo <<típico>>, porque un solo valor
+extremo las arrastra.
+
+\begin{definicion}{mediana y percentiles}
+La \textbf{mediana} es el valor que deja la mitad de los datos por debajo y la mitad por encima.
+El \textbf{percentil} $p$ es el valor que deja por debajo el $p$ por ciento de los datos; la
+mediana es el percentil 50. La distancia entre los percentiles 25 y 75 es el \textbf{rango
+intercuartílico}.
+\end{definicion}
+
+En el ejemplo, los datos ordenados son 8, 9, 12, 15, 19, 27, 31, 38, 45, 102. La mediana es el
+promedio de los dos centrales, $(19+27)/2 = 23$, bastante menor que la media de 30,6. Si el año
+de 102 focos hubiera tenido 1000, la media saltaría a 120 y la mediana seguiría en 23.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=4.2cm,xmin=0,xmax=110,ymin=0,ymax=2,
+  xlabel={Focos en agosto},ytick=\empty,axis y line=none,axis x line=bottom]
+\addplot[only marks,mark=*,mark size=3pt,fuego] coordinates {(8,1)(9,1)(12,1)(15,1)(19,1)(27,1)(31,1)(38,1)(45,1)(102,1)};
+\draw[cielo,very thick] (axis cs:23,0.35)--(axis cs:23,1.65) node[above,font=\footnotesize]{mediana 23};
+\draw[bosque,very thick,dashed] (axis cs:30.6,0.35)--(axis cs:30.6,1.25);
+\node[bosque,font=\footnotesize,anchor=west] at (axis cs:31.5,0.45) {media 30{,}6};
+\node[font=\footnotesize,anchor=south] at (axis cs:102,1.15) {año extremo};
+\end{axis}
+\end{tikzpicture}
+\caption{Los diez conteos del ejemplo. La media se desplaza hacia el valor extremo; la mediana
+se queda con el grueso de los datos.}
+\label{fig:mediana}
+\end{figure}
+
+Para datos de fuego, la mediana y los percentiles son descriptores más honestos que la media y
+la desviación estándar. Volverán en el capítulo~\ref{cap:calendario} para definir qué es
+<<normal>>.
+
+\subsection{La escala logarítmica}
+
+Otra forma de domar la asimetría es trabajar con el logaritmo de los conteos. El logaritmo
+comprime los valores grandes y separa los pequeños: en escala logarítmica, pasar de 10 a 20 es
+el mismo paso que de 100 a 200. Eso encaja con el modo en que pensamos el fuego, en términos de
+<<el doble>> o <<la mitad>>, y hace que las distribuciones se vuelvan más simétricas. Como el
+logaritmo de cero no existe, cuando hay ceros se usa $\log(1 + x)$.
+
+\section{Relacionar dos series}
+
+Llegamos al problema central. Para una región, durante el periodo de solape, se dispone de
+parejas de conteos del mismo mes: $x_i$ con MODIS e $y_i$ con VIIRS. Se quiere una regla que
+convierta uno en otro. La tabla~\ref{tab:pares} da un conjunto ilustrativo de doce parejas que
+servirá de ejemplo en todo el resto del capítulo.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{l*{12}{r}r}
+\toprule
+Mes $i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & Suma \\
+\midrule
+MODIS $x_i$ & 4 & 9 & 15 & 22 & 35 & 48 & 60 & 75 & 90 & 110 & 130 & 160 & 758 \\
+VIIRS $y_i$ & 14 & 30 & 41 & 70 & 95 & 150 & 170 & 230 & 250 & 330 & 360 & 470 & 2210 \\
+$y_i/x_i$ & 3,50 & 3,33 & 2,73 & 3,18 & 2,71 & 3,12 & 2,83 & 3,07 & 2,78 & 3,00 & 2,77 & 2,94 & \\
+\bottomrule
+\end{tabular}
+\caption{Doce parejas de conteos mensuales de una región en el periodo de solape, ordenadas de
+menor a mayor actividad (datos ilustrativos).}
+\label{tab:pares}
+\end{table}
+
+El primer paso siempre es dibujarlas. Un \termino{diagrama de dispersión} con MODIS en el eje
+horizontal y VIIRS en el vertical (figura~\ref{fig:dispersion}) muestra de inmediato si la
+relación es aproximadamente una recta, si pasa por el origen y si hay puntos anómalos.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=12.5cm,height=7.4cm,xmin=0,xmax=175,ymin=0,ymax=520,
+  xlabel={Focos MODIS en el mes, $x$},ylabel={Focos VIIRS en el mes, $y$},
+  legend style={at={(0.03,0.96)},anchor=north west,font=\small,draw=ceniza!40},
+  grid=major,grid style={ceniza!15}]
+\addplot[only marks,mark=*,mark size=2.6pt,black] coordinates {(4,14)(9,30)(15,41)(22,70)(35,95)(48,150)(60,170)(75,230)(90,250)(110,330)(130,360)(160,470)};
+\addplot[fuego,very thick,domain=0:175] {2.916*x};
+\addplot[cielo,thick,dashed,domain=0:175] {2.415+2.877*x};
+\addplot[ceniza,thin,domain=0:175] {x};
+\legend{meses del solape,razón: $y = 2{,}92\,x$,recta: $y = 2{,}4 + 2{,}88\,x$,$y = x$ (sensores iguales)}
+\end{axis}
+\end{tikzpicture}
+\caption{Diagrama de dispersión de las parejas de la tabla~\ref{tab:pares} con dos ajustes. Si
+ambos sensores contaran lo mismo, los puntos caerían sobre la línea gris.}
+\label{fig:dispersion}
+\end{figure}
+
+\subsection{La razón}
+
+El modelo más simple supone proporcionalidad: VIIRS cuenta siempre $r$ veces lo que MODIS,
+\begin{equation}
+  y \approx r\,x .
+\end{equation}
+Hay dos maneras naturales de estimar $r$, y no dan lo mismo.
+
+\begin{definicion}{razón de sumas y media de razones}
+\[
+  r_{\text{sumas}} = \frac{\sum y_i}{\sum x_i},
+  \qquad
+  r_{\text{medias}} = \frac{1}{n}\sum \frac{y_i}{x_i} .
+\]
+\end{definicion}
+
+Con la tabla~\ref{tab:pares}: $r_{\text{sumas}} = 2210/758 = 2{,}92$ y $r_{\text{medias}} =
+3{,}00$. La diferencia viene de cómo pondera cada una. La media de razones da el mismo peso a
+cada mes, de modo que el mes con 4 focos de MODIS, cuya razón de 3,50 es casi puro ruido, cuenta
+tanto como el mes con 160. La razón de sumas pondera cada mes por su número de focos: los meses
+con mucha actividad, que son los mejor medidos, mandan.
+
+\begin{atencion}[Razones con denominador pequeño]
+La razón $y_i/x_i$ de un mes con pocos focos es inestable, y si $x_i = 0$ ni siquiera existe.
+Nunca promedies razones mensuales o por celda sin ponderar. Usa la razón de sumas, que es
+equivalente a una media de razones ponderada por $x_i$ y que tolera los ceros.
+\end{atencion}
+
+\subsection{La recta de mínimos cuadrados}
+
+Un modelo algo más flexible permite un término independiente:
+\begin{equation}
+  y \approx a + b\,x .
+\end{equation}
+La \termino{regresión por mínimos cuadrados} elige $a$ y $b$ de modo que la suma de los
+cuadrados de los \termino{residuos} (las diferencias entre cada $y_i$ observado y el valor
+$a + b x_i$ que predice la recta) sea mínima. La solución es
+\begin{equation}\label{eq:mco}
+  b = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2},
+  \qquad
+  a = \bar{y} - b\,\bar{x} .
+\end{equation}
+
+Con los datos del ejemplo, $\bar{x} = 63{,}2$, $\bar{y} = 184{,}2$, y se obtiene $b = 2{,}88$ y
+$a = 2{,}4$. La pendiente es casi igual a la razón de sumas y el término independiente es
+pequeño frente a los valores de $y$: los datos son compatibles con la proporcionalidad.
+
+La calidad del ajuste se resume en el \termino{coeficiente de determinación},
+\begin{equation}
+  R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2},
+\end{equation}
+donde $\hat{y}_i$ es el valor predicho. $R^2$ es la fracción de la variabilidad de $y$ que la
+recta explica; aquí vale 0,996.
+
+\begin{atencion}[Un $R^2$ alto no demuestra que el modelo sea bueno]
+Cuando los datos abarcan un intervalo muy amplio (de 4 a 160), casi cualquier relación creciente
+da un $R^2$ cercano a 1, porque los pocos puntos con valores grandes dominan la suma. $R^2$
+tampoco dice si las predicciones para los meses de poca actividad son buenas. Para juzgar un
+modelo hay que mirar los residuos y, sobre todo, validarlo con datos nuevos
+(sección~\ref{sec:validacion}).
+\end{atencion}
+
+¿Tiene sentido el término independiente $a$? Significaría que, cuando MODIS no detecta nada,
+VIIRS detecta $a$ focos. Físicamente es razonable: hay meses con solo quemas pequeñas, invisibles
+para MODIS. Pero también implica que, al convertir una serie de MODIS a la escala de VIIRS, a
+cada mes sin focos se le asignarían $a$ focos inventados. Si $a$ es pequeño, lo más limpio es
+forzar la recta a pasar por el origen; la pendiente óptima es entonces
+\begin{equation}
+  b_0 = \frac{\sum x_i y_i}{\sum x_i^2},
+\end{equation}
+que con estos datos vale 2,90.
+
+\subsection{La ley de potencia}
+
+Queda una posibilidad más: que la razón no sea constante, sino que cambie con el nivel de
+actividad. Mira la última fila de la tabla~\ref{tab:pares}: las razones tienden a ser mayores en
+los meses de poca actividad (3,5; 3,3) que en los de mucha (2,8; 2,9). Tiene explicación física:
+en los meses tranquilos predominan las quemas pequeñas, que MODIS no ve; en el pico de la
+temporada hay fuegos grandes, que ambos detectan.
+
+Ese comportamiento se captura con una \termino{ley de potencia},
+\begin{equation}
+  y = \alpha\,x^{\beta},
+\end{equation}
+que se vuelve una recta al tomar logaritmos:
+\begin{equation}
+  \log y = \log\alpha + \beta\,\log x .
+\end{equation}
+Basta aplicar la ecuación~\eqref{eq:mco} a $\log x$ y $\log y$. Con los datos del ejemplo
+resulta $\beta = 0{,}96$ y $\alpha = 3{,}51$. Un exponente $\beta = 1$ sería proporcionalidad
+exacta; $\beta < 1$ indica que la razón disminuye al aumentar la actividad, como se sospechaba.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=12.5cm,height=6.6cm,xmode=log,ymode=log,xmin=3,xmax=200,ymin=8,ymax=700,
+  xlabel={Focos MODIS, $x$ (escala logarítmica)},ylabel={Focos VIIRS, $y$ (escala logarítmica)},
+  xtick={5,10,20,50,100,200},xticklabels={5,10,20,50,100,200},
+  ytick={10,20,50,100,200,500},yticklabels={10,20,50,100,200,500},
+  legend style={at={(0.03,0.96)},anchor=north west,font=\small,draw=ceniza!40},
+  grid=major,grid style={ceniza!15}]
+\addplot[only marks,mark=*,mark size=2.6pt,black] coordinates {(4,14)(9,30)(15,41)(22,70)(35,95)(48,150)(60,170)(75,230)(90,250)(110,330)(130,360)(160,470)};
+\addplot[violeta,very thick,domain=3:200] {3.51*x^0.956};
+\addplot[fuego,thick,dashed,domain=3:200] {2.916*x};
+\legend{meses del solape,potencia: $y = 3{,}51\,x^{0{,}96}$,razón: $y = 2{,}92\,x$}
+\end{axis}
+\end{tikzpicture}
+\caption{Las mismas parejas en escala logarítmica. Aquí todos los meses pesan parecido, y se
+aprecia que los de poca actividad quedan por encima de la recta de razón constante.}
+\label{fig:loglog}
+\end{figure}
+
+La escala logarítmica tiene además una ventaja técnica. La dispersión de los conteos crece con
+su valor (los meses de 400 focos fluctúan en decenas; los de 10, en unidades), una situación
+llamada \termino{heterocedasticidad}. No impide calcular mínimos cuadrados, pero afecta
+a su eficiencia y a las fórmulas usuales de incertidumbre. Ajustar logaritmos cambia
+la pérdida y puede estabilizar la dispersión; hay que comprobarlo. Exponentiar una
+predicción logarítmica no recupera automáticamente la media original. Ambos sensores
+tienen error de observación.
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Modelo & A favor & En contra \\
+\midrule
+Razón $y = r x$ & un solo parámetro; robusta; tolera ceros; fácil de explicar & supone que la proporción no cambia con la actividad \\
+Recta $y = a + bx$ & recoge un nivel de fondo que solo ve VIIRS & inventa focos donde MODIS vio cero; dominada por los meses grandes \\
+Potencia $y = \alpha x^\beta$ & recoge una razón que cambia con la actividad; ajuste equilibrado & no admite ceros; dos parámetros que estimar con pocos datos \\
+\bottomrule
+\end{tabularx}
+\caption{Tres modelos para relacionar los conteos de dos sensores.}
+\label{tab:modelos}
+\end{table}
+
+\begin{parareto}
+Empieza con la \textbf{razón de sumas}: es defendible, casi imposible de implementar mal y
+sirve de línea base. Después compara. Con los datos reales de Perú
+(sección~\ref{sec:peru-modelos}), la ley de potencia reduce el error mensual de conversión de
+\PeruWAPE{} a \PeruPotWAPE{} por ciento, y supera también a las razones por trimestre y por
+mes. El modelo se elige con validación interna, nunca mirando los años de prueba.
+\end{parareto}
+
+\section{Incertidumbre de una estimación: el remuestreo}\label{sec:bootstrap}
+
+La razón $r = 2{,}92$ salió de doce meses. Con otros doce meses habría salido otro número. ¿Cuánto
+podría variar? Para la razón de sumas con datos sobredispersos no hay una fórmula sencilla, pero
+hay un procedimiento general y fácil de programar.
+
+\begin{definicion}{remuestreo (bootstrap)}
+El remuestreo consiste en simular nuevas muestras extrayendo, \emph{con reemplazo}, $n$ elementos
+de la muestra original de tamaño $n$; calcular el estadístico de interés en cada muestra
+simulada; y usar la dispersión de los valores obtenidos como medida de su incertidumbre.
+\end{definicion}
+
+<<Con reemplazo>> significa que un mismo mes puede salir elegido varias veces y otro ninguna. La
+idea es que la muestra es la mejor imagen disponible de la población, así que remuestrear la
+muestra imita lo que ocurriría al tomar muestras nuevas (figura~\ref{fig:bootstrap}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=5mm]
+  \node[caja,fill=cieloClaro,text width=3.2cm] (a) {Muestra original\\ 12 parejas $(x_i,y_i)$};
+  \node[caja,right=12mm of a,text width=3.8cm] (b) {Sortear 12 parejas\\ con reemplazo};
+  \node[caja,right=12mm of b,text width=3.2cm] (c) {Calcular\\ $r^* = \sum y/\sum x$};
+  \node[caja,below=11mm of c,fill=bosqueClaro,text width=3.2cm] (d) {Ordenar los $r^*$:\\ percentiles 2,5 y 97,5};
+  \draw[flujo] (a)--(b); \draw[flujo] (b)--(c);
+  \draw[flujo] (c.north) -- ++(0,0.55) -| (b.north) node[pos=0.25,above,font=\footnotesize]{repetir miles de veces};
+  \draw[flujo] (c)--(d);
+\end{tikzpicture}
+\caption{Esquema del remuestreo para obtener el intervalo de confianza de una razón.}
+\label{fig:bootstrap}
+\end{figure}
+
+\begin{definicion}{intervalo de confianza}
+Un intervalo de confianza del 95\,{}\% para un parámetro es un intervalo construido con un
+procedimiento que, repetido con muchas muestras, contendría el valor verdadero en el 95\,{}\% de
+los casos. El intervalo percentil de remuestreo usa los percentiles 2,5 y 97,5 de las réplicas;
+su cobertura real es aproximada y depende de la muestra y de sus dependencias.
+\end{definicion}
+
+\begin{ejemplo}{intervalo de confianza de la razón}
+Se aplican 5000 remuestreos a las doce parejas de la tabla~\ref{tab:pares} y se calcula en cada
+uno la razón de sumas. Los valores ordenados tienen percentil 2,5 igual a 2,83 y percentil 97,5
+igual a 3,00. Interpreta el resultado.
+\solucion La razón estimada es 2,92, con un intervalo de confianza del 95\,{}\% de 2,83 a 3,00:
+una incertidumbre de alrededor de $\pm 3\,{}\%$. Si un mes de la era MODIS tuvo 80 focos, su
+equivalente en escala VIIRS es $80 \times 2{,}92 = 234$, y la incertidumbre \emph{de la
+conversión} lo sitúa entre 226 y 240. A eso hay que sumar la incertidumbre propia del conteo de
+80 focos: bajo Poisson, una desviación estándar relativa sería aproximadamente el
+11\,{}\%. No se suma directamente a la anchura de un intervalo del 95\,{}\%, pues
+son medidas con niveles distintos. Los sesgos no modelados tampoco están incluidos.
+\end{ejemplo}
+
+\begin{atencion}[Remuestrea unidades independientes]
+El remuestreo supone que los elementos sorteados son independientes entre sí. Los focos
+individuales no lo son, ni los días consecutivos de un mismo incendio. Remuestrea unidades
+grandes: meses, o mejor aún, años completos. Remuestrear focos sueltos produce intervalos
+engañosamente estrechos.
+\end{atencion}
+
+\section{Validación}\label{sec:validacion}
+
+Un modelo suele parecer mejor en los datos con los que se construyó. La pregunta que importa
+es si funciona con datos que no ha visto.
+
+\begin{definicion}{conjunto de ajuste y conjunto de prueba}
+El \textbf{conjunto de ajuste} (o de entrenamiento) es la parte de los datos usada para estimar
+los parámetros. El \textbf{conjunto de prueba} es una parte reservada, no usada en el ajuste,
+con la que se mide el error de las predicciones.
+\end{definicion}
+
+Para la armonización hay una partición natural y muy convincente: \textbf{dividir por tiempo}.
+Se estima la relación con unos años del solape y se comprueba con otros
+(figura~\ref{fig:validacion}). Es exactamente la situación real: aprender en un periodo y
+aplicar en otro.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.9cm,y=0.8cm]
+  \foreach \a [count=\i from 0] in {2012,2013,2014,2015,2016,2017,2018,2019,2020}{
+    \ifnum\i<6
+      \fill[cielo!55] (\i,0) rectangle ++(0.92,1);
+    \else
+      \fill[fuego!55] (\i,0) rectangle ++(0.92,1);
+    \fi
+    \node[font=\footnotesize] at (\i+0.46,0.5) {\a};
+  }
+  \draw[decorate,decoration={brace,amplitude=5pt}] (0,1.2)--(5.92,1.2) node[midway,above=6pt,font=\small,align=center]{ajuste: se estima $r$};
+  \draw[decorate,decoration={brace,amplitude=5pt}] (6,1.2)--(8.92,1.2) node[midway,above=6pt,font=\small,align=center]{prueba: se predice VIIRS\\ a partir de MODIS};
+  \node[font=\small,align=left,anchor=west] at (9.6,0.5) {y se compara con\\ el VIIRS real};
+\end{tikzpicture}
+\caption{Validación temporal dentro del periodo de solape.}
+\label{fig:validacion}
+\end{figure}
+
+El error en el conjunto de prueba se resume con unas pocas medidas. Si $\hat{y}_i$ es la
+predicción e $y_i$ el valor real, para $m$ casos de prueba:
+\begin{align}
+  \text{sesgo medio} &= \frac{1}{m}\sum (\hat{y}_i - y_i), \\
+  \text{error absoluto medio (MAE)} &= \frac{1}{m}\sum |\hat{y}_i - y_i|, \\
+  \text{error porcentual absoluto medio (MAPE)} &= \frac{100}{m}\sum \frac{|\hat{y}_i - y_i|}{y_i} .
+\end{align}
+El sesgo dice si el método tiende a pasarse o a quedarse corto; el MAE, cuánto se equivoca en
+promedio en unidades del indicador. MAPE es una media de errores relativos: no está
+definido si algún $y_i=0$ y puede quedar dominado por conteos pequeños. En ese caso
+se conserva MAE y puede usarse WAPE si el total es positivo (capítulo~\ref{cap:aplicacion}).
+
+\begin{ejemplo}{validar la razón}
+Usa los ocho primeros meses de la tabla~\ref{tab:pares} para estimar la razón y los cuatro
+últimos para probarla.
+\solucion Ajuste: $\sum x = 268$, $\sum y = 800$, $r = 800/268 = 2{,}985$. Predicciones para
+los meses 9 a 12, $\hat{y} = 2{,}985\,x$:
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Mes & $x$ & $\hat{y}$ & $y$ real & error \\
+\midrule
+9 & 90 & 269 & 250 & $+19$ \\
+10 & 110 & 328 & 330 & $-2$ \\
+11 & 130 & 388 & 360 & $+28$ \\
+12 & 160 & 478 & 470 & $+8$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Sesgo medio: $(19 - 2 + 28 + 8)/4 = +13$ focos. MAE: $(19+2+28+8)/4 = 14$ focos. MAPE:
+$(7{,}6 + 0{,}6 + 7{,}8 + 1{,}7)/4 = 4{,}4$ por ciento. El método acierta con un error del orden del
+4\,{}\%, pero con un sesgo positivo: sobrestima los meses más activos. Era previsible, porque se
+ajustó con meses de poca actividad, donde la razón es mayor. Es la misma señal que captaba la
+ley de potencia.
+\end{ejemplo}
+
+\begin{atencion}[Fuga de información]
+Si los datos de prueba influyen de cualquier modo en el ajuste (por ejemplo, eligiendo entre
+modelos según cuál predice mejor el conjunto de prueba, o calculando una climatología con todos
+los años antes de separar), el error medido es optimista. Separa primero y no toques el conjunto
+de prueba hasta el final.
+\end{atencion}
+
+\begin{parareto}
+Una diapositiva con <<calibramos con 2012--2017 y predijimos 2018--2020 con un error del
+X\,{}\%>> vale más ante un jurado que cualquier descripción del método. Es la diferencia entre
+afirmar que la armonización funciona y demostrarlo. Reserva tiempo para esto.
+\end{parareto}
+
+\resumen
+
+\begin{itemize}
+  \item Un conteo de focos es una variable aleatoria. Con el modelo de \textbf{Poisson}, la
+  escala relativa aproximada de un conteo positivo es $1/\sqrt{N}$; no es universal.
+  \item Los focos llegan en racimos y los conteos están \textbf{sobredispersos}: la
+  variabilidad puede ser mayor. Contar celdas-día reduce multiplicidad, no todos los sesgos.
+  \item Para distribuciones asimétricas, la \textbf{mediana} y los \textbf{percentiles}
+  describen mejor lo típico que la media y la desviación estándar. La escala logarítmica ayuda.
+  \item La relación entre dos sensores puede modelarse con una \textbf{razón}, una
+  \textbf{recta} o una \textbf{ley de potencia}. La razón de sumas es el punto de partida
+  recomendable; nunca se promedian razones sin ponderar.
+  \item $R^2$ alto no garantiza un buen modelo.
+  \item El \textbf{remuestreo} da intervalos de confianza sin fórmulas; hay que remuestrear
+  unidades independientes (meses o años).
+  \item La \textbf{validación temporal} (ajustar con unos años, probar con otros) es la prueba
+  decisiva; se resume con sesgo, MAE y MAPE.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item Una provincia registra 64 celdas-día con fuego en septiembre. Da su incertidumbre
+  absoluta y relativa según Poisson. ¿Cuántas harían falta para una incertidumbre relativa del
+  5\,{}\%?
+  \item Para los conteos 3, 5, 4, 60, 6, 2, 7, 5 calcula media, mediana, varianza e índice de
+  dispersión. ¿Qué descriptor usarías para comunicar el valor <<típico>>?
+  \item Con las seis primeras parejas de la tabla~\ref{tab:pares}, calcula la razón de sumas y
+  la media de razones. Explica la diferencia.
+  \item Con las mismas seis parejas, calcula la recta de mínimos cuadrados con la
+  ecuación~\eqref{eq:mco}. Interpreta el signo y el tamaño del término independiente.
+  \item Un ajuste en escala logarítmica da $\beta = 0{,}80$ y $\alpha = 6{,}0$. Calcula la
+  razón $y/x$ que predice para $x = 10$ y para $x = 200$. Describe con palabras qué significa.
+  \item Describe, paso a paso, cómo obtendrías por remuestreo el intervalo de confianza de una
+  razón VIIRS/MODIS a partir de ocho años de solape con datos mensuales, remuestreando años
+  completos. ¿Por qué años y no meses?
+  \item Repite el ejemplo de validación ajustando con los meses impares y probando con los
+  pares. Compara el sesgo con el del ejemplo y explica la diferencia.
+  \item Un equipo prueba cinco modelos, elige el de menor MAPE en los años de prueba y reporta
+  ese MAPE como el error de su método. ¿Qué tiene de malo y cómo se corrige?
+\end{enumerate}
+
+\lecturas
+
+Para una introducción accesible a regresión, remuestreo y validación, \emph{An Introduction to
+Statistical Learning} (James, Witten, Hastie y Tibshirani) está disponible gratuitamente en
+línea; sus capítulos 3 y 5 cubren con más profundidad lo tratado aquí.

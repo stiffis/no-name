@@ -1,0 +1,62 @@
+% Cuatro paneles: las etiquetas quedan fuera de las trayectorias.
+\begin{tikzpicture}[font=\footnotesize,
+  pics/sensor/.style={code={
+    \fill[ceniza!45] (-.22,-.16) rectangle (.22,.16);
+    \fill[cielo!75] (-.85,-.12) rectangle (-.30,.12);
+    \fill[cielo!75] (.30,-.12) rectangle (.85,.12);
+  }}]
+  \foreach \x/\y in {0/0,7.7/0,0/-5.3,7.7/-5.3}{
+    \fill[cieloClaro!80] (\x,\y+.5) rectangle ++(7,3);
+    \fill[bosque!35] (\x,\y+.2) rectangle ++(7,.3);
+  }
+  \begin{scope}
+    \node[anchor=west,font=\small\bfseries] at (0,4.5) {(a) Luz solar reflejada};
+    \shade[inner color=yellow!70!white,outer color=brasa] (.8,3.85) circle (.32);
+    \node[anchor=west] at (1.2,3.85) {Sol};
+    \pic at (4.6,3.85) {sensor};
+    \node[anchor=west] at (5.6,3.85) {sensor};
+    \draw[->,very thick,brasa] (1,3.5)--(2.7,.57);
+    \draw[->,very thick,brasa] (2.7,.57)--(4.5,3.58);
+    \node[align=center] at (.85,2.0) {luz solar\\incidente};
+    \node[align=left,anchor=west] at (4.1,1.8) {luz solar\\reflejada};
+    \node at (3.5,-.08) {superficie};
+  \end{scope}
+  \begin{scope}[shift={(7.7,0)}]
+    \node[anchor=west,font=\small\bfseries] at (0,4.5) {(b) Emisión del fuego y pérdidas};
+    \pic at (1.3,3.85) {sensor};
+    \node[anchor=west] at (2.3,3.85) {sensor};
+    \shade[inner color=yellow,outer color=fuego] (1.3,.65) ellipse (.33 and .17);
+    \draw[->,very thick,fuego] (1.3,.85)--(1.3,3.58);
+    \node[anchor=west] at (1.6,3.15) {transmitida};
+    \draw[thick,fuego] (1.3,1.45)--(3.7,2.55);
+    \draw[thick,ceniza] (3.59,2.44)--(3.81,2.66) (3.59,2.66)--(3.81,2.44);
+    \node[anchor=west] at (4,2.55) {absorción};
+    \draw[->,thick,fuego,dashed] (1.3,1.2)--(3.7,1.55);
+    \node[anchor=west] at (4,1.55) {dispersión};
+    \node at (1.3,-.08) {fuego};
+  \end{scope}
+  \begin{scope}[shift={(0,-5.3)}]
+    \node[anchor=west,font=\small\bfseries] at (0,4.5) {(c) Emisión de la atmósfera};
+    \pic at (4.6,3.85) {sensor};
+    \node[anchor=west] at (5.6,3.85) {sensor};
+    \fill[cielo!25] (3.1,1.65) circle (.4);
+    \fill[cielo] (3.1,1.65) circle (.065);
+    \draw[->,very thick,cielo] (3.1,1.65)--(4.5,3.58);
+    \node[align=left,anchor=west] at (.35,2.55) {emisión térmica\\de la atmósfera};
+    \node at (3.5,-.08) {superficie};
+  \end{scope}
+  \begin{scope}[shift={(7.7,-5.3)}]
+    \node[anchor=west,font=\small\bfseries] at (0,4.5) {(d) Fuego oculto por una nube};
+    \pic at (4.6,3.85) {sensor};
+    \node[anchor=west] at (5.6,3.85) {sensor};
+    \fill[white] (3.5,2.5) ellipse (1.25 and .48);
+    \fill[white] (3.0,2.75) ellipse (.7 and .38);
+    \fill[white] (4.1,2.75) ellipse (.8 and .4);
+    \node[align=center] at (1.0,2.55) {nube\\opaca};
+    \shade[inner color=yellow,outer color=fuego] (3.5,.65) ellipse (.33 and .17);
+    \draw[->,very thick,fuego] (3.5,.85)--(3.5,2.03);
+    \node[fuego,font=\small] at (3.5,2.17) {$\times$};
+    \node[align=left,anchor=west] at (4.9,1.45) {no llega\\la señal\\del fuego};
+    \node at (3.5,-.08) {fuego oculto};
+  \end{scope}
+\end{tikzpicture}

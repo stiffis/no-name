@@ -1,0 +1,81 @@
+\chapter{Prefacio}
+
+Este libro existe por una razón concreta: en pocos días hay que sentarse cuarenta y ocho horas
+a construir una aplicación web que una dos registros satelitales de incendios, el de MODIS y el
+de VIIRS, en un solo \emph{calendario de quemas}. La aplicación se puede programar sin entender
+de dónde salen los datos, pero entonces cada decisión importante se toma a ciegas: qué contar,
+qué descartar, por qué un sensor ve más fuego que el otro, cuánto confiar en el resultado. Y esas
+decisiones son justamente las que un jurado va a preguntar.
+
+Por eso el libro no es una lista de enlaces ni un resumen. Es un recorrido completo, pensado
+para leerse de principio a fin, que parte de una pregunta física muy simple (¿por qué brilla
+algo caliente?) y termina en preguntas de diseño (¿qué número le muestro a un bombero?). Cada
+capítulo se apoya en los anteriores.
+
+\section*{Cómo está organizado}
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[Parte I. El fuego y la luz.] Qué es un foco de calor, cómo emite radiación un cuerpo
+  caliente y qué le pasa a esa radiación al cruzar la atmósfera. Es la física mínima para
+  entender por qué un incendio de cien metros cuadrados puede verse desde 700 km de altura.
+  \item[Parte II. Satélites y sensores.] Cómo se mueven los satélites, por qué pasan siempre a
+  la misma hora, cómo barren el suelo y en qué se diferencian MODIS y VIIRS como instrumentos.
+  \item[Parte III. Del píxel al foco de calor.] El algoritmo que decide si un píxel tiene fuego,
+  la potencia radiativa del fuego, los errores del sistema y el formato exacto de los datos que
+  entrega FIRMS.
+  \item[Parte IV. Armonizar dos registros.] La estadística necesaria, las estrategias para
+  volver comparables los dos sensores y la construcción del calendario de quemas con sus
+  anomalías.
+  \item[Parte V. Hacia la aplicación.] Cómo procesar millones de puntos con rapidez y cómo se
+  traduce todo lo anterior en una herramienta para Junín y el Perú.
+\end{description}
+
+\section*{Cómo leerlo}
+
+Cada capítulo abre con sus objetivos y cierra con un resumen, una lista de ejercicios y lecturas
+para profundizar. Los resúmenes están al final a propósito: sirven para repasar, no para
+reemplazar la lectura. A lo largo del texto aparecen cajas de colores con una función fija:
+
+\begin{definicion}{término nuevo}
+Las cajas azules fijan el significado exacto de un término la primera vez que aparece.
+\end{definicion}
+
+\begin{intuicion}
+Las cajas ámbar dan una imagen mental o una analogía para una idea difícil.
+\end{intuicion}
+
+\begin{ejemplo}{así se ven los ejemplos resueltos}
+Las cajas violetas plantean un problema con números y lo resuelven paso a paso.
+\solucion Conviene tapar la solución e intentarlo antes de leerla.
+\end{ejemplo}
+
+\begin{atencion}
+Las cajas rojas marcan errores frecuentes y trampas de los datos.
+\end{atencion}
+
+\begin{parareto}
+Las cajas verdes conectan la teoría con decisiones concretas del proyecto.
+\end{parareto}
+
+\section*{Sobre los números y las figuras}
+
+Los ejemplos de radiancias, temperaturas de brillo y periodos orbitales se calculan
+con las fórmulas del libro. Los esquemas y ciertos ejercicios estadísticos usan números
+didácticos, identificados como tales. En cambio, el calendario introductorio y los
+casos de los capítulos~\ref{cap:calendario} y~\ref{cap:aplicacion} usan \textbf{datos reales
+de Perú}: 24 archivos anuales de NASA FIRMS, con sus originales, procedencia y programas
+de cálculo. Las escenas del Camp Fire y de la selva peruana son imágenes reales de
+NASA Worldview; sus pies explican qué se observa y qué no puede deducirse del color.
+Las referencias están en el apéndice~\ref{ap:fuentes}.
+
+La edición continuada el 9 de noviembre de 2026 completa los catorce capítulos y sus
+tres apéndices. También actualiza el estado de Suomi NPP y matiza supuestos de cobertura,
+agregación y validación. Un libro terminado sigue distinguiendo una demostración
+reproducible de un producto científico validado para uso operativo.
+
+\section*{Una advertencia honesta}
+
+Los recursos oficiales del reto se publican el día anterior al hackathon. Es posible que
+propongan una definición particular de <<actividad de quema>> o un método de armonización
+preferido. Si eso ocurre, lo que diga el enunciado manda sobre lo que diga este libro; la teoría
+de aquí es la base para entender y aplicar con criterio lo que pidan.

@@ -1,0 +1,38 @@
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[black!92] (current page.south west) rectangle (current page.north east);
+  \begin{scope}[shift={($(current page.south)+(0,-9.5)$)}]
+    \shade[inner color=cielo!70!black,outer color=black!92] (0,0) circle (16.5);
+    \fill[cielo!35!black] (0,0) circle (15);
+    \foreach \a/\r/\s in {78/14.6/0.10,84/14.2/0.07,88/14.75/0.12,93/14.4/0.08,97/14.7/0.10,
+        102/14.1/0.06,106/14.55/0.09,81/14.85/0.07,91/14.9/0.06,99/14.3/0.11,110/14.7/0.07,
+        73/14.5/0.08,86/14.6/0.05,95/14.85/0.08}{
+      \shade[inner color=yellow!80!white,outer color=fuego,opacity=0.95] (\a:\r) circle (\s);
+      \fill[fuego,opacity=0.18] (\a:\r) circle (3.2*\s);
+    }
+  \end{scope}
+  \begin{scope}[shift={($(current page.north east)+(-5.2,-6.2)$)},rotate=-18]
+    \fill[gray!35] (-0.5,-0.35) rectangle (0.5,0.35);
+    \fill[cielo!60] (-2.1,-0.28) rectangle (-0.6,0.28);
+    \fill[cielo!60] (0.6,-0.28) rectangle (2.1,0.28);
+    \foreach \x in {-1.8,-1.5,-1.2,-0.9,0.9,1.2,1.5,1.8}{\draw[black!70,line width=0.3pt] (\x,-0.28)--(\x,0.28);}
+    \fill[gray!60] (-0.12,-0.35) rectangle (0.12,-0.6);
+  \end{scope}
+  \coordinate (sat) at ($(current page.north east)+(-5.4,-6.75)$);
+  \fill[brasa,opacity=0.10] (sat) -- ($(current page.south)+(-3.4,5.1)$) -- ($(current page.south)+(3.4,5.1)$) -- cycle;
+  \draw[brasa,opacity=0.45,line width=0.4pt] (sat) -- ($(current page.south)+(-3.4,5.1)$) (sat) -- ($(current page.south)+(3.4,5.1)$);
+  \node[anchor=north west,text=white,align=left,text width=14cm] at ($(current page.north west)+(2.2,-3.2)$) {%
+    {\sffamily\bfseries\fontsize{40}{44}\selectfont\spaceskip=0.28em Fuego desde\\[2pt] el espacio\par}
+    \vspace{10pt}
+    {\color{brasa}\rule{7cm}{2pt}\par}
+    \vspace{12pt}
+    {\sffamily\Large Teoría para armonizar los focos de calor\\ de MODIS y VIIRS\par}
+    \vspace{18pt}
+    {\sffamily\normalsize\color{white!75!black} De la radiación de un cuerpo caliente\\ al calendario de quemas de una región\par}
+  };
+  \node[anchor=south west,text=white!80!black,align=left,font=\sffamily\small] at ($(current page.south west)+(2.2,2.0)$)
+    {Libro de estudio para el reto\\[1pt]
+    \textit{Harmonization of MODIS and VIIRS Hot Spots}\\[1pt]
+    NASA Space Apps Challenge 2026 \textbullet\ Huancayo};
+\end{tikzpicture}
+\end{titlepage}

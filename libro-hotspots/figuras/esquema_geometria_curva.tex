@@ -1,0 +1,23 @@
+% O es el centro común de ambos radios; h y los ángulos se dibujan aparte.
+\begin{tikzpicture}[scale=.95,font=\footnotesize]
+  \coordinate (O) at (0,0);
+  \coordinate (S) at (0,6.3);
+  \coordinate (N) at (0,5);
+  \coordinate (P) at (67:5);
+  \draw[bosque,very thick] (50:5) arc (50:130:5);
+  \draw[ceniza,dashed] (O)--(N) node[midway,left] {$R$};
+  \draw[ceniza,dashed] (N)--(S);
+  \draw[ceniza,dashed] (O)--(P) node[pos=.45,right] {$R$};
+  \fill (O) circle (.06) node[below=3pt] {centro de la Tierra};
+  \fill (S) circle (.08) node[above=3pt] {satélite};
+  \fill (P) circle (.07);
+  \node[anchor=west] at ($(P)+(.2,-.15)$) {punto observado};
+  \draw[fuego,thick] (S)--(P) node[midway,above right] {$d$};
+  \draw[ceniza,dashed] (P)--($(P)+(67:1.5)$);
+  \node[anchor=west] at ($(P)+(67:1.65)$) {vertical local};
+  \draw[<->] (-.5,5)--(-.5,6.3) node[midway,left] {$h$};
+  \draw (0,5.65) arc[start angle=270,end angle=319,radius=.65];
+  \node at (.33,5.22) {$\theta$};
+  \draw ($(P)+(67:.55)$) arc[start angle=67,end angle=139,radius=.55];
+  \node at ($(P)+(103:.85)$) {$\beta$};
+\end{tikzpicture}

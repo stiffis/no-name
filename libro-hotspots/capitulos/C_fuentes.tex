@@ -1,0 +1,247 @@
+\chapter{Fuentes, datos y ruta de lectura}\label{ap:fuentes}
+
+Las referencias de este apéndice permiten contrastar afirmaciones, ampliar el estudio y
+reproducir los casos. Se priorizan documentos de los equipos de los productos, artículos
+originales y documentación oficial. Los ejemplos numéricos simplificados son desarrollos
+didácticos propios; una receta propuesta en el libro no se convierte por ello en un
+algoritmo oficial de NASA.
+
+La revisión de enlaces, estado de misiones y descargas de esta edición se realizó el
+\textbf{9 de noviembre de 2026, hora de Lima}. Un enlace puede redirigir o requerir una
+descarga posterior; se incluyen títulos, instituciones y DOI cuando existen para que
+la referencia no dependa solo de una dirección. Las fechas de operación y disponibilidad
+deben consultarse de nuevo antes de actualizar un producto.
+
+\section{Qué leer y con qué pregunta}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X}
+\toprule
+Después de estudiar & Pregunta que debes llevar a la fuente \\
+\midrule
+Capítulos 1--3 & ¿Qué cantidad mide el sensor y qué simplificaciones hay en el modelo radiativo? \\
+Capítulos 4--6 & ¿Qué geometría, bandas y rango dinámico corresponden al producto concreto? \\
+Capítulos 7--9 & ¿Qué pruebas acepta el algoritmo y contra qué referencia se validó? \\
+Capítulo 10 & ¿Qué representan las columnas, versiones, faltantes y cambios del archivo? \\
+Capítulos 11--12 & ¿En qué periodo y escala se estimó la relación, y cómo se prueba fuera de muestra? \\
+Capítulo 13 & ¿Qué significa la referencia histórica y qué información no aporta el calendario? \\
+Capítulo 14 & ¿Puede otra persona obtener las mismas cifras a partir de las mismas entradas? \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Referencias comentadas}
+
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,leftmargin=2.2em,itemsep=1em]
+\item\label{src:openstax} \textbf{OpenStax. \emph{University Physics, Volume 3}, sección 6.1,
+<<Blackbody Radiation>>.} Libro universitario abierto. Repasa el significado físico de
+Wien, Stefan--Boltzmann y Planck. Compara cuidadosamente su definición de intensidad con
+la radiancia espectral usada en este libro; los factores geométricos y las unidades importan.
+\par\url{https://openstax.org/books/university-physics-volume-3/pages/6-1-blackbody-radiation}
+
+\item\label{src:modis-guide} \textbf{Equipo MODIS Fire. \emph{MODIS Collection 6 and Collection
+6.1 Active Fire Product User's Guide}, versión 1.0, mayo de 2021.} Referencia de productos,
+máscaras, calidad, columnas y limitaciones. Conviene leer primero las descripciones de
+MOD14/MYD14 y las advertencias sobre interpretar ubicaciones de píxeles como fuegos.
+\par\url{https://modis-fire.umd.edu/files/MODIS_C6_C6.1_Fire_User_Guide_1.0.pdf}
+\par Catálogo del equipo: \url{https://www.modis-fire.umd.edu/guides.html}
+
+\item\label{src:viirs-guide} \textbf{NASA LAADS / equipo VIIRS. \emph{VIIRS Collection 2
+375-m Active Fire Product User's Guide}, versión 1.2.} Manual específico del producto
+de 375 m y de su procesamiento. Úsalo para comprobar clases de confianza, limitaciones,
+FRP y diferencias entre detección y caracterización. El producto de 750 m es distinto.
+\par\url{https://ladsweb.modaps.eosdis.nasa.gov/archive/Document%20Archive/Science%20Data%20Product%20Documentation/VIIRS_C2_AF-375m_User_Guide_1.2.pdf}
+
+\item\label{src:giglio2016} \textbf{Giglio, L., Schroeder, W. y Justice, C. O. (2016).
+<<The Collection 6 MODIS active fire detection algorithm and fire products>>.}
+\emph{Remote Sensing of Environment}, 178, 31--41.
+Describe el algoritmo y su evaluación. Los umbrales ilustrativos del capítulo 7 no deben
+copiarse como sustitución de esta especificación.
+\par\url{https://doi.org/10.1016/j.rse.2016.02.054}
+\par\url{https://www.earthdata.nasa.gov/sites/default/files/imported/Giglio2016_C6_Fire.pdf}
+
+\item\label{src:schroeder2014} \textbf{Schroeder, W., Oliva, P., Giglio, L. y Csiszar, I. A.
+(2014). <<The New VIIRS 375 m active fire detection data product: Algorithm description
+and initial assessment>>.} \emph{Remote Sensing of Environment}, 143, 85--96.
+Es la fuente de partida para entender la detección de 375 m, la saturación y la evaluación
+inicial. Una comparación de ese estudio no constituye una razón universal para Perú.
+\par\url{https://doi.org/10.1016/j.rse.2013.12.008}
+\par\url{https://www.earthdata.nasa.gov/sites/default/files/imported/Schroeder_et_al_2014b_RSE.pdf}
+
+\item\label{src:giglio2003} \textbf{Giglio, L., Descloitres, J., Justice, C. O. y Kaufman,
+Y. J. (2003). <<An enhanced contextual fire detection algorithm for MODIS>>.}
+\emph{Remote Sensing of Environment}, 87, 273--282. Antecedente del enfoque contextual.
+Se consulta para comprender su evolución, distinguiéndolo de las colecciones posteriores.
+La ficha bibliográfica está en el listado del equipo productor.
+\par\url{https://www.modis-fire.umd.edu/pubs.html}
+
+\item\label{src:wooster2003} \textbf{Wooster, M. J., Zhukov, B. y Oertel, D. (2003).
+<<Fire radiative energy for quantitative study of biomass burning: derivation from the
+BIRD experimental satellite and comparison to MODIS fire products>>.}
+\emph{Remote Sensing of Environment}, 86(1), 83--107.
+Desarrolla la relación entre mediciones infrarrojas y caracterización radiativa. Interesa
+identificar sus aproximaciones, no extraer un coeficiente descontextualizado.
+\par\url{https://doi.org/10.1016/S0034-4257(03)00070-1}
+
+\item\label{src:wooster2005} \textbf{Wooster, M. J., Roberts, G., Perry, G. L. W. y Kaufman,
+Y. J. (2005). <<Retrieval of biomass combustion rates and totals from fire radiative power
+observations: FRP derivation and calibration relationships between biomass consumption
+and fire radiative energy release>>.} \emph{Journal of Geophysical Research}, 110, D24311.
+Permite estudiar el paso de potencia a energía y la calibración con combustión. No justifica
+convertir una suma de instantáneas de FRP directamente en biomasa consumida.
+\par\url{https://doi.org/10.1029/2005JD006318}
+
+\item\label{src:giglio-season} \textbf{Giglio, L., Csiszar, I. y Justice, C. O. (2006).
+<<Global distribution and seasonality of active fires as observed with the Terra and Aqua
+Moderate Resolution Imaging Spectroradiometer (MODIS) sensors>>.}
+\emph{Journal of Geophysical Research}, 111, G02016. Contexto original para estudiar
+distribución y estacionalidad con fuego activo. Los resultados peruanos nuevos de este
+libro se calculan por separado; no se atribuyen a ese artículo.
+\par\url{https://doi.org/10.1029/2005JG000142}
+
+\item\label{src:firms-archive} \textbf{NASA FIRMS. \emph{Archive Download}.}
+Punto oficial para solicitar datos históricos y consultar cobertura temporal y sustitución
+de NRT por procesamiento estándar. La disponibilidad del archivo no equivale a cobertura
+despejada completa en cada lugar y fecha.
+\par\url{https://firms.modaps.eosdis.nasa.gov/download/}
+
+\item\label{src:firms-country} \textbf{NASA FIRMS. \emph{Yearly summaries by country}.}
+Fuente directa de los 24 CSV del caso peruano. Los originales se guardan en
+\texttt{datos/originales/}; sus direcciones y huellas completas están en
+\texttt{datos/procedencia\_peru.json}. Se conserva la selección espacial del proveedor.
+\par\url{https://firms.modaps.eosdis.nasa.gov/country/}
+\par Ejemplo de archivo original:
+\url{https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2024/viirs-snpp_2024_Peru.csv}
+
+\item\label{src:firms-ingest} \textbf{NASA FIRMS Academy. \emph{Data Ingest and Manipulation
+in Python}.} Material oficial para leer las tablas, seleccionar registros y convertir
+fecha y hora. Es una práctica de ingestión; no sustituye una validación de armonización.
+\par\url{https://firms.modaps.eosdis.nasa.gov/content/academy/data_ingest/firms_data_ingest.html}
+
+\item\label{src:firms-api} \textbf{NASA FIRMS Academy. \emph{How to use FIRMS API in Python}.}
+Documenta el acceso mediante API, la clave y las consultas de disponibilidad. Las cuotas
+y productos deben verificarse al implementar. El caso peruano del libro usa descargas
+anuales públicas y no requiere guardar una clave en el código.
+\par\url{https://firms.modaps.eosdis.nasa.gov/content/academy/data_api/firms_api_use.html}
+
+\item\label{src:transition} \textbf{NASA LAADS DAAC. \emph{MODIS to VIIRS Transition}.}
+Información oficial sobre continuidad y deriva de las horas de cruce de Terra y Aqua.
+Su contexto principal incluye productos atmosféricos: no se interpreta como una
+validación de la receta de celdas-día propuesta aquí.
+\par\url{https://ladsweb.modaps.eosdis.nasa.gov/learn/modis-to-viirs-transition/}
+
+\item\label{src:noaa-snpp} \textbf{NOAA NESDIS. Aviso del 30 de octubre de 2026, actualización
+3 sobre cese de datos de Suomi NPP.} Anuncia el fin de entrega a usuarios el 2 de noviembre
+de 2026 a las 15:40 UTC. El archivo histórico sigue siendo útil, pero no se debe diseñar
+la continuidad futura suponiendo nuevas observaciones de esta plataforma.
+\par\href{https://www.nesdis.noaa.gov/news/update-3-cessation-of-suomi-national-polar-orbiting-partnership-s-npp-data-users-november-02-2026-1540-utc-and-decommissioning-issued-october-30-2026-1400-utc}{Aviso oficial: cese de entrega de datos de Suomi NPP (NOAA NESDIS).}
+
+\item\label{src:outages} \textbf{NASA MODAPS. \emph{VIIRS/Suomi-NPP Data Outages}.}
+Registro de interrupciones y anomalías de adquisición o procesamiento. Se consulta
+cuando un periodo muestra una caída inesperada. Una lista de interrupciones de misión
+no reemplaza una máscara de observación local, pero permite investigar causas concretas.
+\par\url{https://modaps.modaps.eosdis.nasa.gov/services/production/outages_suomi_npp.html}
+
+\item\label{src:worldview} \textbf{NASA GIBS / Worldview y Worldview Snapshots.}
+Servicios utilizados para las escenas reales del libro. Las imágenes son representaciones
+de productos satelitales con composiciones y remuestreo de visualización; no son mediciones
+de temperatura obtenidas leyendo el color del JPEG.
+\par\url{https://worldview.earthdata.nasa.gov/}
+\par\url{https://wvs.earthdata.nasa.gov/}
+
+\item\label{src:gibs} \textbf{NASA GIBS. Metadatos de la capa \emph{Corrected Reflectance
+(Bands M11-I2-I1), Suomi NPP / VIIRS}.} Identifica la composición usada en las vistas de
+falso color. Es útil contrastar los nombres de capas y las resoluciones originales con
+la resolución de la imagen exportada.
+\par\url{https://gibs.earthdata.nasa.gov/layer-metadata/v1.0/VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1.json}
+
+\item\label{src:isl} \textbf{James, G., Witten, D., Hastie, T. y Tibshirani, R. (2021).
+\emph{An Introduction to Statistical Learning}, segunda edición con R.}
+El sitio de los autores ofrece el texto y una edición posterior con Python. Los
+capítulos de regresión y remuestreo amplían el capítulo 11; el de comparaciones múltiples
+ayuda a interpretar mapas con muchos indicadores. Se deben reproducir ejemplos antes
+de intentar modelos más complejos.
+\par\url{https://www.statlearning.com/}
+
+\item\label{src:nist} \textbf{NIST/SEMATECH. \emph{e-Handbook of Statistical Methods},
+sección 1.3.5.17, <<Detection of Outliers>>.} Explica por qué etiquetar un valor extremo,
+acomodarlo con un método robusto y probar una hipótesis son operaciones diferentes.
+La distribución de referencia y los supuestos importan al interpretar un puntaje.
+\par\url{https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm}
+
+\item\label{src:forecast} \textbf{Hyndman, R. J. y Athanasopoulos, G.
+\emph{Forecasting: Principles and Practice}, tercera edición.}
+Texto de los autores disponible en línea. El capítulo 5 desarrolla evaluación temporal,
+errores y distribuciones predictivas. Sirve para separar un ajuste histórico de una
+capacidad real de anticipación.
+\par\url{https://otexts.com/fpp3/toolbox.html}
+
+\item\label{src:parquet} \textbf{Apache Software Foundation. Documentación de Apache
+Parquet.} Referencia oficial del formato columnar. Leer primero su organización general
+y después grupos de filas, columnas y metadatos; no es necesario implementar el formato
+para comprender por qué una consulta puede leer menos datos.
+\par\url{https://parquet.apache.org/docs/overview/}
+
+\item\label{src:duckdb} \textbf{DuckDB. \emph{Reading and Writing Parquet Files}.}
+Documentación oficial sobre lectura selectiva de columnas y aplicación de filtros.
+Las capacidades del motor no garantizan una latencia concreta: deben medirse con los
+archivos y consultas del proyecto.
+\par\url{https://duckdb.org/docs/data/parquet}
+
+\item\label{src:amdahl} \textbf{Amdahl, G. M. (1967). <<Validity of the single processor
+approach to achieving large scale computing capabilities>>.}
+\emph{AFIPS Spring Joint Computer Conference}, 483--485. Trabajo original que motiva
+el límite de aceleración por la parte no paralelizable de una tarea.
+\par\url{https://doi.org/10.1145/1465482.1465560}
+\par Copia del artículo: \url{https://www.cs.cmu.edu/~18742/papers/Amdahl1967.pdf}
+
+\item\label{src:spaceapps} \textbf{NASA Space Apps Challenge 2026.
+\emph{Harmonization of MODIS and VIIRS Hot Spots}.} Página oficial del reto. El trabajo
+del libro prepara conceptos y un caso de análisis; los requisitos y recursos vigentes
+deben leerse en la página oficial. Durante esta revisión el acceso automatizado al
+enunciado completo devolvió un error; no se atribuyen a él requisitos nuevos no consultados.
+\par\url{https://www.spaceappschallenge.org/2026/challenges/harmonization-of-modis-and-viirs-hot-spots/}
+\end{enumerate}
+
+\section{Procedencia de las imágenes reales}
+
+Las escenas se obtuvieron de NASA Worldview Snapshots. Los nombres de capas y las
+coordenadas se conservan en \texttt{figuras/procedencia\_imagenes.json}, junto con las
+huellas de los archivos. El orden de coordenadas de \texttt{BBOX} en estas peticiones
+EPSG:4326 es sur, oeste, norte, este.
+
+\begin{description}[style=nextline,leftmargin=1.2em]
+\item[Camp Fire, California, 9 de noviembre de 2018.]
+Recuadro de $39{,}45^\circ$ a $40{,}05^\circ$ N y $121{,}95^\circ$ a $121{,}35^\circ$ O.
+Se usan color verdadero de VIIRS/Suomi NPP, composición M11--I2--I1 y esa composición
+con anomalías térmicas diurnas de 375 m. La ampliación es un recorte de visualización;
+no aumenta la resolución física del sensor.
+\item[Centro de Perú, 15 de septiembre de 2024.]
+Recuadro de $14^\circ$ a $9^\circ$ S y $77{,}5^\circ$ a $72{,}5^\circ$ O. Comparación
+de reflectancia en color verdadero y capas de anomalías de VIIRS/Suomi NPP y MODIS/Aqua.
+Los mosaicos diarios de los sensores no representan necesariamente el mismo instante.
+\item[Selva central peruana, 15 de septiembre de 2024.]
+Recuadro de $10{,}5^\circ$ a $9{,}5^\circ$ S y $75{,}5^\circ$ a $74{,}5^\circ$ O.
+Par de imágenes de VIIRS/Suomi NPP, color verdadero y composición M11--I2--I1, utilizado
+para explicar cómo cambian el contraste de la superficie y los efectos atmosféricos.
+No se dibujan perímetros de incendio inferidos del color.
+\end{description}
+
+Se reconoce el uso de imágenes de NASA Global Imagery Browse Services (GIBS) y Worldview,
+parte de NASA Earth Science Data and Information System (ESDIS), y de datos de NASA FIRMS.
+Los diagramas TikZ y las gráficas calculadas del libro son elaboraciones propias; los
+pies distinguen datos reales, cálculos físicos y esquemas ilustrativos.
+
+\section{Qué queda abierto científicamente}
+
+Completar el libro no convierte el ejemplo nacional en un producto operativo validado.
+Quedan preguntas de investigación: cómo reconstruir exposición despejada; qué escala
+regional conserva señal suficiente; cómo enlazar plataformas VIIRS; y cómo evaluar
+alertas contra resultados independientes. El capítulo 14 muestra una línea base que
+puede ser auditada. Para mejorarla, cada nueva hipótesis debe ir acompañada de una
+comparación y de datos reservados para evaluarla.
+
+Los scripts y las tablas están junto a las fuentes LaTeX para que el siguiente paso
+consista en plantear y comprobar esas hipótesis, sin depender de recordar de dónde
+salió una cifra.

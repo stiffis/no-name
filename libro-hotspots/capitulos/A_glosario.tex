@@ -1,0 +1,159 @@
+\chapter{Glosario razonado}\label{ap:glosario}
+
+Este glosario sirve para volver a un concepto después de haberlo estudiado. Los términos se
+agrupan por las preguntas que ayudan a resolver. Las referencias llevan al capítulo donde
+se desarrollan; una definición breve no sustituye sus supuestos ni sus ejemplos.
+
+\section{Qué se observa}
+\begin{description}[style=nextline,leftmargin=1.2em]
+\item[Actividad de fuego detectada.] Propiedad del registro de un sistema de observación:
+cuántas detecciones, presencias u otras unidades se obtuvieron bajo unos filtros. No equivale
+automáticamente a actividad real total en el suelo. Capítulos~\ref{cap:problema} y~\ref{cap:calendario}.
+\item[Anomalía térmica o foco de calor.] Píxel que satisface los criterios de un algoritmo
+de detección térmica. La coordenada distribuida representa la geolocalización del píxel;
+no identifica necesariamente el punto exacto de la llama. Capítulo~\ref{cap:problema}.
+\item[Fuego activo.] Combustión que está ocurriendo durante la observación. Una pasada
+puede perder una quema que empezó y terminó entre dos visitas. Capítulo~\ref{cap:orbitas}.
+\item[Incendio.] Evento físico con continuidad espacial y temporal cuya delimitación
+requiere reglas adicionales. No hay una correspondencia uno a uno entre incendios y filas
+de FIRMS. Capítulo~\ref{cap:problema}.
+\item[Área quemada.] Superficie afectada por combustión durante un intervalo. Se estima
+con productos y métodos diferentes de los puntos de fuego activo; no se obtiene multiplicando
+el número de focos por el área nominal del píxel. Capítulos~\ref{cap:problema} y~\ref{cap:frp}.
+\item[Fuente térmica persistente.] Fuente de calor que aparece repetidamente, como una
+instalación industrial o un volcán. Su recurrencia es una pista, no una clasificación
+infalible. Capítulo~\ref{cap:errores}.
+\item[Píxel y huella.] El píxel es la unidad de muestreo de la imagen; su huella es el
+área del terreno a la que responde la medición. Su tamaño y forma varían con la geometría.
+Capítulo~\ref{cap:escaneo}.
+\item[Píxel mixto y fracción subpíxel.] Un píxel mezcla contribuciones de materiales o
+temperaturas diferentes. La fracción subpíxel del fuego es la parte de su huella ocupada
+por combustión, no la probabilidad de que haya un incendio. Capítulo~\ref{cap:deteccion}.
+\end{description}
+
+\section{Cómo llega la señal}
+\begin{description}[style=nextline,leftmargin=1.2em]
+\item[Longitud de onda.] Distancia entre dos puntos equivalentes de una onda; selecciona
+una región del espectro. Un micrómetro es $10^{-6}$ metros. Capítulo~\ref{cap:radiacion}.
+\item[Radiancia espectral.] Potencia por área proyectada, ángulo sólido e intervalo de
+longitud de onda. Es una magnitud direccional; no debe confundirse con el flujo integrado
+sobre un hemisferio. Capítulo~\ref{cap:radiacion}.
+\item[Cuerpo negro.] Idealización que absorbe toda la radiación incidente y cuya emisión
+térmica depende de la temperatura según Planck. Es una referencia física, no una
+descripción literal de cada fuego. Capítulo~\ref{cap:radiacion}.
+\item[Emisividad.] Cociente entre la emisión de un cuerpo y la de un cuerpo negro a la
+misma temperatura, para una longitud de onda y dirección. Puede variar espectralmente.
+Capítulo~\ref{cap:radiacion}.
+\item[Temperatura de brillo.] Temperatura del cuerpo negro que produciría la radiancia
+medida en un canal. Mezcla, atmósfera y emisividad impiden identificarla sin más con la
+temperatura física de la llama. Capítulo~\ref{cap:radiacion}.
+\item[Transmitancia.] Fracción de una señal que atraviesa un medio. Depende de la longitud
+de onda y del camino recorrido, entre otros factores. Capítulo~\ref{cap:atmosfera}.
+\item[Ventana atmosférica.] Región espectral de transmisión relativamente alta. No es
+una garantía de visión a través de cualquier nube. Capítulo~\ref{cap:atmosfera}.
+\item[SWIR, MIR y TIR.] Nombres de regiones del infrarrojo: onda corta, medio y térmico.
+Sus límites dependen de la convención; al comparar sensores se citan las bandas y sus
+longitudes concretas. Capítulos~\ref{cap:radiacion} y~\ref{cap:modisviirs}.
+\item[Falso color.] Representación que asigna bandas, algunas invisibles al ojo, a los
+canales rojo, verde y azul. Un color mostrado no es por sí mismo una temperatura ni una
+clase de terreno. Capítulos~\ref{cap:problema} y~\ref{cap:atmosfera}.
+\item[Saturación.] Estado en que la señal supera el rango utilizable del detector. Puede
+permitir reconocer un píxel muy caliente pero impedir recuperar bien su radiancia.
+Capítulo~\ref{cap:modisviirs}.
+\item[FRP y FRE.] FRP es potencia radiativa del fuego, energía por unidad de tiempo,
+normalmente expresada en MW. FRE es energía radiativa integrada en el tiempo. Sumar FRP
+de pasadas separadas sin un intervalo temporal no produce energía. Capítulo~\ref{cap:frp}.
+\end{description}
+
+\section{Desde qué instrumento y en qué momento}
+\begin{description}[style=nextline,leftmargin=1.2em]
+\item[Sensor y plataforma.] El sensor es el instrumento; la plataforma es el satélite
+que lo transporta. VIIRS en Suomi NPP y VIIRS en NOAA-20 comparten una familia instrumental,
+pero representan oportunidades distintas de observación. Capítulo~\ref{cap:modisviirs}.
+\item[MODIS y VIIRS.] Familias de instrumentos multiespectrales. Los productos de fuego
+estudiados aquí usan resoluciones nominales diferentes. Es necesario especificar también
+plataforma, producto y colección. Capítulo~\ref{cap:modisviirs}.
+\item[Nadir.] Dirección hacia el suelo situada verticalmente bajo el satélite. La
+resolución nominal suele referirse a esa geometría. Capítulo~\ref{cap:escaneo}.
+\item[Franja o swath.] Banda de terreno observada durante una pasada. Una franja más
+ancha puede reducir huecos espaciales sin eliminar nubes ni interrupciones de datos.
+Capítulo~\ref{cap:orbitas}.
+\item[Barrido y traza.] Direcciones transversal al movimiento y a lo largo de él.
+\texttt{scan} y \texttt{track} describen dimensiones asociadas a esas direcciones.
+Capítulo~\ref{cap:escaneo}.
+\item[Efecto pajarita.] Solape entre líneas de barrido que crece hacia los bordes de
+ciertos sensores. Puede multiplicar muestras de un mismo terreno. Capítulo~\ref{cap:escaneo}.
+\item[Órbita heliosíncrona.] Órbita cuyo plano precesa de modo que se mantiene
+aproximadamente la hora solar de cruce. No implica observación continua de un lugar.
+Capítulo~\ref{cap:orbitas}.
+\item[Deriva orbital.] Cambio progresivo de parámetros como altura u hora de paso cuando
+no se mantienen sus valores nominales. Puede modificar la muestra del ciclo diario del
+fuego. Capítulos~\ref{cap:orbitas} y~\ref{cap:armonizacion}.
+\item[UTC, hora oficial y hora solar.] UTC es la referencia de tiempo usada en los
+archivos; la hora oficial depende del huso legal; la hora solar depende de la posición
+del Sol y de la longitud. La aproximación por longitud da hora solar media, no elimina
+la ecuación del tiempo. Capítulo~\ref{cap:firms}.
+\end{description}
+
+\section{Qué producto se ha descargado}
+\begin{description}[style=nextline,leftmargin=1.2em]
+\item[FIRMS.] Sistema de NASA que distribuye información sobre fuego activo. La tabla
+de puntos es un producto de acceso, no una máscara completa de observación del terreno.
+Capítulo~\ref{cap:firms}.
+\item[Colección, versión y reprocesamiento.] Una colección identifica una generación
+del producto. Una etiqueta de versión puede codificar además revisiones de procesamiento.
+Reprocesar aplica un procedimiento actualizado al archivo histórico; no añade una nueva
+observación física. Capítulos~\ref{cap:firms} y~\ref{cap:calendario}.
+\item[NRT y calidad estándar.] NRT prioriza la disponibilidad rápida; el procesamiento
+estándar incorpora la cadena y los auxiliares correspondientes a su producto científico.
+La sustitución de registros puede revisar valores ya descargados. Capítulo~\ref{cap:firms}.
+\item[Confianza de detección.] Indicador del algoritmo sobre la calidad de una detección.
+Las escalas MODIS y VIIRS no son probabilidades calibradas equivalentes.
+Capítulo~\ref{cap:deteccion}.
+\item[Omisión y comisión.] Omisión: fuego de referencia no detectado. Comisión: detección
+que no corresponde al objetivo de referencia. Las tasas usan denominadores distintos.
+Capítulo~\ref{cap:errores}.
+\item[Cobertura y dato faltante.] Cobertura describe oportunidades de observación;
+faltante describe información no disponible. Una lista vacía de detecciones no permite
+reconstruir ninguna de las dos por sí sola. Capítulo~\ref{cap:calendario}.
+\end{description}
+
+\section{Cómo se comparan las series}
+\begin{description}[style=nextline,leftmargin=1.2em]
+\item[Celda-día.] Par formado por una celda fija y un día. Puede registrarse su presencia
+de detección una vez por plataforma; esa definición reduce conteos múltiples, pero no
+iguala sensibilidades. Capítulo~\ref{cap:armonizacion}.
+\item[Armonización.] Conjunto de decisiones que busca hacer comparables indicadores
+obtenidos con sistemas diferentes. No recupera la ubicación de fuegos no observados.
+Capítulo~\ref{cap:armonizacion}.
+\item[Solape.] Periodo en que existen observaciones de ambos sistemas. Permite estimar
+relaciones, pero la coincidencia en años no garantiza coincidencia de pasadas y cobertura.
+Capítulo~\ref{cap:armonizacion}.
+\item[Estrato.] Grupo de datos definido por variables relevantes, como región y estación.
+Puede tener su propia relación de calibración si dispone de información suficiente.
+Capítulo~\ref{cap:armonizacion}.
+\item[Sesgo.] Desviación sistemática respecto del objetivo o referencia. Aumentar la
+muestra no lo elimina automáticamente. Capítulo~\ref{cap:errores}.
+\item[Sobredispersión.] Varianza mayor que la media en un conteo. Advierte que un modelo
+Poisson simple puede subestimar la variabilidad. Capítulo~\ref{cap:estadistica}.
+\item[Bootstrap o remuestreo.] Construcción de réplicas de la muestra para estudiar la
+variación de un estimador. Debe respetar las dependencias mediante unidades o bloques
+adecuados. Capítulo~\ref{cap:estadistica}.
+\item[Intervalo de confianza.] Intervalo producido por un procedimiento con una cobertura
+de repetición definida bajo supuestos. No es el rango de variación entre años ni un
+intervalo predictivo. Capítulos~\ref{cap:estadistica} y~\ref{cap:calendario}.
+\item[Validación temporal y fuga de información.] La validación usa periodos reservados;
+hay fuga si información de esos periodos interviene en ajustar o elegir el método que
+se evalúa. Capítulo~\ref{cap:estadistica}.
+\item[Anomalía.] Diferencia respecto de una referencia declarada. No expresa por sí sola
+causalidad, significación estadística ni emergencia. Capítulo~\ref{cap:calendario}.
+\item[Percentil, mediana y MAD.] El percentil sitúa un valor dentro de una distribución;
+la mediana es su centro por orden; MAD resume distancias absolutas a la mediana. Es
+necesario declarar las convenciones y tratar escalas nulas. Capítulo~\ref{cap:calendario}.
+\item[MAE, MAPE y WAPE.] Medidas de desacuerdo absoluto o relativo. MAPE divide por cada
+observación y falla con ceros; WAPE divide la suma de errores absolutos por el total
+observado y pondera más la actividad grande. Capítulos~\ref{cap:estadistica} y~\ref{cap:aplicacion}.
+\item[Procedencia y reproducibilidad.] Procedencia identifica el origen y las
+transformaciones. Reproducibilidad permite recalcular el resultado con entradas y
+reglas identificables; no demuestra por sí sola validez científica. Capítulo~\ref{cap:aplicacion}.
+\end{description}

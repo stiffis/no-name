@@ -1,0 +1,335 @@
+\chapter{Los datos: FIRMS de principio a fin}\label{cap:firms}
+
+\objetivos{
+\begin{itemize}
+  \item Describir qué es FIRMS y qué productos de focos distribuye.
+  \item Distinguir datos en tiempo casi real de datos de calidad estándar.
+  \item Interpretar cada columna de un archivo de focos de MODIS y de VIIRS.
+  \item Convertir la fecha y la hora UTC a hora local y reconocer los errores típicos.
+  \item Planificar la descarga y la limpieza de los datos para un área de interés.
+\end{itemize}}
+
+\section{Qué es FIRMS}
+
+\termino{FIRMS} (\emph{Fire Information for Resource Management System}) es el sistema de la
+NASA que distribuye las detecciones de fuego activo de MODIS y de VIIRS. Nació para poner esos
+datos en manos de gestores forestales pocas horas después de cada pasada, y hoy ofrece además
+el archivo histórico completo.
+
+Lo que FIRMS entrega no son imágenes sino \textbf{tablas de puntos}: una fila por cada píxel
+clasificado como fuego, con sus coordenadas, su fecha y hora y un conjunto de atributos. Esa
+tabla es la materia prima de todo el proyecto.
+
+\begin{nota}[Productos por niveles]
+En teledetección los datos se clasifican por \emph{nivel de procesamiento}. El nivel 0 es la
+señal cruda del instrumento; el nivel 1, radiancias calibradas y geolocalizadas; el nivel 2,
+variables geofísicas derivadas en la geometría original del sensor (aquí, la máscara de fuego
+de cada pasada); el nivel 3, productos remuestreados a una cuadrícula regular. Los puntos de
+FIRMS se extraen de los productos de fuego de nivel 2 (llamados MOD14 y MYD14 para MODIS en
+Terra y Aqua, y VNP14IMG y sus equivalentes para VIIRS).
+\end{nota}
+
+\section{Productos disponibles}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{llll}
+\toprule
+Producto & Sensor y satélite & Resolución & Disponible desde \\
+\midrule
+MODIS Colección 6.1 & MODIS, Terra y Aqua & 1 km & noviembre de 2000 \\
+VIIRS S-NPP 375 m & VIIRS, Suomi NPP & 375 m & 20 de enero de 2012 \\
+VIIRS NOAA-20 375 m & VIIRS, NOAA-20 & 375 m & abril de 2018 \\
+VIIRS NOAA-21 375 m & VIIRS, NOAA-21 & 375 m & 1 de marzo de 2023 \\
+\bottomrule
+\end{tabular}
+\caption{Productos de focos del archivo de FIRMS. Aqua aporta datos desde mediados de 2002. Las
+fechas reflejan la página de descarga consultada el 9 de noviembre de 2026 y pueden cambiar
+por reprocesamiento. La cobertura publicada de Suomi NPP termina el 2 de noviembre de 2026.}
+\label{tab:productos}
+\end{table}
+
+\subsection{Colecciones}
+
+La disponibilidad anterior se consulta en el archivo oficial.\fuente{firms-archive}
+
+Cada cierto tiempo los equipos científicos mejoran los algoritmos y \emph{reprocesan todo el
+archivo} con la versión nueva. Cada reprocesamiento es una \termino{colección}. Los focos de
+MODIS están hoy en la Colección~6.1 y los de VIIRS de 375~m en la Colección~2.
+
+\begin{atencion}[No mezcles colecciones]
+Dos colecciones del mismo sensor son, a efectos prácticos, dos instrumentos distintos: cambian
+umbrales, máscaras y calibración, y con ellos el número de focos. Toda la serie de cada sensor
+debe documentar una colección compatible. La columna \texttt{version} aporta una pista,
+pero sus códigos también incluyen revisiones de procesamiento: no deben interpretarse
+como simples números decimales. El caso peruano del capítulo~\ref{cap:calendario}
+muestra etiquetas diferentes en los CSV anuales y limita su calibración en consecuencia.
+\end{atencion}
+
+\subsection{Tiempo casi real y calidad estándar}
+
+Hay dos calidades de un mismo producto.
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[Tiempo casi real (NRT).] Disponible unas tres horas después de la pasada. Se procesa con
+  datos auxiliares provisionales (posición y orientación del satélite predichas, no medidas), de
+  modo que la geolocalización es algo menos exacta. Existe también una variante ultrarrápida para
+  algunas regiones.
+  \item[Calidad estándar o científica.] Disponible con un retraso de semanas a meses. Usa datos
+  auxiliares definitivos. Es la que debe usarse para cualquier análisis histórico, y la única
+  que incluye la columna \texttt{type}.
+\end{description}
+
+El archivo de FIRMS sustituye automáticamente los datos NRT por los estándar cuando estos
+llegan, por lo que una descarga histórica trae calidad estándar para casi todo el periodo y NRT
+solo para los últimos meses. La columna \texttt{version} lo delata: los valores terminados en
+\texttt{NRT} (como \texttt{6.1NRT} o \texttt{2.0NRT}) son de tiempo casi real.
+
+\begin{atencion}[Las etiquetas reales no son tan ordenadas]
+Los valores de \texttt{version} que aparecen en la práctica dependen de la vía de descarga y
+del año. En los archivos anuales por país usados en el capítulo~\ref{cap:calendario}, MODIS
+trae \texttt{6.2} en 2013--2017, \texttt{6.03} en 2018--2022 y \texttt{61.03} en 2023--2024,
+y VIIRS trae \texttt{2} en todos. Lo primero que hay que hacer con un archivo nuevo es contar
+cuántas filas hay de cada valor de \texttt{version} y de \texttt{satellite}, y no dar por
+homogénea una serie cuya etiqueta cambia.
+\end{atencion}
+
+\section{Anatomía de un archivo de focos}
+
+Las tablas~\ref{tab:col-modis} y~\ref{tab:col-viirs} describen las columnas de cada producto.
+Casi todas conectan con algún capítulo anterior.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{>{\ttfamily}l>{\raggedright\arraybackslash}Xl}
+\toprule
+\normalfont Columna & Significado & Cap. \\
+\midrule
+latitude, longitude & centro del píxel de 1 km, en grados decimales (WGS84) & \ref{cap:problema} \\
+brightness & temperatura de brillo a 3,96 \um{} (banda 21 o 22), en kelvin & \ref{cap:radiacion} \\
+scan, track & tamaño real del píxel a lo largo del barrido y de la traza, en km & \ref{cap:escaneo} \\
+acq\_date & fecha de adquisición, en UTC & \\
+acq\_time & hora de adquisición, en UTC, formato HHMM & \\
+satellite & \texttt{Terra} o \texttt{Aqua} (a veces \texttt{T} o \texttt{A}) & \ref{cap:orbitas} \\
+instrument & \texttt{MODIS} & \\
+confidence & confianza de 0 a 100 & \ref{cap:deteccion} \\
+version & colección y calidad, por ejemplo \texttt{6.1} o \texttt{6.1NRT} & \\
+bright\_t31 & temperatura de brillo a 11 \um{} (banda 31), en kelvin & \ref{cap:radiacion} \\
+frp & potencia radiativa del fuego, en MW & \ref{cap:frp} \\
+daynight & \texttt{D} (día) o \texttt{N} (noche) & \ref{cap:atmosfera} \\
+type & 0 vegetación, 1 volcán, 2 otra fuente estática, 3 en el mar & \ref{cap:errores} \\
+\bottomrule
+\end{tabularx}
+\caption{Columnas de un archivo de focos de MODIS.}
+\label{tab:col-modis}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{>{\ttfamily}l>{\raggedright\arraybackslash}X}
+\toprule
+\normalfont Columna & Diferencia respecto de MODIS \\
+\midrule
+latitude, longitude & centro del píxel de 375 m \\
+bright\_ti4 & temperatura de brillo de la banda I4 (3,74 \um); sustituye a \texttt{brightness} \\
+bright\_ti5 & temperatura de brillo de la banda I5 (11,45 \um); sustituye a \texttt{bright\_t31} \\
+scan, track & tamaño del píxel; entre 0,3 y 0,8 km aproximadamente \\
+satellite & \texttt{N} para Suomi NPP, \texttt{N20} o \texttt{1} para NOAA-20, \texttt{N21} o \texttt{2} para NOAA-21 \\
+confidence & categoría: \texttt{l} (baja), \texttt{n} (nominal), \texttt{h} (alta) \\
+version & por ejemplo \texttt{2.0} o \texttt{2.0NRT} \\
+frp & en MW, calculada con la banda M13 de 750 m \\
+\bottomrule
+\end{tabularx}
+\caption{Columnas de un archivo de focos de VIIRS de 375~m que difieren de las de MODIS. Las
+demás (\texttt{acq\_date}, \texttt{acq\_time}, \texttt{instrument}, \texttt{daynight},
+\texttt{type}) son iguales.}
+\label{tab:col-viirs}
+\end{table}
+
+Así se ven unas filas reales en formato. Los valores de este ejemplo son inventados para
+ilustrar la estructura:
+
+\begin{lstlisting}
+latitude,longitude,brightness,scan,track,acq_date,acq_time,satellite,instrument,confidence,version,bright_t31,frp,daynight,type
+-11.8432,-75.3107,318.4,1.1,1.0,2019-08-23,1815,Aqua,MODIS,62,6.1,299.6,9.8,D,0
+-11.9051,-75.2468,331.7,2.9,1.6,2019-08-23,1815,Aqua,MODIS,78,6.1,301.2,41.3,D,0
+\end{lstlisting}
+
+\begin{lstlisting}
+latitude,longitude,bright_ti4,scan,track,acq_date,acq_time,satellite,instrument,confidence,version,bright_ti5,frp,daynight,type
+-11.84107,-75.31322,341.2,0.39,0.36,2019-08-23,1806,N,VIIRS,n,2.0,298.1,3.4,D,0
+-11.84391,-75.30978,367.0,0.39,0.36,2019-08-23,1806,N,VIIRS,h,2.0,301.5,3.4,D,0
+\end{lstlisting}
+
+\begin{atencion}[Los nombres de columna cambian entre sensores]
+\texttt{brightness} frente a \texttt{bright\_ti4}; \texttt{confidence} numérica frente a
+categórica; códigos de \texttt{satellite} distintos. Si unes las tablas a ciegas tendrás
+columnas vacías o tipos mezclados. Lo sensato es convertir ambas, nada más leerlas, a un
+esquema común y mínimo propio: \texttt{lat}, \texttt{lon}, \texttt{fecha\_hora\_utc},
+\texttt{sensor}, \texttt{satelite}, \texttt{dia\_noche}, \texttt{confianza\_clase},
+\texttt{frp}, \texttt{scan}, \texttt{track}, \texttt{tipo}.
+\end{atencion}
+
+\section{El tiempo: UTC y hora local}
+
+Las columnas \texttt{acq\_date} y \texttt{acq\_time} están en \termino{UTC}, el tiempo universal
+coordinado, que es la hora del meridiano de Greenwich sin horario de verano. \texttt{acq\_time}
+es un entero de hasta cuatro cifras: \texttt{1815} significa 18:15, y \texttt{45} significa
+00:45.
+
+Para un calendario, lo que importa es el día y la hora \emph{locales}. Hay dos conceptos
+distintos.
+
+\begin{definicion}{hora oficial y hora solar local}
+La \textbf{hora oficial} es la del huso horario legal del lugar; en el Perú, UTC$-$5 todo el
+año. La \textbf{hora solar local} depende de la longitud geográfica exacta: el Sol está en lo
+más alto a las 12:00 solares. Se calcula aproximadamente como
+\begin{equation}\label{eq:hsl}
+  \text{hora solar local} = \text{hora UTC} + \frac{\text{longitud}}{15},
+\end{equation}
+con la longitud en grados (negativa al oeste) y el resultado en horas, llevado al intervalo de
+0 a 24.
+\end{definicion}
+
+El factor 15 sale de que la Tierra gira 360$^\circ$ en 24 horas: 15$^\circ$ por hora.
+
+\begin{ejemplo}{de UTC a hora local}
+Un foco de Aqua tiene \texttt{acq\_date} = 2019-08-23, \texttt{acq\_time} = 1815 y longitud
+$-75{,}31^\circ$. Halla su hora oficial peruana y su hora solar local. Haz lo mismo para un
+foco nocturno con \texttt{acq\_date} = 2019-08-24 y \texttt{acq\_time} = 0612.
+\solucion Primer foco. Hora oficial: $18{:}15 - 5\text{ h} = 13{:}15$ del 23 de agosto. Hora
+solar: $18{,}25 + (-75{,}31/15) = 18{,}25 - 5{,}02 = 13{,}23$~h, es decir, las 13:14. Coincide
+con la pasada de las 13:30 de Aqua.
+
+Segundo foco. Hora oficial: $06{:}12 - 5\text{ h} = 01{:}12$ del 24 de agosto. Es la pasada
+nocturna de la madrugada del 24, y pertenece a la misma noche que empezó el 23.
+
+Ahora un caso que cruza la medianoche: un foco con fecha UTC 2019-08-24 y hora 0330 corresponde
+a las 22:30 del \textbf{23 de agosto} en hora peruana. La fecha UTC y la fecha local no
+coinciden.
+\end{ejemplo}
+
+\begin{atencion}[El error de la fecha UTC]
+En el Perú, toda detección entre las 00:00 y las 04:59 UTC ocurrió el día local
+\emph{anterior}. Si agrupas por \texttt{acq\_date} sin convertir, asignas esas detecciones al
+día equivocado. Para conteos mensuales el efecto es mínimo; para conteos diarios o semanales, o
+para emparejar detecciones de dos sensores <<del mismo día>>, no lo es. Convierte siempre a hora
+local antes de agrupar.
+\end{atencion}
+
+\section{Cómo se obtienen los datos}
+
+FIRMS ofrece tres vías.
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[Descarga del archivo.] Un formulario web donde se elige el área (país, recuadro o
+  polígono), el producto, el intervalo de fechas y el formato (CSV, shapefile o JSON). La
+  solicitud se procesa y se recibe un enlace por correo. Es la vía adecuada para la serie
+  histórica completa.
+  \item[Archivos por país y por año.] FIRMS publica archivos anuales ya recortados por país,
+  listos para descargar.
+  \item[Interfaz de programación (API).] Con una clave gratuita (\texttt{MAP\_KEY}) se pueden
+  pedir por URL los focos de un área y unos pocos días. Está pensada para datos recientes y
+  tiene límites de uso; sirve para la parte <<en vivo>> de una aplicación, no para bajar veinte
+  años.
+\end{description}
+
+\begin{parareto}
+Para el hackathon conviene llegar con una idea clara del volumen. Un país del tamaño del Perú
+acumula del orden de decenas de miles de focos de MODIS por año y varias veces más de VIIRS: el
+archivo completo de un país cabe sin problemas en memoria. Escala global son otros números,
+cientos de millones de filas. \textbf{Decide el área de interés antes de empezar}, descarga
+\textbf{una sola vez} y trabaja siempre sobre copias locales. Y anota la fecha de descarga y la
+versión: habrá que citarlas.
+\end{parareto}
+
+\section{Limpieza: una lista de control}
+
+Antes de contar nada, los datos descargados deben pasar por una secuencia fija de comprobaciones
+(figura~\ref{fig:limpieza}). Cada paso corresponde a una advertencia de este libro.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=4mm,
+  paso/.style={caja,text width=11.5cm,align=left,fill=cieloClaro}]
+  \node[paso] (a) {\textbf{1. Esquema común.} Renombrar columnas y unificar tipos; etiquetar sensor y satélite.};
+  \node[paso,below=of a] (b) {\textbf{2. Versión.} Comprobar que cada sensor usa una sola colección; anotar qué filas son NRT.};
+  \node[paso,below=of b] (c) {\textbf{3. Tiempo.} Construir fecha y hora UTC; convertir a hora local; derivar día, semana, mes y año locales.};
+  \node[paso,below=of c] (d) {\textbf{4. Tipo.} Conservar solo \texttt{type = 0}; aplicar el criterio propio de fuentes estáticas.};
+  \node[paso,below=of d] (e) {\textbf{5. Confianza.} Descartar la clase baja de cada sensor con su propia definición.};
+  \node[paso,below=of e] (f) {\textbf{6. Satélites.} Quedarse con el conjunto fijo decidido (por ejemplo, Aqua y Suomi NPP).};
+  \node[paso,below=of f] (g) {\textbf{7. Geometría (opcional).} Filtrar por \texttt{scan} si se decide excluir los bordes.};
+  \node[paso,below=of g,fill=bosqueClaro] (h) {\textbf{8. Registro.} Guardar cuántas filas elimina cada paso. Es la primera tabla de la documentación.};
+  \foreach \u/\v in {a/b,b/c,c/d,d/e,e/f,f/g,g/h}{\draw[flujo] (\u)--(\v);}
+\end{tikzpicture}
+\caption{Secuencia de limpieza de los datos de focos antes de cualquier análisis.}
+\label{fig:limpieza}
+\end{figure}
+
+El paso 8 no es burocracia. Decir <<partimos de 1,9 millones de detecciones; tras excluir
+fuentes estáticas, baja confianza y satélites adicionales quedaron 1,2 millones>> convierte una
+serie de decisiones invisibles en algo que un evaluador puede seguir y discutir.
+
+\section{Lo que los datos no traen}
+
+Conviene cerrar con lo que \emph{falta} en estas tablas, porque condiciona lo que se puede
+afirmar.
+
+\begin{itemize}
+  \item \textbf{No hay registro de <<no fuego>>.} Solo aparecen las detecciones. No se sabe,
+  mirando la tabla, si un día sin focos fue un día sin fuego, un día nublado o un día sin
+  pasada. Esa información existe en los productos de nivel 2 y nivel 3 (máscaras de nube y de
+  cobertura), pero no en los puntos de FIRMS.
+  \item \textbf{No hay identificador de incendio.} Nada indica que diez focos pertenezcan al
+  mismo evento. Agruparlos es tarea de quien analiza.
+  \item \textbf{No hay superficie quemada.} Los focos indican actividad en un instante, no
+  extensión afectada. Para eso existen productos distintos de \emph{área quemada}.
+  \item \textbf{No hay causa.} Ningún campo distingue una quema agrícola de un incendio
+  forestal. Puede inferirse cruzando con mapas de uso del suelo, pero es una inferencia.
+\end{itemize}
+
+\resumen
+
+\begin{itemize}
+  \item \textbf{FIRMS} distribuye las detecciones de fuego de MODIS (Colección 6.1, desde 2000)
+  y de VIIRS de 375~m (desde 2012) como tablas de puntos.
+  \item Hay datos en \textbf{tiempo casi real}, rápidos y algo menos exactos, y de
+  \textbf{calidad estándar}, que son los que valen para análisis históricos. No deben mezclarse
+  colecciones.
+  \item Cada fila trae coordenadas del centro del píxel, fecha y hora UTC, temperaturas de
+  brillo, tamaño del píxel, satélite, confianza, FRP, día o noche y tipo de fuente.
+  \item Los nombres y tipos de varias columnas difieren entre MODIS y VIIRS; conviene pasar todo
+  a un esquema común.
+  \item Las horas están en \textbf{UTC}. En el Perú hay que restar cinco horas y cuidar el
+  cambio de fecha.
+  \item Antes de analizar, los datos pasan por una limpieza ordenada y documentada.
+  \item La tabla no contiene los días sin fuego, ni identifica incendios, ni mide superficie
+  quemada, ni indica causas.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item ¿A qué hora oficial peruana y de qué día local corresponde un foco con
+  \texttt{acq\_date} = 2021-09-01 y \texttt{acq\_time} = 215?
+  \item Calcula la hora solar local de un foco con \texttt{acq\_time} = 1742 y longitud
+  $-69{,}2^\circ$ (Puerto Maldonado) y de otro con la misma hora UTC y longitud $-80{,}6^\circ$
+  (Piura). ¿Por qué difieren si ambos lugares tienen la misma hora oficial?
+  \item En las filas de ejemplo de este capítulo, identifica: el foco observado más lejos del
+  nadir; el foco con el detector saturado; el sensor de cada fila; la pareja de focos de VIIRS
+  que comparte píxel M13 y cómo lo sabes.
+  \item Escribe, en pseudocódigo, la función que convierte \texttt{acq\_date} y
+  \texttt{acq\_time} en fecha y hora local peruana, teniendo en cuenta que \texttt{acq\_time}
+  puede tener menos de cuatro cifras.
+  \item Un archivo de VIIRS tiene el 92\,{}\% de las filas con \texttt{version} = \texttt{2.0} y
+  el 8\,{}\% con \texttt{2.0NRT}. ¿A qué fechas corresponderá probablemente ese 8\,{}\%? ¿Qué
+  columna tendrá vacía?
+  \item Para cada afirmación, di si se puede sostener solo con los datos de FIRMS y por qué:
+  (a) <<en agosto de 2020 hubo más detecciones que en agosto de 2019>>; (b) <<en agosto de 2020
+  se quemaron más hectáreas>>; (c) <<el 14 de agosto no hubo ningún fuego en la provincia>>;
+  (d) <<la mayoría de los fuegos fueron quemas agrícolas>>.
+\end{enumerate}

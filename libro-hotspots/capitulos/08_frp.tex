@@ -1,0 +1,247 @@
+\chapter{Potencia radiativa del fuego}\label{cap:frp}
+
+\objetivos{
+\begin{itemize}
+  \item Definir la potencia radiativa del fuego (FRP) y explicar qué mide físicamente.
+  \item Entender por qué puede estimarse con un solo canal de 4~\um.
+  \item Relacionar la FRP con la biomasa consumida y con las emisiones.
+  \item Explicar cómo se calcula en MODIS y en VIIRS y qué precauciones exige al comparar.
+\end{itemize}}
+
+\section{Más allá de contar}
+
+Un foco dice <<aquí hay fuego>>. No dice cuánto. Una quema de rastrojo y el frente de un incendio
+forestal generan cada uno un punto en el mapa. Para distinguirlos, los productos de fuego
+incluyen una medida de intensidad.
+
+\begin{definicion}{potencia radiativa del fuego (FRP)}
+La potencia radiativa del fuego, o FRP por \emph{Fire Radiative Power}, es la energía que el
+fuego contenido en un píxel emite en forma de radiación por unidad de tiempo, sumada sobre todas
+las longitudes de onda y todas las direcciones. Se expresa en megavatios (MW).
+\end{definicion}
+
+Es la columna \texttt{frp} de los datos. Un megavatio es un millón de vatios; una quema agrícola
+pequeña tiene una FRP de unos pocos MW, y los píxeles más intensos de un gran incendio forestal
+superan los 1000~MW.
+
+\section{De la ley de Stefan--Boltzmann a la FRP}
+
+Si conociéramos el área $A_f$ y la temperatura $T_f$ del fuego, su potencia radiada saldría de
+la ley de Stefan--Boltzmann, restando lo que esa misma superficie emitiría si estuviera a la
+temperatura del fondo:
+\begin{equation}\label{eq:frp-sb}
+  \mathrm{FRP} = \sigma\,A_f\,\bigl(T_f^4 - T_b^4\bigr) \approx \sigma\,A_f\,T_f^4 .
+\end{equation}
+El término del fondo es despreciable: $300^4$ es menos del 1\,{}\% de $1000^4$.
+
+\begin{ejemplo}{potencia de una quema pequeña}
+Calcula la FRP de un fuego de \SI{100}{\metre\squared} a 1000~K y la de uno de
+\SI{2000}{\metre\squared} a 800~K.
+\solucion Para el primero: $\sigma A_f T_f^4 = \num{5.67e-8}\times 100\times 10^{12} =
+\SI{5.67e6}{\watt} = \SI{5.7}{\mega\watt}$. Para el segundo: $\num{5.67e-8}\times 2000\times
+(800)^4 = \num{5.67e-8}\times2000\times\num{4.096e11} = \SI{4.6e7}{\watt} =
+\SI{46}{\mega\watt}$.
+\end{ejemplo}
+
+El problema es que ni $A_f$ ni $T_f$ se conocen: son justamente las incógnitas difíciles de
+despejar del capítulo anterior. Se necesita un atajo.
+
+\section{El atajo: en 4 micrómetros, la radiancia va como la cuarta potencia}
+
+El atajo es una coincidencia afortunada de la ley de Planck. En el intervalo de temperaturas de
+los fuegos de vegetación, entre unos 600 y 1500~K, la radiancia a 4~\um{} es casi exactamente
+proporcional a $T^4$:
+\begin{equation}\label{eq:aprox-mir}
+  B_4(T) \approx a\,T^4 ,
+\end{equation}
+con una constante $a$ que depende de la banda concreta del sensor (para MODIS, $a \approx
+\SI{3.0e-9}{\watt\per\square\metre\per\steradian\per\micro\metre\per\kelvin\tothe{4}}$).
+
+La figura~\ref{fig:mir} lo comprueba. No es una ley exacta sino una aproximación válida en ese
+intervalo, y funciona porque, para esas temperaturas, el canal de 4~\um{} está cerca del máximo
+de la curva de Planck.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=12.5cm,height=6.8cm,xmin=400,xmax=1600,ymin=0,ymax=2,
+  xlabel={Temperatura del fuego (K)},
+  ylabel={$B_4(T)\,/\,(a\,T^4)$},
+  ytick={0,0.5,1,1.5,2},yticklabels={0,{0,5},1,{1,5},2},
+  grid=major,grid style={ceniza!15},samples=120,domain=400:1600,
+  declare function={planck(\l,\T)=1.191e8/(\l^5*(exp(14388/(\l*\T))-1));}]
+\fill[bosque!15] (axis cs:600,0) rectangle (axis cs:1500,2);
+\addplot[fuego,very thick] {planck(3.96,x)/(3.0e-9*x^4)};
+\addplot[ceniza,dashed,domain=400:1600] {1};
+\node[font=\footnotesize,bosque!70!black] at (axis cs:1050,1.75) {intervalo de los fuegos de vegetación};
+\end{axis}
+\end{tikzpicture}
+\caption{Cociente entre la radiancia de Planck a 3,96~\um{} y la aproximación $a\,T^4$. Entre
+600 y 1500~K (banda sombreada) el cociente se mantiene entre 0,74 y 1,07: con un error de
+hasta un 25\,{}\% en los extremos, la radiancia del canal es proporcional a la potencia total
+emitida.}
+\label{fig:mir}
+\end{figure}
+
+Ahora combinemos tres ecuaciones. El exceso de radiancia del píxel sobre su fondo, según el
+modelo del píxel mixto, es $\Delta L_4 = L_4 - L_{4,b} \approx p\,B_4(T_f)$. Con la
+aproximación~\eqref{eq:aprox-mir}, $\Delta L_4 \approx p\,a\,T_f^4$. Y como $p =
+A_f/A_{\text{píxel}}$:
+\[
+  \Delta L_4 \approx \frac{A_f}{A_{\text{píxel}}}\,a\,T_f^4
+  \quad\Longrightarrow\quad
+  A_f\,T_f^4 \approx \frac{A_{\text{píxel}}}{a}\,\Delta L_4 .
+\]
+Sustituyendo en la ecuación~\eqref{eq:frp-sb}:
+\begin{equation}\label{eq:frp-mir}
+  \boxed{\;\mathrm{FRP} \approx \frac{\sigma\,A_{\text{píxel}}}{a}\,\bigl(L_4 - L_{4,b}\bigr)\;}
+\end{equation}
+
+El producto desconocido $A_f T_f^4$ ha desaparecido. La potencia del fuego se obtiene de tres
+cosas que sí se conocen: el área del píxel, la radiancia medida a 4~\um{} y la radiancia del
+fondo estimada con los vecinos. Este es el \termino{método de la radiancia en el infrarrojo
+medio}, debido a Wooster y colaboradores, y es el que usan los productos actuales.
+
+\begin{ejemplo}{comprobación del método}
+Verifica la ecuación~\eqref{eq:frp-mir} con el fuego de \SI{100}{\metre\squared} a 1000~K
+dentro de un píxel de \SI{1}{\kilo\metre\squared}, usando los valores del capítulo anterior.
+\solucion Allí se obtuvo $L_4 = 1{,}005$ con fondo $L_{4,b} = 0{,}673$, es decir, $\Delta L_4 =
+0{,}332$ \si{\watt\per\square\metre\per\steradian\per\micro\metre}. Entonces
+\[
+ \mathrm{FRP} \approx \frac{\num{5.67e-8}\times 10^6}{\num{3.0e-9}}\times 0{,}332
+ = \num{1.89e7}\times 0{,}332 = \SI{6.3e6}{\watt} = \SI{6.3}{\mega\watt}.
+\]
+El valor exacto del ejemplo anterior era 5,7~MW. La diferencia, de un 10\,{}\%, es el error de la
+aproximación~\eqref{eq:aprox-mir} a 1000~K, visible en la figura~\ref{fig:mir}.
+\end{ejemplo}
+
+\section{Qué mide y qué no mide la FRP}
+
+La FRP es una potencia: energía por unidad de tiempo en el instante de la pasada. Tres
+precisiones.
+
+\textbf{Es solo la parte radiada.} Un fuego libera energía también por convección (el aire
+caliente que sube) y por conducción hacia el suelo. La fracción radiada es del orden de una
+décima a una quinta parte del total.
+
+\textbf{Es proporcional al ritmo de combustión.} Experimentos de quema controlada muestran que
+la energía radiada total es proporcional a la masa de vegetación consumida, con un factor
+cercano a 0,37~kg de biomasa seca por megajulio radiado. Por eso la FRP, integrada en el tiempo,
+se usa para estimar cuánta biomasa se quemó y cuánto humo y CO$_2$ se emitió.
+
+\textbf{Es instantánea.} Para pasar de potencia a energía hay que integrar sobre la duración del
+fuego, y un satélite polar solo aporta unas pocas muestras al día. La integral, llamada
+\termino{energía radiativa del fuego} (FRE), requiere suponer la forma del ciclo diurno.
+
+\begin{ejemplo}{de potencia a biomasa}
+Un píxel muestra una FRP de 40~MW. Suponiendo que el fuego mantiene esa potencia durante dos
+horas, ¿cuánta biomasa consume?
+\solucion La energía radiada es $E = \SI{40}{\mega\watt}\times\SI{7200}{\second} =
+\SI{2.88e5}{\mega\joule}$. Con 0,37~kg por megajulio: $m = \num{2.88e5}\times 0{,}37 \approx
+\SI{1.1e5}{\kilo\gram}$, unas 107 toneladas de materia seca. El resultado depende por completo
+de la suposición sobre la duración.
+\end{ejemplo}
+
+\section{La FRP en MODIS y en VIIRS}
+
+Los dos productos calculan la FRP con la ecuación~\eqref{eq:frp-mir}, pero con diferencias
+importantes en los detalles.
+
+\textbf{MODIS} usa su canal de 3,96~\um{} (banda 22, o 21 si la 22 se satura) y el área real del
+píxel, que crece hacia los bordes. La versión actual del producto adoptó este método; las
+versiones antiguas usaban una fórmula empírica distinta, basada en la octava potencia de la
+temperatura de brillo.
+
+\textbf{VIIRS de 375~m} no puede usar I4 porque se satura a 367~K. La detección se hace a
+375~m, pero la FRP se calcula con la radiancia de la banda \textbf{M13}, de 750~m y con un rango
+dinámico muy amplio, que no se satura con los fuegos de vegetación. La potencia obtenida para el
+píxel de 750~m se reparte entre las detecciones de 375~m que contiene.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=1.15cm,y=1.15cm]
+  \fill[cenizaClaro] (0,0) rectangle (2,2);
+  \draw[ceniza,very thick] (0,0) rectangle (2,2);
+  \draw[ceniza] (1,0)--(1,2) (0,1)--(2,1);
+  \fill[fuego!60] (0,1) rectangle (1,2); \fill[fuego!60] (1,1) rectangle (2,2); \fill[fuego!60] (1,0) rectangle (2,1);
+  \draw[ceniza,very thick] (0,0) rectangle (2,2);
+  \draw[ceniza] (1,0)--(1,2) (0,1)--(2,1);
+  \node[font=\footnotesize] at (0.5,1.5) {foco}; \node[font=\footnotesize] at (1.5,1.5) {foco}; \node[font=\footnotesize] at (1.5,0.5) {foco};
+  \draw[<->] (0,-0.25)--(2,-0.25) node[midway,below,font=\footnotesize]{píxel M13 de 750 m};
+  \draw[<->] (2.25,1)--(2.25,2) node[midway,right,font=\footnotesize]{375 m};
+  \node[caja,anchor=west,text width=7cm,align=left] at (4.2,1) {%
+    FRP medida en el píxel de 750 m: 36 MW\\[3pt]
+    Detecciones de 375 m dentro: 3\\[3pt]
+    FRP asignada a cada foco: $36/3 = 12$ MW};
+\end{tikzpicture}
+\caption{En el producto de 375~m de VIIRS, la FRP se mide en la banda M13 de 750~m y se reparte
+por igual entre los focos de 375~m contenidos en ese píxel.}
+\label{fig:m13}
+\end{figure}
+
+\section{Precauciones al usar la FRP}
+
+\begin{atencion}[La FRP de un foco no es comparable sin más entre sensores]
+Hay al menos cuatro motivos.
+\begin{enumerate}
+  \item \textbf{Fuegos no detectados.} La FRP solo existe para los píxeles clasificados como
+  fuego. MODIS deja fuera los fuegos pequeños y con ellos su potencia.
+  \item \textbf{Reparto entre píxeles.} La potencia de un mismo frente se reparte entre más
+  focos en VIIRS; cada foco tiene menos FRP pero hay más focos.
+  \item \textbf{Geometría.} Hacia los bordes de la franja de MODIS, además de detectarse menos,
+  la estimación se degrada.
+  \item \textbf{Fondo.} La radiancia del fondo se estima con vecinos de tamaños muy distintos
+  en cada sensor.
+\end{enumerate}
+Lo comparable no es la FRP de cada foco, sino la \emph{suma} de la FRP en una celda y un
+periodo, y aun así con cautela.
+\end{atencion}
+
+\begin{parareto}
+La FRP ofrece dos posibilidades para el proyecto. Como \textbf{segunda variable del calendario}:
+además de <<cuántas detecciones>>, mostrar <<cuánta potencia>> permite distinguir una temporada
+de muchas quemas pequeñas de una con pocos incendios muy intensos. Y como \textbf{criterio de
+armonización}: descartar de VIIRS las detecciones con FRP por debajo de lo que MODIS podría
+haber detectado es una forma físicamente motivada de acercar los dos registros
+(capítulo~\ref{cap:armonizacion}). Empieza por los conteos; la FRP es una extensión.
+\end{parareto}
+
+\resumen
+
+\begin{itemize}
+  \item La \textbf{FRP} es la potencia que el fuego de un píxel emite como radiación, en MW.
+  \item Por Stefan--Boltzmann, $\mathrm{FRP} \approx \sigma A_f T_f^4$, pero $A_f$ y $T_f$ no se
+  conocen.
+  \item Entre 600 y 1500~K la radiancia a 4~\um{} es proporcional a $T^4$, lo que permite
+  calcular $\mathrm{FRP} \approx (\sigma A_{\text{píxel}}/a)\,(L_4 - L_{4,b})$ sin conocer el
+  tamaño ni la temperatura del fuego.
+  \item La FRP es proporcional al ritmo de consumo de biomasa; integrada en el tiempo da la
+  energía radiada y, con ella, la masa quemada.
+  \item MODIS la calcula con su canal de 3,96~\um; VIIRS de 375~m, con la banda M13 de 750~m,
+  repartiéndola entre los focos.
+  \item La FRP de focos individuales no es comparable entre sensores; las sumas por celda y
+  periodo lo son algo más.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item Calcula con la ecuación~\eqref{eq:frp-sb} la FRP de un frente de fuego de 300~m de largo
+  y 5~m de profundidad a 900~K.
+  \item Usando la figura~\ref{fig:mir}, ¿la ecuación~\eqref{eq:frp-mir} sobrestima o subestima
+  la potencia de una brasa a 600~K? ¿Y la de una llama a 1200~K?
+  \item Un píxel de MODIS con \texttt{scan} = 2,0 y \texttt{track} = 1,4 tiene un exceso de
+  radiancia a 4~\um{} de 0,50 unidades sobre su fondo. Calcula su FRP.
+  \item Un píxel M13 con 54~MW contiene cuatro detecciones de 375~m. ¿Qué FRP lleva cada una?
+  Si MODIS observa el mismo fuego en un único píxel, ¿qué FRP esperarías, idealmente?
+  \item Una región registra en un mes 400 focos con FRP media de 8~MW; otra, 60 focos con FRP
+  media de 90~MW. Compara su FRP total y describe qué tipo de fuego sugiere cada una.
+  \item Explica por qué la FRP medida a las 13:30 no puede multiplicarse por 24 horas para
+  obtener la energía diaria.
+\end{enumerate}
+
+\lecturas
+
+Wooster, Zhukov y Oertel (2003) derivan el método de la radiancia en el infrarrojo medio, y
+Wooster y colaboradores (2005) establecen la relación entre energía radiada y biomasa
+consumida. Las referencias están en el apéndice~\ref{ap:fuentes}.

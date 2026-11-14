@@ -1,0 +1,108 @@
+{
+  "eslabon": "Suomi NPP <- NOAA-20, celdas-día diurnas, Perú",
+  "ajuste": [
+    2019,
+    2020,
+    2021
+  ],
+  "prueba": [
+    2022,
+    2023,
+    2024
+  ],
+  "nota_2018": "empieza el 2018-04-01; excluido del ajuste y de la prueba",
+  "nota_2025": "sin Suomi NPP descargado; solo conversión",
+  "razon_snpp_sobre_noaa20": 0.9641397221539219,
+  "snpp_ajuste": 125477,
+  "noaa20_ajuste": 130144,
+  "potencia": {
+    "alfa": 0.9652520709974992,
+    "beta": 0.9999866828404685
+  },
+  "prueba_sin_convertir": {
+    "mae": 277.02777777777777,
+    "sesgo": 179.97222222222223,
+    "wape": 7.571880860368534
+  },
+  "prueba_razon": {
+    "mae": 238.61677919159627,
+    "sesgo": 42.31856123473511,
+    "wape": 6.522009589857693
+  },
+  "prueba_potencia": {
+    "mae": 238.29511154662836,
+    "sesgo": 46.15497458106829,
+    "wape": 6.513217586745693
+  },
+  "anuales": [
+    {
+      "anio": 2018,
+      "noaa20": 32051,
+      "focos_noaa20": 49590,
+      "snpp": 34259,
+      "focos_snpp": 54188,
+      "razon_snpp_noaa20": 1.0688902062338148,
+      "noaa20_en_escala_snpp": 30901.64223475535
+    },
+    {
+      "anio": 2019,
+      "noaa20": 39879,
+      "focos_noaa20": 63606,
+      "snpp": 38286,
+      "focos_snpp": 63013,
+      "razon_snpp_noaa20": 0.960054163845633,
+      "noaa20_en_escala_snpp": 38448.92797977625
+    },
+    {
+      "anio": 2020,
+      "noaa20": 53007,
+      "focos_noaa20": 83584,
+      "snpp": 51643,
+      "focos_snpp": 84056,
+      "razon_snpp_noaa20": 0.9742675495689248,
+      "noaa20_en_escala_snpp": 51106.15425221294
+    },
+    {
+      "anio": 2021,
+      "noaa20": 37258,
+      "focos_noaa20": 58200,
+      "snpp": 35548,
+      "focos_snpp": 57997,
+      "razon_snpp_noaa20": 0.9541038166299856,
+      "noaa20_en_escala_snpp": 35921.91776801082
+    },
+    {
+      "anio": 2022,
+      "noaa20": 46301,
+      "focos_noaa20": 74287,
+      "snpp": 44020,
+      "focos_snpp": 73399,
+      "razon_snpp_noaa20": 0.9507354052828233,
+      "noaa20_en_escala_snpp": 44640.63327544874
+    },
+    {
+      "anio": 2023,
+      "noaa20": 42354,
+      "focos_noaa20": 65520,
+      "snpp": 41447,
+      "focos_snpp": 66019,
+      "razon_snpp_noaa20": 0.9785852575907824,
+      "noaa20_en_escala_snpp": 40835.173792107205
+    },
+    {
+      "anio": 2024,
+      "noaa20": 49535,
+      "focos_noaa20": 81338,
+      "snpp": 46244,
+      "focos_snpp": 78616,
+      "razon_snpp_noaa20": 0.9335621277884324,
+      "noaa20_en_escala_snpp": 47758.661136894516
+    },
+    {
+      "anio": 2025,
+      "noaa20": 29950,
+      "focos_noaa20": 44968,
+      "noaa20_en_escala_snpp": 28875.984678509958
+    }
+  ]
+}

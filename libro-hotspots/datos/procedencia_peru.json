@@ -1,0 +1,470 @@
+[
+  {
+    "archivo": "modis_2013_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2013/modis_2013_Peru.csv",
+    "sha256": "73534bd306c83ddd86045e8d50ef46a3441625ff6aa1924de093369e12fd1243",
+    "bytes": 956476,
+    "fecha_descarga_utc": "2026-11-10T00:03:22.073704+00:00",
+    "filas_originales": 12268,
+    "filas_aceptadas": 9754,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.2": 12268
+    },
+    "satelites": {
+      "Terra": 1923,
+      "Aqua": 10345
+    },
+    "primera_fecha_deteccion": "2013-01-01",
+    "ultima_fecha_deteccion": "2013-12-31",
+    "dias_con_alguna_deteccion_archivo": 324
+  },
+  {
+    "archivo": "modis_2014_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2014/modis_2014_Peru.csv",
+    "sha256": "43db4b41876e8abf691b66df9b08975cbb9c5b9225f51b5cef7aed03e6ab36cf",
+    "bytes": 832900,
+    "fecha_descarga_utc": "2026-11-10T00:03:18.149569+00:00",
+    "filas_originales": 10677,
+    "filas_aceptadas": 8294,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.2": 10677
+    },
+    "satelites": {
+      "Terra": 1846,
+      "Aqua": 8831
+    },
+    "primera_fecha_deteccion": "2014-01-01",
+    "ultima_fecha_deteccion": "2014-12-31",
+    "dias_con_alguna_deteccion_archivo": 314
+  },
+  {
+    "archivo": "modis_2015_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2015/modis_2015_Peru.csv",
+    "sha256": "405ceba40ff8292d49ec3aa7aa61d40a94ceccdb969e7d5ce0ebd974eb45b9f2",
+    "bytes": 1157203,
+    "fecha_descarga_utc": "2026-11-10T00:03:23.186742+00:00",
+    "filas_originales": 14824,
+    "filas_aceptadas": 11469,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.2": 14824
+    },
+    "satelites": {
+      "Aqua": 12245,
+      "Terra": 2579
+    },
+    "primera_fecha_deteccion": "2015-01-01",
+    "ultima_fecha_deteccion": "2015-12-31",
+    "dias_con_alguna_deteccion_archivo": 326
+  },
+  {
+    "archivo": "modis_2016_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2016/modis_2016_Peru.csv",
+    "sha256": "b0e94070316f64a90e7a3387df1400c2cbbf2749e17a7d0d43ad25b27a1328d4",
+    "bytes": 1509173,
+    "fecha_descarga_utc": "2026-11-10T00:04:08.212059+00:00",
+    "filas_originales": 19285,
+    "filas_aceptadas": 13863,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.2": 19285
+    },
+    "satelites": {
+      "Terra": 4162,
+      "Aqua": 15123
+    },
+    "primera_fecha_deteccion": "2016-01-01",
+    "ultima_fecha_deteccion": "2016-12-30",
+    "dias_con_alguna_deteccion_archivo": 345
+  },
+  {
+    "archivo": "modis_2017_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2017/modis_2017_Peru.csv",
+    "sha256": "ca099509ec154f2b1fe0d473f2a3af07217d7fc89c6dc196a4ddbcdd48588915",
+    "bytes": 897528,
+    "fecha_descarga_utc": "2026-11-10T00:03:55.482726+00:00",
+    "filas_originales": 11481,
+    "filas_aceptadas": 8749,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.2": 11481
+    },
+    "satelites": {
+      "Terra": 2019,
+      "Aqua": 9462
+    },
+    "primera_fecha_deteccion": "2017-01-02",
+    "ultima_fecha_deteccion": "2017-12-31",
+    "dias_con_alguna_deteccion_archivo": 328
+  },
+  {
+    "archivo": "modis_2018_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2018/modis_2018_Peru.csv",
+    "sha256": "a1a8135a4ba921c74296abece6f89cb7a60a47f460a4cccb43127258616fdec0",
+    "bytes": 1068270,
+    "fecha_descarga_utc": "2026-11-10T00:04:01.031875+00:00",
+    "filas_originales": 13522,
+    "filas_aceptadas": 10382,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.03": 13522
+    },
+    "satelites": {
+      "Terra": 2280,
+      "Aqua": 11242
+    },
+    "primera_fecha_deteccion": "2018-01-02",
+    "ultima_fecha_deteccion": "2018-12-31",
+    "dias_con_alguna_deteccion_archivo": 339
+  },
+  {
+    "archivo": "modis_2019_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2019/modis_2019_Peru.csv",
+    "sha256": "fcef7a8eedd119e7f1f3ab57de3687bbc457b14b743f402ef7a4349bef0df2c7",
+    "bytes": 1359092,
+    "fecha_descarga_utc": "2026-11-10T00:04:45.256873+00:00",
+    "filas_originales": 17238,
+    "filas_aceptadas": 13258,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.03": 17238
+    },
+    "satelites": {
+      "Terra": 2865,
+      "Aqua": 14373
+    },
+    "primera_fecha_deteccion": "2019-01-01",
+    "ultima_fecha_deteccion": "2019-12-30",
+    "dias_con_alguna_deteccion_archivo": 324
+  },
+  {
+    "archivo": "modis_2020_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2020/modis_2020_Peru.csv",
+    "sha256": "5bdee0b014b4b7ef77f29f3759fa51805927cc95a7d9707e99769f4b1c0d3a32",
+    "bytes": 1417600,
+    "fecha_descarga_utc": "2026-11-10T00:04:50.944979+00:00",
+    "filas_originales": 17919,
+    "filas_aceptadas": 12906,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.03": 17919
+    },
+    "satelites": {
+      "Terra": 4017,
+      "Aqua": 13902
+    },
+    "primera_fecha_deteccion": "2020-01-01",
+    "ultima_fecha_deteccion": "2020-12-30",
+    "dias_con_alguna_deteccion_archivo": 341
+  },
+  {
+    "archivo": "modis_2021_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2021/modis_2021_Peru.csv",
+    "sha256": "cee1283132b7d193741497eb6119db436733ebbc6d4da1850a593f449abbb9c1",
+    "bytes": 1088505,
+    "fecha_descarga_utc": "2026-11-10T00:04:49.141946+00:00",
+    "filas_originales": 13727,
+    "filas_aceptadas": 10096,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.03": 13727
+    },
+    "satelites": {
+      "Aqua": 11003,
+      "Terra": 2724
+    },
+    "primera_fecha_deteccion": "2021-01-02",
+    "ultima_fecha_deteccion": "2021-12-31",
+    "dias_con_alguna_deteccion_archivo": 337
+  },
+  {
+    "archivo": "modis_2022_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2022/modis_2022_Peru.csv",
+    "sha256": "f1a88db3c05201c095c1e5e7002cf1af38808c155829b571d8295525d42c4750",
+    "bytes": 1507350,
+    "fecha_descarga_utc": "2026-11-10T00:05:14.021360+00:00",
+    "filas_originales": 19025,
+    "filas_aceptadas": 14429,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "6.03": 19025
+    },
+    "satelites": {
+      "Aqua": 15600,
+      "Terra": 3425
+    },
+    "primera_fecha_deteccion": "2022-01-01",
+    "ultima_fecha_deteccion": "2022-12-30",
+    "dias_con_alguna_deteccion_archivo": 339
+  },
+  {
+    "archivo": "modis_2023_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2023/modis_2023_Peru.csv",
+    "sha256": "60dd6177f5bdd135254be93f25929ed158e4a460bb5dd8ca3d23dd930464eb6e",
+    "bytes": 1270810,
+    "fecha_descarga_utc": "2026-11-10T00:05:13.466352+00:00",
+    "filas_originales": 15893,
+    "filas_aceptadas": 11789,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "61.03": 15893
+    },
+    "satelites": {
+      "Aqua": 12863,
+      "Terra": 3030
+    },
+    "primera_fecha_deteccion": "2023-01-02",
+    "ultima_fecha_deteccion": "2023-12-31",
+    "dias_con_alguna_deteccion_archivo": 342
+  },
+  {
+    "archivo": "modis_2024_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2024/modis_2024_Peru.csv",
+    "sha256": "7ed5a43eed0ca4a06ea40fde95110edfd31f97733c7719af306bb5633e55b065",
+    "bytes": 1697898,
+    "fecha_descarga_utc": "2026-11-10T00:05:16.973403+00:00",
+    "filas_originales": 21201,
+    "filas_aceptadas": 15146,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "61.03": 21201
+    },
+    "satelites": {
+      "Terra": 4577,
+      "Aqua": 16624
+    },
+    "primera_fecha_deteccion": "2024-01-01",
+    "ultima_fecha_deteccion": "2024-12-30",
+    "dias_con_alguna_deteccion_archivo": 342
+  },
+  {
+    "archivo": "viirs-snpp_2013_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2013/viirs-snpp_2013_Peru.csv",
+    "sha256": "4338c0e156e72ce11b68fb84912a57a7cb548a1a4693654abe1b813a85f83da2",
+    "bytes": 5130605,
+    "fecha_descarga_utc": "2026-11-10T00:02:54.223674+00:00",
+    "filas_originales": 64406,
+    "filas_aceptadas": 56482,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 64406
+    },
+    "satelites": {
+      "N": 64406
+    },
+    "primera_fecha_deteccion": "2013-01-01",
+    "ultima_fecha_deteccion": "2013-12-31",
+    "dias_con_alguna_deteccion_archivo": 365
+  },
+  {
+    "archivo": "viirs-snpp_2014_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2014/viirs-snpp_2014_Peru.csv",
+    "sha256": "146a72fe8519eee68657faa7f0ea1bc99cdab64563095940d6ef2ca44250d788",
+    "bytes": 4594579,
+    "fecha_descarga_utc": "2026-11-10T00:02:53.984664+00:00",
+    "filas_originales": 57655,
+    "filas_aceptadas": 50228,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 57655
+    },
+    "satelites": {
+      "N": 57655
+    },
+    "primera_fecha_deteccion": "2014-01-01",
+    "ultima_fecha_deteccion": "2014-12-31",
+    "dias_con_alguna_deteccion_archivo": 363
+  },
+  {
+    "archivo": "viirs-snpp_2015_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2015/viirs-snpp_2015_Peru.csv",
+    "sha256": "3045ffd6cc447fbf3e9d5967f016ab3cb0f61d81d7cec944fc815f8af0e1275c",
+    "bytes": 5578959,
+    "fecha_descarga_utc": "2026-11-10T00:02:54.832698+00:00",
+    "filas_originales": 69996,
+    "filas_aceptadas": 60686,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 69996
+    },
+    "satelites": {
+      "N": 69996
+    },
+    "primera_fecha_deteccion": "2015-01-01",
+    "ultima_fecha_deteccion": "2015-12-31",
+    "dias_con_alguna_deteccion_archivo": 365
+  },
+  {
+    "archivo": "viirs-snpp_2016_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2016/viirs-snpp_2016_Peru.csv",
+    "sha256": "078ec6bdc12b47ac37b6366c7e6843cf1f0a811336eedbf130100b41069e6702",
+    "bytes": 7281547,
+    "fecha_descarga_utc": "2026-11-10T00:02:56.874779+00:00",
+    "filas_originales": 91343,
+    "filas_aceptadas": 74526,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 91343
+    },
+    "satelites": {
+      "N": 91343
+    },
+    "primera_fecha_deteccion": "2016-01-01",
+    "ultima_fecha_deteccion": "2016-12-31",
+    "dias_con_alguna_deteccion_archivo": 365
+  },
+  {
+    "archivo": "viirs-snpp_2017_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2017/viirs-snpp_2017_Peru.csv",
+    "sha256": "dda594cbd9e482e66be7db9f6d8ab2fe3dcc1fac20ad68784e38a21c550b043e",
+    "bytes": 4558559,
+    "fecha_descarga_utc": "2026-11-10T00:03:50.628591+00:00",
+    "filas_originales": 57168,
+    "filas_aceptadas": 49307,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 57168
+    },
+    "satelites": {
+      "N": 57168
+    },
+    "primera_fecha_deteccion": "2017-01-01",
+    "ultima_fecha_deteccion": "2017-12-31",
+    "dias_con_alguna_deteccion_archivo": 364
+  },
+  {
+    "archivo": "viirs-snpp_2018_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2018/viirs-snpp_2018_Peru.csv",
+    "sha256": "a3c9ad7b9d45f12ef56208411a70d5a3d59120c4b0c58de29fdc3420da35d401",
+    "bytes": 5035858,
+    "fecha_descarga_utc": "2026-11-10T00:03:12.527370+00:00",
+    "filas_originales": 63185,
+    "filas_aceptadas": 54188,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 63185
+    },
+    "satelites": {
+      "N": 63185
+    },
+    "primera_fecha_deteccion": "2018-01-01",
+    "ultima_fecha_deteccion": "2018-12-31",
+    "dias_con_alguna_deteccion_archivo": 365
+  },
+  {
+    "archivo": "viirs-snpp_2019_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2019/viirs-snpp_2019_Peru.csv",
+    "sha256": "f7c3b65cbed4551a6d1e7db5a7d4ce668a897993b7d0992678c1a1b080b7bdf5",
+    "bytes": 5936720,
+    "fecha_descarga_utc": "2026-11-10T00:06:49.656235+00:00",
+    "filas_originales": 74411,
+    "filas_aceptadas": 63013,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 74411
+    },
+    "satelites": {
+      "N": 74411
+    },
+    "primera_fecha_deteccion": "2019-01-01",
+    "ultima_fecha_deteccion": "2019-12-31",
+    "dias_con_alguna_deteccion_archivo": 364
+  },
+  {
+    "archivo": "viirs-snpp_2020_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2020/viirs-snpp_2020_Peru.csv",
+    "sha256": "4b390a47f1726589a295428b19b24fcaa67326e42fdc2c1bd4683836cfbad4d6",
+    "bytes": 7853597,
+    "fecha_descarga_utc": "2026-11-10T00:05:06.413243+00:00",
+    "filas_originales": 98416,
+    "filas_aceptadas": 84056,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 98416
+    },
+    "satelites": {
+      "N": 98416
+    },
+    "primera_fecha_deteccion": "2020-01-01",
+    "ultima_fecha_deteccion": "2020-12-31",
+    "dias_con_alguna_deteccion_archivo": 366
+  },
+  {
+    "archivo": "viirs-snpp_2021_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2021/viirs-snpp_2021_Peru.csv",
+    "sha256": "e6899971029457ce8f03e4d9ffb2c1e18616d74d4edf0229fa7f63acf045c8de",
+    "bytes": 5371354,
+    "fecha_descarga_utc": "2026-11-10T00:05:40.205705+00:00",
+    "filas_originales": 67345,
+    "filas_aceptadas": 57997,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 67345
+    },
+    "satelites": {
+      "N": 67345
+    },
+    "primera_fecha_deteccion": "2021-01-01",
+    "ultima_fecha_deteccion": "2021-12-31",
+    "dias_con_alguna_deteccion_archivo": 365
+  },
+  {
+    "archivo": "viirs-snpp_2022_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2022/viirs-snpp_2022_Peru.csv",
+    "sha256": "a166cde959b0d11866b7634a3817d571c17998d98053f6bff92310cbe3420ab0",
+    "bytes": 7142122,
+    "fecha_descarga_utc": "2026-11-10T00:07:59.785310+00:00",
+    "filas_originales": 89579,
+    "filas_aceptadas": 73399,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 89579
+    },
+    "satelites": {
+      "N": 89579
+    },
+    "primera_fecha_deteccion": "2022-01-01",
+    "ultima_fecha_deteccion": "2022-12-31",
+    "dias_con_alguna_deteccion_archivo": 350
+  },
+  {
+    "archivo": "viirs-snpp_2023_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Peru.csv",
+    "sha256": "8f87cc4b4c76a44c941269e2c4313c72080564bfb454c1679f6f759f9e1d2fa3",
+    "bytes": 6342229,
+    "fecha_descarga_utc": "2026-11-10T00:06:27.992124+00:00",
+    "filas_originales": 79577,
+    "filas_aceptadas": 66019,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 79577
+    },
+    "satelites": {
+      "N": 79577
+    },
+    "primera_fecha_deteccion": "2023-01-01",
+    "ultima_fecha_deteccion": "2023-12-31",
+    "dias_con_alguna_deteccion_archivo": 363
+  },
+  {
+    "archivo": "viirs-snpp_2024_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2024/viirs-snpp_2024_Peru.csv",
+    "sha256": "21afe44401c95f7988950c425d23938dbaffd98d392b8702fcdbab49a7a68ef8",
+    "bytes": 7963113,
+    "fecha_descarga_utc": "2026-11-10T00:07:22.711320+00:00",
+    "filas_originales": 99932,
+    "filas_aceptadas": 78616,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 99932
+    },
+    "satelites": {
+      "N": 99932
+    },
+    "primera_fecha_deteccion": "2024-01-01",
+    "ultima_fecha_deteccion": "2024-12-31",
+    "dias_con_alguna_deteccion_archivo": 346
+  }
+]

@@ -1,0 +1,219 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{Prefacio}{\es@scroman {viii}}{chapter*.2}%
+\contentsline {part}{I\hspace {1em}El fuego y la luz}{1}{part.1}%
+\contentsline {chapter}{\numberline {1}Un registro partido en dos}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}El fuego como fenómeno del planeta}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Qué es un foco de calor}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Un caso real: el foco frente al fuego}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Dos familias de sensores}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Por qué no se pueden sumar}{5}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Qué significa armonizar}{6}{section.1.6}%
+\contentsline {section}{\numberline {1.7}El calendario de quemas}{7}{section.1.7}%
+\contentsline {section}{\numberline {1.8}El mapa del libro}{8}{section.1.8}%
+\contentsline {section}{Resumen del capítulo}{8}{figure.caption.8}%
+\contentsline {section}{Ejercicios}{8}{figure.caption.8}%
+\contentsline {chapter}{\numberline {2}Radiación térmica: por qué brilla lo caliente}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}La luz como onda}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Todo cuerpo caliente emite}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Radiancia: la cantidad que mide un sensor}{11}{section.2.3}%
+\contentsline {section}{\numberline {2.4}El cuerpo negro y la ley de Planck}{12}{section.2.4}%
+\contentsline {section}{\numberline {2.5}La ley de Wien: dónde está el máximo}{13}{section.2.5}%
+\contentsline {section}{\numberline {2.6}La ley de Stefan--Boltzmann: cuánto en total}{14}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Emisividad: los cuerpos reales}{14}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Temperatura de brillo}{14}{section.2.8}%
+\contentsline {section}{\numberline {2.9}La sensibilidad a la temperatura de cada canal}{15}{section.2.9}%
+\contentsline {section}{Resumen del capítulo}{15}{figure.caption.12}%
+\contentsline {section}{Ejercicios}{16}{figure.caption.12}%
+\contentsline {section}{Para profundizar}{17}{Item.16}%
+\contentsline {chapter}{\numberline {3}El camino hasta el sensor: atmósfera, Sol y superficie}{18}{chapter.3}%
+\contentsline {section}{\numberline {3.1}La radiación no viaja sola}{18}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Transmitancia y ventanas atmosféricas}{19}{section.3.2}%
+\contentsline {section}{\numberline {3.3}El humo}{20}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Las nubes}{20}{section.3.4}%
+\contentsline {section}{\numberline {3.5}El Sol entra en escena}{21}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Tres impostores}{22}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Brillo solar sobre el agua}{22}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Suelos desnudos y calientes}{22}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Bordes y contrastes}{22}{subsection.3.6.3}%
+\contentsline {section}{\numberline {3.7}Ver las bandas en una escena real de Perú}{23}{section.3.7}%
+\contentsline {section}{\numberline {3.8}El día y la noche}{23}{section.3.8}%
+\contentsline {section}{Resumen del capítulo}{24}{section.3.8}%
+\contentsline {section}{Ejercicios}{24}{section.3.8}%
+\contentsline {part}{II\hspace {1em}Satélites y sensores}{25}{part.2}%
+\contentsline {chapter}{\numberline {4}Órbitas: cuándo y cada cuánto pasa el satélite}{26}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Por qué importa la órbita}{26}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Movimiento orbital}{26}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Órbita polar}{27}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Órbita heliosíncrona: siempre a la misma hora}{28}{section.4.4}%
+\contentsline {section}{\numberline {4.5}A qué hora mira cada satélite}{29}{section.4.5}%
+\contentsline {section}{\numberline {4.6}El ciclo diario del fuego}{29}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Franja de observación y huecos de cobertura}{30}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Número de observaciones por día}{31}{section.4.8}%
+\contentsline {section}{Resumen del capítulo}{32}{section.4.8}%
+\contentsline {section}{Ejercicios}{32}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Cómo se forma la imagen: píxeles y geometría de barrido}{33}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Un espejo que gira}{33}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Qué es exactamente un píxel}{33}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Los píxeles crecen hacia los bordes}{34}{section.5.3}%
+\contentsline {section}{\numberline {5.4}El efecto pajarita}{36}{section.5.4}%
+\contentsline {section}{\numberline {5.5}La solución de VIIRS}{37}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Agregación de muestras}{37}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Eliminación del solape}{37}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.6}Las columnas \texttt {scan} y \texttt {track}}{37}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Resolución espacial y tamaño mínimo detectable}{38}{section.5.7}%
+\contentsline {section}{Resumen del capítulo}{39}{section.5.7}%
+\contentsline {section}{Ejercicios}{39}{section.5.7}%
+\contentsline {chapter}{\numberline {6}MODIS y VIIRS frente a frente}{40}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Dos generaciones}{40}{section.6.1}%
+\contentsline {section}{\numberline {6.2}MODIS}{40}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Saturación}{41}{section.6.3}%
+\contentsline {section}{\numberline {6.4}VIIRS}{42}{section.6.4}%
+\contentsline {section}{\numberline {6.5}La comparación completa}{42}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Cuánto más detecta VIIRS}{43}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Un caso real: el centro del Perú, 15 de septiembre de 2024}{44}{section.6.7}%
+\contentsline {section}{\numberline {6.8}El final de MODIS}{45}{section.6.8}%
+\contentsline {section}{Resumen del capítulo}{45}{section.6.8}%
+\contentsline {section}{Ejercicios}{45}{section.6.8}%
+\contentsline {section}{Para profundizar}{46}{Item.41}%
+\contentsline {part}{III\hspace {1em}Del píxel al foco de calor}{47}{part.3}%
+\contentsline {chapter}{\numberline {7}Del píxel al foco: cómo se detecta un fuego}{48}{chapter.7}%
+\contentsline {section}{\numberline {7.1}El problema}{48}{section.7.1}%
+\contentsline {section}{\numberline {7.2}El píxel mixto}{48}{section.7.2}%
+\contentsline {section}{\numberline {7.3}El tamaño mínimo detectable depende del píxel}{50}{section.7.3}%
+\contentsline {section}{\numberline {7.4}El algoritmo contextual}{51}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Paso 1: máscaras de nubes y de agua}{51}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Paso 2: candidatos}{51}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Paso 3: prueba absoluta}{52}{subsection.7.4.3}%
+\contentsline {subsection}{\numberline {7.4.4}Paso 4: caracterización del fondo}{52}{subsection.7.4.4}%
+\contentsline {subsection}{\numberline {7.4.5}Paso 5: pruebas contextuales}{53}{subsection.7.4.5}%
+\contentsline {subsection}{\numberline {7.4.6}Paso 6: rechazo de falsas alarmas}{54}{subsection.7.4.6}%
+\contentsline {section}{\numberline {7.5}Confianza}{54}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Diferencias del algoritmo de VIIRS}{54}{section.7.6}%
+\contentsline {section}{Resumen del capítulo}{55}{section.7.6}%
+\contentsline {section}{Ejercicios}{55}{section.7.6}%
+\contentsline {section}{Para profundizar}{55}{Item.48}%
+\contentsline {chapter}{\numberline {8}Potencia radiativa del fuego}{56}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Más allá de contar}{56}{section.8.1}%
+\contentsline {section}{\numberline {8.2}De la ley de Stefan--Boltzmann a la FRP}{56}{section.8.2}%
+\contentsline {section}{\numberline {8.3}El atajo: en 4 micrómetros, la radiancia va como la cuarta potencia}{57}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Qué mide y qué no mide la FRP}{58}{section.8.4}%
+\contentsline {section}{\numberline {8.5}La FRP en MODIS y en VIIRS}{58}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Precauciones al usar la FRP}{59}{section.8.6}%
+\contentsline {section}{Resumen del capítulo}{59}{Item.52}%
+\contentsline {section}{Ejercicios}{60}{Item.52}%
+\contentsline {section}{Para profundizar}{60}{Item.58}%
+\contentsline {chapter}{\numberline {9}Errores y sesgos: lo que el registro no cuenta}{61}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Ningún detector es perfecto}{61}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Omisión y comisión}{61}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Error aleatorio y sesgo}{62}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Fuentes de omisión}{63}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Fuentes de comisión}{64}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Fuentes térmicas persistentes}{65}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Conteo múltiple}{65}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Qué errores importan para armonizar}{66}{section.9.8}%
+\contentsline {section}{Resumen del capítulo}{67}{figure.caption.44}%
+\contentsline {section}{Ejercicios}{67}{figure.caption.44}%
+\contentsline {chapter}{\numberline {10}Los datos: FIRMS de principio a fin}{68}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Qué es FIRMS}{68}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Productos disponibles}{68}{section.10.2}%
+\contentsline {subsection}{\numberline {10.2.1}Colecciones}{68}{subsection.10.2.1}%
+\contentsline {subsection}{\numberline {10.2.2}Tiempo casi real y calidad estándar}{69}{subsection.10.2.2}%
+\contentsline {section}{\numberline {10.3}Anatomía de un archivo de focos}{70}{section.10.3}%
+\contentsline {section}{\numberline {10.4}El tiempo: UTC y hora local}{71}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Cómo se obtienen los datos}{72}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Limpieza: una lista de control}{72}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Lo que los datos no traen}{72}{section.10.7}%
+\contentsline {section}{Resumen del capítulo}{73}{section.10.7}%
+\contentsline {section}{Ejercicios}{74}{section.10.7}%
+\contentsline {part}{IV\hspace {1em}Armonizar dos registros}{75}{part.4}%
+\contentsline {chapter}{\numberline {11}Estadística para armonizar}{76}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Por qué hace falta estadística}{76}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Un conteo es una variable aleatoria}{76}{section.11.2}%
+\contentsline {subsection}{\numberline {11.2.1}El modelo de Poisson}{77}{subsection.11.2.1}%
+\contentsline {subsection}{\numberline {11.2.2}Sobredispersión}{78}{subsection.11.2.2}%
+\contentsline {section}{\numberline {11.3}Describir una distribución asimétrica}{78}{section.11.3}%
+\contentsline {subsection}{\numberline {11.3.1}La escala logarítmica}{78}{subsection.11.3.1}%
+\contentsline {section}{\numberline {11.4}Relacionar dos series}{79}{section.11.4}%
+\contentsline {subsection}{\numberline {11.4.1}La razón}{79}{subsection.11.4.1}%
+\contentsline {subsection}{\numberline {11.4.2}La recta de mínimos cuadrados}{80}{subsection.11.4.2}%
+\contentsline {subsection}{\numberline {11.4.3}La ley de potencia}{81}{subsection.11.4.3}%
+\contentsline {section}{\numberline {11.5}Incertidumbre de una estimación: el remuestreo}{82}{section.11.5}%
+\contentsline {section}{\numberline {11.6}Validación}{83}{section.11.6}%
+\contentsline {section}{Resumen del capítulo}{85}{ejemplo.11.4}%
+\contentsline {section}{Ejercicios}{85}{ejemplo.11.4}%
+\contentsline {section}{Para profundizar}{86}{Item.79}%
+\contentsline {chapter}{\numberline {12}Estrategias de armonización}{87}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Cuatro decisiones}{87}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Primera decisión: la unidad de conteo}{87}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Segunda decisión: la cuadrícula}{89}{section.12.3}%
+\contentsline {subsection}{\numberline {12.3.1}Cuadrícula geográfica regular}{89}{subsection.12.3.1}%
+\contentsline {subsection}{\numberline {12.3.2}El tamaño de la celda}{89}{subsection.12.3.2}%
+\contentsline {subsection}{\numberline {12.3.3}La resolución temporal}{90}{subsection.12.3.3}%
+\contentsline {section}{\numberline {12.4}Tercera decisión: satélites y filtros}{90}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Cuarta decisión: la calibración en el solape}{92}{section.12.5}%
+\contentsline {subsection}{\numberline {12.5.1}En qué dirección convertir}{92}{subsection.12.5.1}%
+\contentsline {subsection}{\numberline {12.5.2}Estratificar}{92}{subsection.12.5.2}%
+\contentsline {subsection}{\numberline {12.5.3}Estratos con pocos datos}{93}{subsection.12.5.3}%
+\contentsline {subsection}{\numberline {12.5.4}Acercar los sensores antes de calibrar}{93}{subsection.12.5.4}%
+\contentsline {section}{\numberline {12.6}La receta completa}{94}{section.12.6}%
+\contentsline {section}{\numberline {12.7}Diagnósticos: ¿es creíble la serie?}{94}{section.12.7}%
+\contentsline {section}{\numberline {12.8}Limitaciones que hay que declarar}{95}{section.12.8}%
+\contentsline {section}{Resumen del capítulo}{96}{Item.84}%
+\contentsline {section}{Ejercicios}{96}{Item.84}%
+\contentsline {section}{Para profundizar}{97}{Item.92}%
+\contentsline {chapter}{\numberline {13}El calendario de quemas: del registro a la interpretación}{98}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Una pregunta que sí puede responderse}{98}{section.13.1}%
+\contentsline {section}{\numberline {13.2}La ficha del caso peruano}{99}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Qué número ocupa cada casilla}{99}{section.13.3}%
+\contentsline {section}{\numberline {13.4}Tres formas distintas de no ver un foco}{100}{section.13.4}%
+\contentsline {section}{\numberline {13.5}Leer el calendario de Perú}{101}{section.13.5}%
+\contentsline {section}{\numberline {13.6}Qué significa lo habitual}{103}{section.13.6}%
+\contentsline {section}{\numberline {13.7}Anomalía no significa automáticamente emergencia}{104}{section.13.7}%
+\contentsline {subsection}{\numberline {13.7.1}Desviación estándar y medidas robustas}{104}{subsection.13.7.1}%
+\contentsline {section}{\numberline {13.8}Cuándo empieza la temporada}{105}{section.13.8}%
+\contentsline {section}{\numberline {13.9}Meses incompletos y suavizado}{106}{section.13.9}%
+\contentsline {section}{\numberline {13.10}Qué incertidumbre dibujar}{106}{section.13.10}%
+\contentsline {section}{\numberline {13.11}De la anomalía a una decisión}{107}{section.13.11}%
+\contentsline {section}{Resumen del capítulo}{107}{section.13.11}%
+\contentsline {section}{Ejercicios}{107}{section.13.11}%
+\contentsline {section}{Para profundizar}{108}{Item.102}%
+\contentsline {part}{V\hspace {1em}Hacia la aplicación}{109}{part.5}%
+\contentsline {chapter}{\numberline {14}Hacia una aplicación rápida, explicable y reproducible}{110}{chapter.14}%
+\contentsline {section}{\numberline {14.1}La aplicación comienza antes de la pantalla}{110}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Tres capas con responsabilidades distintas}{110}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Operaciones que parecen equivalentes y no lo son}{111}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Por qué los archivos columnares ayudan}{112}{section.14.4}%
+\contentsline {section}{\numberline {14.5}Dos estrategias para construir las celdas-día}{113}{section.14.5}%
+\contentsline {section}{\numberline {14.6}Qué precalcular y qué responder en vivo}{113}{section.14.6}%
+\contentsline {section}{\numberline {14.7}Paralelismo con una medida de sus límites}{114}{section.14.7}%
+\contentsline {section}{\numberline {14.8}Laboratorio real: una calibración para Perú}{114}{section.14.8}%
+\contentsline {section}{\numberline {14.9}Segundo experimento: la razón no es constante}{116}{section.14.9}%
+\contentsline {subsection}{\numberline {14.9.1}Cuatro modelos y una regla para elegir}{116}{subsection.14.9.1}%
+\contentsline {subsection}{\numberline {14.9.2}Cómo leer el exponente}{117}{subsection.14.9.2}%
+\contentsline {subsection}{\numberline {14.9.3}Por región natural}{118}{subsection.14.9.3}%
+\contentsline {subsection}{\numberline {14.9.4}El eslabón hacia el presente: de Suomi NPP a NOAA-20}{119}{subsection.14.9.4}%
+\contentsline {section}{\numberline {14.10}Una interfaz que permita verificar}{120}{section.14.10}%
+\contentsline {section}{\numberline {14.11}Comprobaciones que detectan errores reales}{121}{section.14.11}%
+\contentsline {section}{\numberline {14.12}Cómo reproducir el caso del libro}{121}{section.14.12}%
+\contentsline {section}{Resumen del capítulo}{122}{lstnumber.-3.5}%
+\contentsline {section}{Ejercicios}{122}{lstnumber.-3.5}%
+\contentsline {section}{Para profundizar}{122}{Item.111}%
+\contentsline {chapter}{\numberline {A}Glosario razonado}{124}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}Qué se observa}{124}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}Cómo llega la señal}{125}{section.Alph1.2}%
+\contentsline {section}{\numberline {A.3}Desde qué instrumento y en qué momento}{125}{section.Alph1.3}%
+\contentsline {section}{\numberline {A.4}Qué producto se ha descargado}{126}{section.Alph1.4}%
+\contentsline {section}{\numberline {A.5}Cómo se comparan las series}{127}{section.Alph1.5}%
+\contentsline {chapter}{\numberline {B}Fórmulas, unidades y comprobaciones}{129}{appendix.Alph2}%
+\contentsline {section}{\numberline {B.1}Constantes y conversiones}{129}{section.Alph2.1}%
+\contentsline {section}{\numberline {B.2}Radiación térmica}{129}{section.Alph2.2}%
+\contentsline {section}{\numberline {B.3}Píxel mixto y potencia del fuego}{130}{section.Alph2.3}%
+\contentsline {section}{\numberline {B.4}Órbita, geometría y coordenadas}{131}{section.Alph2.4}%
+\contentsline {section}{\numberline {B.5}Conteos y calibración}{131}{section.Alph2.5}%
+\contentsline {section}{\numberline {B.6}Métricas del calendario y de validación}{132}{section.Alph2.6}%
+\contentsline {section}{\numberline {B.7}Resultados que sirven para revisar el libro}{132}{section.Alph2.7}%
+\contentsline {chapter}{\numberline {C}Fuentes, datos y ruta de lectura}{133}{appendix.Alph3}%
+\contentsline {section}{\numberline {C.1}Qué leer y con qué pregunta}{133}{section.Alph3.1}%
+\contentsline {section}{\numberline {C.2}Referencias comentadas}{133}{section.Alph3.2}%
+\contentsline {section}{\numberline {C.3}Procedencia de las imágenes reales}{137}{section.Alph3.3}%
+\contentsline {section}{\numberline {C.4}Qué queda abierto científicamente}{137}{section.Alph3.4}%

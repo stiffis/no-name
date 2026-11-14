@@ -1,0 +1,391 @@
+\chapter{Radiación térmica: por qué brilla lo caliente}\label{cap:radiacion}
+
+\objetivos{
+\begin{itemize}
+  \item Describir la radiación electromagnética con su longitud de onda y ubicar el infrarrojo
+  medio y el térmico en el espectro.
+  \item Usar la ley de Planck, la ley de Wien y la ley de Stefan--Boltzmann para comparar un
+  fuego con el suelo que lo rodea.
+  \item Explicar por qué los sensores de fuego miran alrededor de 4~\um{} y de 11~\um{}.
+  \item Calcular una temperatura de brillo a partir de una radiancia y entender qué significa.
+\end{itemize}}
+
+\section{La luz como onda}
+
+Todo lo que un satélite sabe de la Tierra le llega en forma de \termino{radiación
+electromagnética}: energía que viaja por el espacio como una onda de campos eléctricos y
+magnéticos. La luz visible es un tipo de radiación electromagnética; las ondas de radio, las
+microondas, el infrarrojo y los rayos~X son otros. Todos son el mismo fenómeno y solo se
+diferencian en una cosa: la \termino{longitud de onda}, que se escribe $\lambda$ y es la
+distancia entre dos crestas consecutivas de la onda.
+
+Toda radiación electromagnética viaja en el vacío a la misma velocidad,
+$c \approx \SI{3.00e8}{\metre\per\second}$. Si las crestas están más juntas, pasan más crestas
+por segundo. El número de crestas por segundo es la \termino{frecuencia} $\nu$, y las tres
+cantidades están atadas por
+\begin{equation}
+  c = \lambda\,\nu .
+\end{equation}
+
+En teledetección las longitudes de onda se expresan casi siempre en \termino{micrómetros}
+(\um), la millonésima parte de un metro. Un cabello humano mide unos 70~\um{} de grosor; la luz
+visible va de 0,4~\um{} (violeta) a 0,7~\um{} (rojo). La figura~\ref{fig:espectro} muestra la
+parte del espectro que nos interesa, con los nombres que usaremos todo el libro.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \def\lx#1{(ln(#1)-ln(0.3))/(ln(20)-ln(0.3))*14}
+  \shade[left color=violet!70,right color=red!80,middle color=green!70] ({\lx{0.4}},0) rectangle ({\lx{0.7}},1);
+  \fill[red!25] ({\lx{0.7}},0) rectangle ({\lx{3}},1);
+  \fill[fuego!45] ({\lx{3}},0) rectangle ({\lx{5}},1);
+  \fill[brasa!30] ({\lx{5}},0) rectangle ({\lx{8}},1);
+  \fill[brasa!55] ({\lx{8}},0) rectangle ({\lx{14}},1);
+  \fill[brasa!20] ({\lx{14}},0) rectangle ({\lx{20}},1);
+  \fill[cenizaClaro] ({\lx{0.3}},0) rectangle ({\lx{0.4}},1);
+  \draw[ceniza] (0,0) rectangle (14,1);
+  \foreach \v in {0.4,0.7,1,2,3,4,5,8,11,14,20}{
+    \draw ({\lx{\v}},0)--({\lx{\v}},-0.12) node[below,font=\footnotesize]{\v};
+  }
+  \node[font=\footnotesize] at (7,-0.8) {longitud de onda $\lambda$ (\um, escala logarítmica)};
+  \node[font=\footnotesize,align=center] at ({\lx{0.53}},1.35) {visible};
+  \node[font=\footnotesize,align=center] at ({\lx{1.45}},1.45) {infrarrojo cercano\\ y de onda corta};
+  \node[font=\footnotesize\bfseries,align=center] at ({\lx{3.9}},1.45) {infrarrojo\\ medio};
+  \node[font=\footnotesize\bfseries,align=center] at ({\lx{10.6}},1.45) {infrarrojo\\ térmico};
+  \draw[very thick,black] ({\lx{3.96}},-1.35)--({\lx{3.96}},-1.05); \node[below,font=\footnotesize] at ({\lx{3.96}},-1.35) {canal de 4~\um};
+  \draw[very thick,black] ({\lx{11}},-1.35)--({\lx{11}},-1.05); \node[below,font=\footnotesize] at ({\lx{11}},-1.35) {canal de 11~\um};
+\end{tikzpicture}
+\caption{La porción del espectro electromagnético que usa la detección de fuego. Las dos marcas
+inferiores señalan los dos canales protagonistas de este libro.}
+\label{fig:espectro}
+\end{figure}
+
+\section{Todo cuerpo caliente emite}
+
+Cualquier objeto cuya temperatura esté por encima del cero absoluto emite radiación
+electromagnética, simplemente por estar caliente. Los átomos y moléculas de la materia se agitan
+más cuanto mayor es la temperatura, y esa agitación de cargas eléctricas genera ondas. A esto se
+le llama \termino{radiación térmica}.
+
+No la vemos en la vida diaria porque a temperaturas ordinarias casi toda cae en el infrarrojo,
+que el ojo no detecta. Pero se nota: es el calor que sientes en la cara cerca de una fogata sin
+tocarla. Si el objeto se calienta lo suficiente, parte de su emisión entra en el visible y
+empieza a verse: la resistencia de una cocina eléctrica pasa de negra a roja, y un metal en la
+fragua, de rojo a amarillo y a blanco.
+
+Ese cambio de color contiene las dos ideas centrales del capítulo:
+
+\begin{enumerate}
+  \item al aumentar la temperatura, el objeto emite \textbf{mucha más} radiación en total;
+  \item al aumentar la temperatura, la emisión se desplaza hacia \textbf{longitudes de onda más
+  cortas}.
+\end{enumerate}
+
+Las temperaturas se medirán siempre en \termino{kelvin} (K), la escala absoluta: $T(\mathrm{K})
+= T(^\circ\mathrm{C}) + 273{,}15$. Un suelo a 27~$^\circ$C está a 300~K. Las llamas de un
+incendio de vegetación están típicamente entre 800 y 1200~K, y las brasas sin llama entre 600 y
+850~K.
+
+\section{Radiancia: la cantidad que mide un sensor}
+
+Antes de escribir fórmulas hay que precisar \emph{qué} se mide. Un sensor mira hacia el suelo a
+través de una pequeña abertura, dentro de un cono estrecho de direcciones, y solo deja pasar una
+banda estrecha de longitudes de onda. La cantidad física que describe la energía que le llega en
+esas condiciones es la radiancia espectral.
+
+\begin{definicion}{radiancia espectral}
+La radiancia espectral $L_\lambda$ es la potencia que emite una superficie por unidad de área,
+por unidad de ángulo sólido (el <<tamaño>> del cono de direcciones) y por unidad de longitud de
+onda. Su unidad habitual en teledetección es
+\si{\watt\per\square\metre\per\steradian\per\micro\metre}.
+\end{definicion}
+
+La propiedad que la hace tan útil es que la radiancia de una superficie extensa \textbf{no
+depende de la distancia} desde la que se la mira: al alejarse, el sensor recibe menos potencia
+de cada punto, pero dentro de su cono entran proporcionalmente más puntos, y ambos efectos se
+cancelan. Por eso una radiancia medida a 700~km de altura puede compararse directamente con la
+que emite el suelo (salvo por lo que haga la atmósfera en el camino, tema del
+capítulo~\ref{cap:atmosfera}).
+
+\section{El cuerpo negro y la ley de Planck}
+
+Para tener una referencia se define un emisor ideal.
+
+\begin{definicion}{cuerpo negro}
+Un cuerpo negro es un objeto ideal que absorbe toda la radiación que le llega y que, a cada
+temperatura, emite la máxima radiación térmica posible. Su emisión depende únicamente de su
+temperatura.
+\end{definicion}
+
+El nombre confunde: un cuerpo negro caliente brilla, y mucho. <<Negro>> solo indica que no
+refleja nada. El Sol, una brasa y el suelo se comportan de forma bastante parecida a un cuerpo
+negro.
+
+La radiancia espectral de un cuerpo negro a temperatura $T$ la da la \termino{ley de Planck}:
+\begin{equation}\label{eq:planck}
+  B_\lambda(T) \;=\; \frac{2hc^2}{\lambda^5}\;\frac{1}{\exp\!\left(\dfrac{hc}{\lambda k T}\right)-1},
+\end{equation}
+donde $h = \SI{6.626e-34}{\joule\second}$ es la constante de Planck,
+$k = \SI{1.381e-23}{\joule\per\kelvin}$ es la constante de Boltzmann y $c$ es la velocidad de la
+luz. No hace falta memorizarla, pero sí saber leerla. Tiene dos factores. El primero,
+$2hc^2/\lambda^5$, crece muy deprisa hacia longitudes de onda cortas. El segundo, el de la
+exponencial, se desploma hacia longitudes de onda cortas cuando $\lambda T$ es pequeño. El
+producto es una curva con forma de joroba: sube, alcanza un máximo y baja.
+
+En la práctica se usa en una forma más cómoda, agrupando constantes:
+\begin{equation}\label{eq:planck-practica}
+  B_\lambda(T) = \frac{c_1}{\lambda^5\left[\exp\!\left(\dfrac{c_2}{\lambda T}\right)-1\right]},
+  \qquad
+  \begin{aligned}
+  c_1 &= \SI{1.191e8}{\watt\per\square\metre\per\steradian\micro\metre\tothe{4}},\\
+  c_2 &= \SI{1.4388e4}{\micro\metre\kelvin},
+  \end{aligned}
+\end{equation}
+con $\lambda$ en micrómetros y $T$ en kelvin. El resultado sale directamente en
+\si{\watt\per\square\metre\per\steradian\per\micro\metre}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13.5cm,height=8cm,xmode=log,ymode=log,
+  xmin=1,xmax=20,ymin=0.01,ymax=20000,
+  xlabel={Longitud de onda $\lambda$ (\um)},
+  ylabel={Radiancia $B_\lambda$ (\si{\watt\per\square\metre\per\steradian\per\micro\metre})},
+  xtick={1,2,3,4,5,8,11,15,20},xticklabels={1,2,3,4,5,8,11,15,20},
+  legend style={at={(0.5,-0.2)},anchor=north,font=\small,draw=none,legend columns=3,/tikz/every even column/.append style={column sep=8pt}},
+  grid=major,grid style={ceniza!15},domain=1:20,samples=160,
+  declare function={planck(\l,\T)=1.191e8/(\l^5*(exp(14388/(\l*\T))-1));}]
+\addplot[fuego,very thick] {planck(x,1200)};
+\addplot[brasa,very thick] {planck(x,1000)};
+\addplot[brasa!60!black,very thick,dashed] {planck(x,800)};
+\addplot[violeta,very thick,dashdotted] {planck(x,600)};
+\addplot[cielo,very thick] {planck(x,300)};
+\legend{1200 K (llama intensa),1000 K (llama),800 K,600 K (brasa),300 K (suelo)}
+\draw[black,thick,dashed] (axis cs:3.96,0.01)--(axis cs:3.96,20000);
+\draw[black,thick,dashed] (axis cs:11,0.01)--(axis cs:11,20000);
+\node[font=\footnotesize,rotate=90,anchor=south east] at (axis cs:3.96,15000) {4~\um};
+\node[font=\footnotesize,rotate=90,anchor=south east] at (axis cs:11,15000) {11~\um};
+\draw[<->,thick] (axis cs:4.25,0.6726)--(axis cs:4.25,3320) node[midway,right,font=\footnotesize,fill=white,inner sep=1pt]{$\times 4900$};
+\draw[<->,thick] (axis cs:12,9.573)--(axis cs:12,274) node[midway,right,font=\footnotesize,fill=white,inner sep=1pt]{$\times 29$};
+\end{axis}
+\end{tikzpicture}
+\caption{Curvas de Planck para el suelo (300~K) y para varias temperaturas de fuego, en escala
+logarítmica. A 4~\um{} una superficie a 1000~K emite unas 4900 veces más que una a 300~K; a
+11~\um, solo unas 29 veces más. Esa asimetría es el fundamento de la detección de fuego.}
+\label{fig:planck}
+\end{figure}
+
+\begin{ejemplo}{radiancia del suelo y del fuego a 4 micrómetros}
+Calcula la radiancia de un cuerpo negro a $\lambda = \SI{3.96}{\micro\metre}$ para el suelo a
+300~K y para una llama a 1000~K.
+\solucion Con la ecuación~\eqref{eq:planck-practica}, $\lambda^5 = 3{,}96^5 = 973{,}8$.
+
+Para 300~K: $c_2/(\lambda T) = 14388/(3{,}96 \times 300) = 12{,}11$, y $e^{12{,}11} - 1 =
+\num{1.818e5}$. Entonces
+\[
+  B = \frac{\num{1.191e8}}{973{,}8 \times \num{1.818e5}} = \SI{0.673}{\watt\per\square\metre\per\steradian\per\micro\metre}.
+\]
+Para 1000~K: $c_2/(\lambda T) = 3{,}633$, y $e^{3{,}633} - 1 = 36{,}84$. Entonces
+\[
+  B = \frac{\num{1.191e8}}{973{,}8 \times 36{,}84} = \SI{3320}{\watt\per\square\metre\per\steradian\per\micro\metre}.
+\]
+La llama emite $3320/0{,}673 \approx 4900$ veces más que el suelo en esta longitud de onda.
+\end{ejemplo}
+
+\section{La ley de Wien: dónde está el máximo}
+
+La joroba de Planck tiene su máximo en una longitud de onda que depende solo de la temperatura.
+Derivando la ecuación~\eqref{eq:planck} e igualando a cero se obtiene la \termino{ley de
+desplazamiento de Wien}:
+\begin{equation}\label{eq:wien}
+  \lambda_{\text{máx}} = \frac{\SI{2898}{\micro\metre\kelvin}}{T}.
+\end{equation}
+Cuanto más caliente es el cuerpo, más corta es la longitud de onda en la que más emite. La
+tabla~\ref{tab:wien} aplica la ley a los objetos de este libro.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrl}
+\toprule
+Objeto & $T$ (K) & $\lambda_{\text{máx}}$ (\um) & Región del espectro \\
+\midrule
+Sol (superficie) & 5800 & 0,50 & visible \\
+Llama intensa & 1200 & 2,4 & infrarrojo de onda corta \\
+Llama & 1000 & 2,9 & infrarrojo de onda corta/medio \\
+Brasa & 600 & 4,8 & infrarrojo medio \\
+Suelo & 300 & 9,7 & infrarrojo térmico \\
+Cima de nube alta & 220 & 13,2 & infrarrojo térmico \\
+\bottomrule
+\end{tabular}
+\caption{Longitud de onda de máxima emisión según la ley de Wien.}
+\label{tab:wien}
+\end{table}
+
+La tabla explica la elección de los dos canales. El suelo y las nubes emiten sobre todo en torno
+a 10~\um: el canal de 11~\um{} es la ventana natural para medir la temperatura del fondo. El
+fuego emite sobre todo entre 2,5 y 5~\um: el canal de 4~\um{} está en plena zona de emisión del
+fuego y, a la vez, en una zona donde el suelo emite muy poco.
+
+\section{La ley de Stefan--Boltzmann: cuánto en total}
+
+Si se suma la emisión de un cuerpo negro en todas las longitudes de onda y en todas las
+direcciones, se obtiene la potencia total que emite cada metro cuadrado de su superficie. El
+resultado es la \termino{ley de Stefan--Boltzmann}:
+\begin{equation}\label{eq:sb}
+  M = \sigma T^4, \qquad \sigma = \SI{5.67e-8}{\watt\per\square\metre\per\kelvin\tothe{4}}.
+\end{equation}
+La dependencia con la cuarta potencia es brutal. Un metro cuadrado de suelo a 300~K emite
+$\sigma \cdot 300^4 \approx \SI{459}{\watt}$. Un metro cuadrado de llama a 1000~K emite
+$\sigma \cdot 1000^4 \approx \SI{56700}{\watt}$, es decir, $(1000/300)^4 \approx 123$ veces más.
+
+\begin{intuicion}[Total frente a canal]
+La ley de Stefan--Boltzmann dice que el fuego emite unas 120 veces más que el suelo
+\emph{sumando todo el espectro}. La figura~\ref{fig:planck} dice que a 4~\um{} emite unas 4900
+veces más. No hay contradicción: al calentarse, el cuerpo no solo emite más, sino que traslada
+su emisión hacia las ondas cortas. Un canal bien elegido aprovecha los dos efectos a la vez, y
+por eso el contraste en un canal puede ser mucho mayor que el contraste total.
+\end{intuicion}
+
+\section{Emisividad: los cuerpos reales}
+
+Ningún objeto real es un cuerpo negro perfecto. La relación entre lo que emite un cuerpo real y
+lo que emitiría un cuerpo negro a la misma temperatura se llama \termino{emisividad},
+$\varepsilon$, y vale entre 0 y 1:
+\begin{equation}
+  L_\lambda = \varepsilon_\lambda \, B_\lambda(T).
+\end{equation}
+En el infrarrojo térmico la vegetación, el agua y la mayoría de los suelos tienen emisividades
+entre 0,95 y 0,99, de modo que tratarlos como cuerpos negros es una buena aproximación. En el
+infrarrojo medio la emisividad de los suelos secos y desnudos puede ser bastante menor, lo que
+significa, como se verá en el capítulo~\ref{cap:atmosfera}, que \emph{reflejan} más luz solar
+en ese canal. Esa es una de las fuentes de falsas alarmas.
+
+\section{Temperatura de brillo}\label{sec:tb}
+
+Los datos de focos no publican radiancias, sino temperaturas. Las columnas se llaman
+\texttt{brightness}, \texttt{bright\_t31}, \texttt{bright\_ti4}, \texttt{bright\_ti5}, y sus
+valores están en kelvin. Pero no son la temperatura de las llamas.
+
+\begin{definicion}{temperatura de brillo}
+La temperatura de brillo $\Tb$ de un píxel en un canal es la temperatura que tendría un cuerpo
+negro que emitiera exactamente la radiancia medida en ese canal. Se obtiene invirtiendo la ley
+de Planck:
+\begin{equation}\label{eq:tb}
+  \Tb = \frac{c_2}{\lambda\,\ln\!\left(1 + \dfrac{c_1}{\lambda^5 L_\lambda}\right)} .
+\end{equation}
+\end{definicion}
+
+La temperatura de brillo es, en el fondo, otra forma de escribir la radiancia: una escala más
+intuitiva. Si el píxel es una superficie uniforme con emisividad cercana a 1 y no hay atmósfera
+de por medio, $\Tb$ coincide con su temperatura real. Si el píxel es una mezcla de suelo frío y
+un poco de fuego muy caliente, $\Tb$ es un valor intermedio que no corresponde a la temperatura
+de ninguna de las dos cosas.
+
+\begin{ejemplo}{de radiancia a temperatura de brillo}
+Un píxel muestra a $\lambda = \SI{3.96}{\micro\metre}$ una radiancia de
+\SI{1.00}{\watt\per\square\metre\per\steradian\per\micro\metre}. ¿Cuál es su temperatura de
+brillo?
+\solucion Con la ecuación~\eqref{eq:tb}: $c_1/(\lambda^5 L) = \num{1.191e8}/(973{,}8 \times
+1{,}00) = \num{1.223e5}$. Su logaritmo natural es $\ln(\num{1.223e5} + 1) = 11{,}71$. Entonces
+\[
+  \Tb = \frac{14388}{3{,}96 \times 11{,}71} = \SI{310.2}{\kelvin}.
+\]
+Comparando con el ejemplo anterior: pasar de 0,673 a 1,00 unidades de radiancia (un aumento del
+49\,{}\%) equivale a subir de 300~K a 310~K. A 4~\um{} un cambio pequeño de temperatura produce un
+cambio grande de radiancia.
+\end{ejemplo}
+
+\section{La sensibilidad a la temperatura de cada canal}
+
+La última observación del ejemplo merece una sección, porque es la razón profunda por la que se
+usan dos canales. Cerca de una temperatura dada, la radiancia de Planck se comporta
+aproximadamente como una potencia de la temperatura, $B_\lambda \propto T^{\,n}$, con un
+exponente
+\begin{equation}
+  n \approx \frac{c_2}{\lambda T}
+\end{equation}
+(válido cuando $c_2/\lambda T$ es bastante mayor que 1). Para un fondo a 300~K:
+\[
+  n_{4\,\mu\text{m}} \approx \frac{14388}{3{,}96\times 300} \approx 12,
+  \qquad
+  n_{11\,\mu\text{m}} \approx \frac{14388}{11\times 300} \approx 4{,}4 .
+\]
+A 4~\um{} la radiancia crece como la temperatura elevada a la potencia doce; a 11~\um, como la
+temperatura a la potencia cuatro y pico. El canal de 4~\um{} es, por decirlo así, hipersensible
+a cualquier cosa caliente. El de 11~\um{} es mucho más tranquilo. Un fuego pequeño dentro de un
+píxel dispara el primero y apenas mueve el segundo. La \emph{diferencia} entre las temperaturas
+de brillo de los dos canales, $\Delta T = T_4 - T_{11}$, es por tanto una firma del fuego, y es
+la variable central del algoritmo de detección (capítulo~\ref{cap:deteccion}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=12.5cm,height=6.6cm,ymode=log,xmin=280,xmax=1200,ymin=0.5,ymax=20000,
+  xlabel={Temperatura del cuerpo negro (K)},
+  ylabel={Radiancia relativa a la de 300 K},
+  legend style={at={(0.03,0.96)},anchor=north west,font=\small,draw=ceniza!40},
+  grid=major,grid style={ceniza!15},domain=280:1200,samples=120,
+  declare function={planck(\l,\T)=1.191e8/(\l^5*(exp(14388/(\l*\T))-1));}]
+\addplot[fuego,very thick] {planck(3.96,x)/planck(3.96,300)};
+\addplot[cielo,very thick] {planck(11,x)/planck(11,300)};
+\legend{canal de 4~\um,canal de 11~\um}
+\end{axis}
+\end{tikzpicture}
+\caption{Cuánto aumenta la radiancia de cada canal al calentar un cuerpo negro desde 300~K. El
+canal de 4~\um{} se dispara; el de 11~\um{} crece con moderación.}
+\label{fig:sensibilidad}
+\end{figure}
+
+\begin{parareto}
+Las columnas de temperatura de brillo de los datos de FIRMS (capítulo~\ref{cap:firms}) son
+exactamente las $T_4$ y $T_{11}$ de este capítulo: \texttt{brightness} y \texttt{bright\_t31}
+en MODIS, \texttt{bright\_ti4} y \texttt{bright\_ti5} en VIIRS. No representan la temperatura de
+las llamas y no son comparables entre sensores, porque dependen del tamaño del píxel. No las
+uses como medida de <<intensidad>> común a MODIS y VIIRS.
+\end{parareto}
+
+\resumen
+
+\begin{itemize}
+  \item Todo cuerpo emite radiación térmica; cuanto más caliente, más emite y a longitudes de
+  onda más cortas.
+  \item La \textbf{radiancia espectral} es la cantidad que mide un sensor. No depende de la
+  distancia a la superficie.
+  \item La \textbf{ley de Planck} da la radiancia de un cuerpo negro; la de \textbf{Wien}, la
+  longitud de onda del máximo ($\lambda_{\text{máx}} = 2898/T$); la de
+  \textbf{Stefan--Boltzmann}, la potencia total ($\sigma T^4$).
+  \item El suelo (300~K) emite sobre todo cerca de 10~\um; el fuego (600--1200~K), entre 2,5 y
+  5~\um.
+  \item A 4~\um{} una llama a 1000~K emite unas 4900 veces más que el suelo; a 11~\um, unas 29.
+  \item La \textbf{temperatura de brillo} es la radiancia expresada como temperatura de cuerpo
+  negro equivalente. En un píxel con mezcla de fuego y fondo no es la temperatura de ninguno.
+  \item La diferencia $\Delta T = T_4 - T_{11}$ es la firma básica del fuego.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item Usa la ley de Wien para hallar la longitud de onda de máxima emisión de una brasa a
+  700~K y de un cuerpo humano a 310~K.
+  \item Calcula con la ecuación~\eqref{eq:planck-practica} la radiancia a 11~\um{} de un cuerpo
+  negro a 300~K y a 1000~K, y comprueba que el cociente es cercano a 29.
+  \item ¿Cuántas veces más potencia total emite por metro cuadrado una llama a 1200~K que una
+  brasa a 600~K?
+  \item Un píxel tiene a 11~\um{} una radiancia de
+  \SI{12.0}{\watt\per\square\metre\per\steradian\per\micro\metre}. Calcula su temperatura de
+  brillo.
+  \item Explica por qué un canal en el visible (0,65~\um) no sirve para detectar fuego de día
+  aunque las llamas se vean a simple vista. Pista: compara, con la ley de Planck, lo que emite
+  una llama a 1000~K en esa longitud de onda con lo que sugiere la tabla~\ref{tab:wien} sobre
+  el Sol.
+  \item Repite el cálculo del exponente $n \approx c_2/\lambda T$ para un fondo a 320~K (un
+  suelo desnudo al mediodía). ¿Aumenta o disminuye la ventaja del canal de 4~\um{} en un día
+  caluroso?
+\end{enumerate}
+
+\lecturas
+
+El capítulo sobre radiación térmica de cualquier texto de física universitaria (por ejemplo, la
+sección de radiación de cuerpo negro de Sears y Zemansky) desarrolla estas leyes con más
+detalle. Para su uso en teledetección, el manual de usuario del producto de fuego de MODIS
+(apéndice~\ref{ap:fuentes}) resume las bandas y sus temperaturas de saturación.

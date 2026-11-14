@@ -1,0 +1,362 @@
+\chapter{Cómo se forma la imagen: píxeles y geometría de barrido}\label{cap:escaneo}
+
+\objetivos{
+\begin{itemize}
+  \item Describir cómo un sensor de barrido transversal construye una imagen línea a línea.
+  \item Explicar por qué los píxeles crecen hacia los bordes de la franja y calcular cuánto.
+  \item Explicar el efecto pajarita y por qué produce detecciones repetidas del mismo fuego.
+  \item Describir cómo VIIRS limita el crecimiento de sus píxeles y qué consecuencias tiene.
+  \item Interpretar las columnas \texttt{scan} y \texttt{track} de los datos de focos.
+\end{itemize}}
+
+\section{Un espejo que gira}
+
+MODIS y VIIRS no tienen una cámara con millones de sensores como la de un teléfono. Usan unos
+pocos detectores y un espejo o telescopio giratorio. En cada giro, el instrumento recorre con la
+mirada una línea del suelo perpendicular a la trayectoria del satélite, de un borde de la franja
+al otro, tomando muestras a intervalos regulares. Mientras tanto el satélite avanza, de modo que
+el giro siguiente recorre una línea un poco más adelante. La imagen se va tejiendo así, línea a
+línea. Este diseño se llama \termino{barrido transversal} o \emph{whiskbroom}
+(figura~\ref{fig:whisk}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.92]
+  \fill[bosque!18] (-6.2,-0.6)--(6.2,-0.6)--(7.6,1.6)--(-4.8,1.6)--cycle;
+  \foreach \i in {0,1,2,3}{
+    \fill[brasa!\the\numexpr25+15*\i\relax] (-5.9+0.2*\i,-0.4+0.4*\i)--(6.0+0.2*\i,-0.4+0.4*\i)--(6.2+0.2*\i,-0.05+0.4*\i)--(-5.7+0.2*\i,-0.05+0.4*\i)--cycle;
+  }
+  \begin{scope}[shift={(0.5,6)}]
+    \fill[gray!45] (-0.45,-0.28) rectangle (0.45,0.28);
+    \fill[cielo!70] (-1.7,-0.22) rectangle (-0.55,0.22); \fill[cielo!70] (0.55,-0.22) rectangle (1.7,0.22);
+  \end{scope}
+  \draw[->,very thick,ceniza] (2.6,6.0)--(3.9,6.6) node[right,font=\footnotesize,align=left]{avance del\\ satélite};
+  \draw[fuego,thick] (0.5,5.7)--(-5.2,1.0); \draw[fuego,thick] (0.5,5.7)--(6.7,1.0);
+  \draw[fuego,thick,dashed] (0.5,5.7)--(0.7,1.0);
+  \draw[fuego,very thick,->] (-2.2,3.3) arc (215:325:3.3 and 1.1);
+  \node[font=\footnotesize,fuego] at (1.6,2.25) {barrido};
+  \node[font=\footnotesize] at (0.7,0.55) {nadir};
+  \node[font=\footnotesize,align=center] at (-5.6,2.2) {borde de\\ la franja};
+  \draw (0.5,4.6) arc (270:309:1.1); \node[font=\footnotesize] at (1.35,4.3) {$\theta$};
+  \draw[<->] (-5.7,-0.9)--(6.2,-0.9) node[midway,below,font=\footnotesize]{ancho de la franja};
+\end{tikzpicture}
+\caption{Barrido transversal. El espejo recorre una línea de borde a borde; el avance del
+satélite desplaza la línea siguiente. El ángulo $\theta$ entre la vertical y la dirección de
+mirada es el \emph{ángulo de barrido}.}
+\label{fig:whisk}
+\end{figure}
+
+Hay dos direcciones que conviene nombrar desde ya:
+
+\begin{itemize}
+  \item \textbf{a lo largo del barrido} (\emph{along-scan}): perpendicular al avance del
+  satélite, la dirección en la que gira el espejo;
+  \item \textbf{a lo largo de la traza} (\emph{along-track}): la dirección de avance.
+\end{itemize}
+
+\section{Qué es exactamente un píxel}
+
+Cada detector ve, en cada instante, un cono muy estrecho de direcciones.
+
+\begin{definicion}{campo de visión instantáneo (IFOV)}
+El campo de visión instantáneo es el ángulo, medido desde el sensor, que abarca un detector en
+un instante. Es una propiedad fija del instrumento. La porción de suelo que cae dentro de ese
+ángulo es la \emph{huella} del píxel.
+\end{definicion}
+
+El ángulo es fijo; la huella no. En el nadir, a una altura $h$, un detector con IFOV $\alpha$
+(en radianes) abarca en el suelo
+\begin{equation}
+  p_0 = h\,\alpha .
+\end{equation}
+Para MODIS, la huella de 1~km a 705~km de altura corresponde a
+$\alpha = 1/705 = \SI{1.42e-3}{\radian}$, unos 0,08 grados.
+
+\begin{atencion}[El píxel no es un cuadrado con bordes nítidos]
+La respuesta del detector no es uniforme dentro de la huella ni cae a cero justo en su borde.
+Además, el espejo se mueve mientras se toma la muestra. En MODIS esto hace que la huella efectiva
+a lo largo del barrido sea más ancha que el espaciado entre muestras: las huellas de píxeles
+vecinos se \textbf{solapan} en parte. Un fuego pequeño e intenso situado cerca del límite entre
+dos píxeles puede elevar la señal de ambos y ser detectado dos veces en la misma línea.
+\end{atencion}
+
+\section{Los píxeles crecen hacia los bordes}
+
+Cuando el espejo apunta hacia un lado, el mismo cono angular alcanza el suelo más lejos y,
+además, en oblicuo. Ambas cosas agrandan la huella (figura~\ref{fig:crecimiento}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[bosque,very thick] (-1,0)--(11.5,0);
+  \fill (1,5) circle (0.09) node[above,font=\footnotesize]{sensor};
+  \draw[dashed,ceniza] (1,5)--(1,0);
+  \fill[fuego,opacity=0.3] (1,5)--(0.72,0)--(1.28,0)--cycle;
+  \draw[fuego] (1,5)--(0.72,0) (1,5)--(1.28,0);
+  \fill[fuego,opacity=0.3] (1,5)--(5.45,0)--(6.6,0)--cycle;
+  \draw[fuego] (1,5)--(5.45,0) (1,5)--(6.6,0);
+  \fill[fuego,opacity=0.3] (1,5)--(8.4,0)--(11.2,0)--cycle;
+  \draw[fuego] (1,5)--(8.4,0) (1,5)--(11.2,0);
+  \draw[very thick,black] (0.72,-0.12)--(1.28,-0.12);
+  \draw[very thick,black] (5.45,-0.12)--(6.6,-0.12);
+  \draw[very thick,black] (8.4,-0.12)--(11.2,-0.12);
+  \node[below,font=\footnotesize] at (1,-0.2) {nadir};
+  \node[below,font=\footnotesize] at (6,-0.2) {$\theta$ medio};
+  \node[below,font=\footnotesize] at (9.8,-0.2) {$\theta$ grande};
+  \draw (1,3.9) arc (270:316:1.1); \node[font=\footnotesize] at (1.65,3.75) {$\theta$};
+  \draw[<->] (0.6,5)--(0.6,0) node[midway,left,font=\footnotesize]{$h$};
+\end{tikzpicture}
+\caption{El mismo ángulo de visión cubre cada vez más suelo conforme la mirada se inclina (vista
+de perfil, Tierra plana para simplificar).}
+\label{fig:crecimiento}
+\end{figure}
+
+Con una Tierra plana, la geometría es elemental. La distancia del sensor al suelo en la
+dirección $\theta$ es $h/\cos\theta$, así que la huella crece en ese factor en la dirección de
+avance. A lo largo del barrido hay un segundo factor $1/\cos\theta$, porque el cono corta el
+suelo en oblicuo:
+\begin{equation}\label{eq:plano}
+  p_{\text{traza}} \approx \frac{p_0}{\cos\theta},
+  \qquad
+  p_{\text{barrido}} \approx \frac{p_0}{\cos^2\theta}
+  \qquad\text{(Tierra plana).}
+\end{equation}
+
+La Tierra, sin embargo, es curva, y cerca de los bordes de una franja de más de 2000~km la
+curvatura importa mucho: el suelo <<se aleja>> del sensor más de lo que predice el modelo plano
+y la mirada llega aún más rasante. El cálculo exacto usa el triángulo formado por el centro de la
+Tierra, el satélite y el punto observado (figura~\ref{fig:curva}). Si $R$ es el radio terrestre,
+el ángulo $\beta$ con que la línea de mirada llega al suelo, medido desde la vertical local, se
+obtiene con el teorema del seno:
+\begin{equation}\label{eq:cenit}
+  \sin\beta = \frac{R+h}{R}\,\sin\theta ,
+\end{equation}
+y las dimensiones de la huella son
+\begin{equation}\label{eq:curvo}
+  p_{\text{traza}} = p_0\,\frac{d}{h},
+  \qquad
+  p_{\text{barrido}} = p_0\,\frac{d}{h}\,\frac{1}{\cos\beta},
+\end{equation}
+donde $d$ es la distancia real del sensor al punto observado.
+
+\begin{figure}[ht]
+\centering
+\input{figuras/esquema_geometria_curva}
+\caption{Con la Tierra curva, la mirada llega al suelo con un ángulo $\beta$ respecto de la
+vertical local que es mayor que el ángulo de barrido $\theta$. Los dos radios parten
+del mismo centro terrestre. Esquema geométrico, no a escala.}
+\label{fig:curva}
+\end{figure}
+
+\begin{ejemplo}{el píxel de MODIS en el borde de la franja}
+MODIS barre hasta $\theta = 55^\circ$. Calcula el tamaño de su píxel de 1~km en el borde, con el
+modelo plano y con el modelo curvo ($R = \SI{6371}{\kilo\metre}$, $h = \SI{705}{\kilo\metre}$).
+\solucion \emph{Modelo plano.} $\cos 55^\circ = 0{,}574$. Entonces
+$p_{\text{traza}} = 1/0{,}574 = \SI{1.74}{\kilo\metre}$ y
+$p_{\text{barrido}} = 1/0{,}574^2 = \SI{3.04}{\kilo\metre}$.
+
+\emph{Modelo curvo.} De~\eqref{eq:cenit}: $\sin\beta = (7076/6371)\times\sin 55^\circ =
+0{,}910$, luego $\beta = 65{,}5^\circ$. El ángulo en el centro de la Tierra es $\beta - \theta =
+10{,}5^\circ$, y por el teorema del seno $d = R\,\sin(10{,}5^\circ)/\sin(55^\circ) =
+\SI{1414}{\kilo\metre}$. Con~\eqref{eq:curvo}:
+\[
+ p_{\text{traza}} = 1\times\frac{1414}{705} = \SI{2.01}{\kilo\metre},
+ \qquad
+ p_{\text{barrido}} = \frac{2{,}01}{\cos 65{,}5^\circ} = \SI{4.83}{\kilo\metre}.
+\]
+El píxel de <<1~km>> mide en el borde unos $2{,}0 \times 4{,}8$~km: casi diez veces más área que
+en el nadir. El modelo plano se queda muy corto.
+\end{ejemplo}
+
+Este crecimiento tiene una consecuencia directa sobre la detección. Como se verá en el
+capítulo~\ref{cap:deteccion}, un fuego se detecta cuando eleva lo suficiente la señal de
+\emph{su} píxel. Si el píxel tiene diez veces más área, el mismo fuego queda diez veces más
+diluido. \textbf{MODIS es mucho menos sensible en los bordes de su franja que en el centro.}
+
+\section{El efecto pajarita}
+
+MODIS no tiene un solo detector por banda sino una fila de diez, alineados en la dirección de
+avance. En cada giro del espejo se registran diez líneas a la vez, que en el nadir cubren una
+banda de 10~km de ancho en la dirección de avance; el satélite avanza justo esos 10~km entre un
+giro y el siguiente, y las bandas encajan sin solaparse.
+
+Pero hacia los bordes cada píxel crece también en la dirección de avance: en el extremo, las
+diez líneas cubren unos 20~km en lugar de 10. El satélite sigue avanzando 10~km por giro, así
+que cada barrido \textbf{pisa} la mitad del anterior y la mitad del siguiente. Visto en un mapa,
+cada barrido tiene forma de corbata de lazo: estrecho en el centro y ancho en los extremos. De
+ahí el nombre \termino{efecto pajarita} (\emph{bow-tie}), que muestra la
+figura~\ref{fig:bowtie}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.85cm,y=1cm]
+  \foreach \k/\c in {0/modis,1/fuego,2/bosque}{
+    \fill[\c,opacity=0.28] (-6,\k*1.0-1.0)--(0,\k*1.0-0.5)--(6,\k*1.0-1.0)--(6,\k*1.0+1.0)--(0,\k*1.0+0.5)--(-6,\k*1.0+1.0)--cycle;
+    \draw[\c,thick] (-6,\k*1.0-1.0)--(0,\k*1.0-0.5)--(6,\k*1.0-1.0)--(6,\k*1.0+1.0)--(0,\k*1.0+0.5)--(-6,\k*1.0+1.0)--cycle;
+  }
+  \node[font=\footnotesize,modis] at (-1.3,0) {barrido 1};
+  \node[font=\footnotesize,fuego] at (0,1) {barrido 2};
+  \node[font=\footnotesize,bosque] at (0,2) {barrido 3};
+  \shade[inner color=yellow,outer color=fuego] (5.3,0.75) circle (0.13);
+  \draw[<-,thick] (5.45,0.75)--(6.6,0.75) node[right,font=\footnotesize,align=left]{este fuego cae\\ en dos barridos};
+  \draw[->,thick,ceniza] (-6.9,-0.8)--(-6.9,2.8) node[above,font=\footnotesize]{avance};
+  \draw[<->] (-6,-1.5)--(6,-1.5) node[midway,below,font=\footnotesize]{franja de barrido (nadir en el centro)};
+  \draw[<->] (0,-0.5)--(0,0.5);
+  \node[font=\footnotesize,modis,fill=white,inner sep=1.5pt] at (1.3,-.25) {10 km};
+  \draw[<->] (-6.25,-1)--(-6.25,1); \node[left,font=\footnotesize] at (-6.3,0) {20 km};
+\end{tikzpicture}
+\caption{El efecto pajarita en MODIS. Cada barrido registra una banda de 10~km de ancho en el
+nadir que se ensancha hasta unos 20~km en los bordes. Barridos consecutivos se solapan lejos del
+nadir, y un fuego situado allí queda registrado en dos de ellos.}
+\label{fig:bowtie}
+\end{figure}
+
+\begin{atencion}[Focos duplicados dentro de una misma pasada]
+Lejos del nadir, un mismo fuego puede aparecer como dos o más focos de MODIS con coordenadas
+ligeramente distintas y exactamente la misma hora. No son dos fuegos. Si se cuentan <<puntos>>
+sin más, los fuegos observados de lado pesan más que los observados desde arriba.
+\end{atencion}
+
+\section{La solución de VIIRS}
+
+VIIRS se diseñó para corregir estos dos defectos. Usa dos ideas.
+
+\subsection{Agregación de muestras}
+
+Los detectores de VIIRS son, a lo largo del barrido, tres veces más finos de lo que el producto
+final necesita. Cerca del nadir, el instrumento \emph{promedia tres muestras consecutivas} para
+formar un píxel de 375~m. Más lejos, cuando cada muestra ya ha crecido, promedia solo dos. En la
+parte exterior de la franja usa cada muestra tal cual. Hay así tres zonas de agregación:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Zona & Ángulo de barrido & Muestras promediadas \\
+\midrule
+Central & $0^\circ$ a $31{,}7^\circ$ & 3 \\
+Intermedia & $31{,}7^\circ$ a $44{,}9^\circ$ & 2 \\
+Exterior & $44{,}9^\circ$ a $56{,}3^\circ$ & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Cada vez que el píxel está a punto de crecer demasiado, se reduce el número de muestras y el
+tamaño <<se reinicia>>. El resultado es la curva en dientes de sierra de la
+figura~\ref{fig:tamano}: el píxel de 375~m de VIIRS no pasa de unos 800~m en el borde de la
+franja, mientras que el de MODIS llega casi a 5~km.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13.5cm,height=7.4cm,xmin=0,xmax=1550,ymin=0,ymax=5.2,
+  xlabel={Distancia al nadir sobre el suelo (km)},
+  ylabel={Tamaño del píxel a lo largo del barrido (km)},
+  ytick={0,1,2,3,4,5},
+  legend style={at={(0.5,-0.2)},anchor=north,font=\small,draw=none,legend columns=2,/tikz/every even column/.append style={column sep=8pt}},
+  grid=major,grid style={ceniza!15}]
+\addplot[modis,very thick] table[x=dist,y=scan]{figuras/pixel_modis.dat};
+\addplot[viirs,very thick] table[x=dist,y=scan]{figuras/pixel_viirs.dat};
+\addplot[modis,thick,dashed] table[x=dist,y=track]{figuras/pixel_modis.dat};
+\addplot[viirs,thick,dashed] table[x=dist,y=track]{figuras/pixel_viirs.dat};
+\legend{MODIS a lo largo del barrido,VIIRS 375 m a lo largo del barrido,MODIS a lo largo de la traza,VIIRS 375 m a lo largo de la traza}
+\draw[ceniza,dashed] (axis cs:523,0)--(axis cs:523,1.6);
+\draw[ceniza,dashed] (axis cs:883,0)--(axis cs:883,1.6);
+\node[font=\footnotesize,ceniza] at (axis cs:260,1.85) {3 muestras};
+\node[font=\footnotesize,ceniza] at (axis cs:703,1.85) {2};
+\node[font=\footnotesize,ceniza] at (axis cs:1200,1.85) {1 muestra};
+\draw[->,ceniza] (axis cs:1300,4.3)--(axis cs:1175,4.75);
+\node[font=\footnotesize,anchor=east] at (axis cs:1310,4.2) {borde de la franja de MODIS};
+\end{axis}
+\end{tikzpicture}
+\caption{Tamaño del píxel según la distancia al nadir, calculado con las
+ecuaciones~\eqref{eq:cenit} y~\eqref{eq:curvo}. El píxel de MODIS se multiplica casi por cinco
+a lo largo del barrido; el de VIIRS, gracias a la agregación en tres zonas, se mantiene por
+debajo de 0,8~km en toda la franja.}
+\label{fig:tamano}
+\end{figure}
+
+\subsection{Eliminación del solape}
+
+VIIRS también sufre el efecto pajarita, pero lo resuelve a bordo: en las zonas intermedia y
+exterior, el propio instrumento descarta las líneas de cada barrido que quedarían duplicadas en
+el barrido vecino. A esto se le llama \termino{eliminación de pajarita} (\emph{bow-tie
+deletion}). Los datos de VIIRS llegan así casi sin repeticiones entre barridos de una misma
+pasada.
+
+\section{Las columnas \texttt{scan} y \texttt{track}}
+
+Los datos de focos incluyen para cada detección el tamaño real del píxel en el que se hizo. La
+columna \texttt{scan} es su dimensión a lo largo del barrido y \texttt{track} a lo largo de la
+traza, ambas en kilómetros. En MODIS, \texttt{scan} va de 1,0 a 4,8 y \texttt{track} de 1,0 a
+2,0. En VIIRS ambos se mantienen entre 0,3 y 0,8 aproximadamente.
+
+Estas dos columnas son la manera más directa de saber \emph{desde dónde} se observó cada foco:
+un valor de \texttt{scan} cercano a 1 en MODIS indica una observación casi vertical; un valor de
+4 indica el borde de la franja.
+
+\begin{ejemplo}{interpretar \texttt{scan} y \texttt{track}}
+Un foco de MODIS tiene \texttt{scan} = 2,9 y \texttt{track} = 1,6. ¿Qué área cubre su píxel y a
+qué distancia aproximada del nadir se observó? Un fuego de 1000~m$^2$, ¿qué fracción del píxel
+ocupa aquí y qué fracción ocuparía en el nadir?
+\solucion El área es aproximadamente $2{,}9 \times 1{,}6 = \SI{4.6}{\kilo\metre\squared}$. En
+la figura~\ref{fig:tamano}, un tamaño de 2,9~km a lo largo del barrido corresponde a unos
+860--880~km del nadir. El fuego ocupa $1000/\num{4.6e6} = \num{2.2e-4}$ del píxel, frente a
+$1000/\num{1.0e6} = \num{1.0e-3}$ en el nadir: está casi cinco veces más diluido.
+\end{ejemplo}
+
+\begin{parareto}
+Dos usos prácticos de estas columnas. Primero, como \textbf{filtro de calidad}: quedarse solo
+con las detecciones de MODIS con \texttt{scan} menor que cierto valor (por ejemplo 2) elimina
+la parte de la franja donde MODIS es poco sensible y donde aparecen duplicados. Segundo, como
+\textbf{diagnóstico}: si la razón entre los conteos de VIIRS y de MODIS es mucho mayor para
+detecciones de MODIS con \texttt{scan} alto, estás viendo directamente el efecto de este
+capítulo. Cualquier filtro reduce el número de datos, así que hay que aplicarlo igual en todo el
+periodo y documentarlo.
+\end{parareto}
+
+\section{Resolución espacial y tamaño mínimo detectable}
+
+Queda una idea por fijar. Se suele decir que MODIS tiene <<1~km de resolución>> y VIIRS <<375
+m>>. Eso describe el tamaño del píxel, no el tamaño del fuego más pequeño que pueden detectar.
+Ambos detectan fuegos \emph{mucho} menores que su píxel, porque el fuego es tan brillante a
+4~\um{} que una fracción diminuta del píxel basta para alterar su señal. Bajo buenas
+condiciones, MODIS detecta de forma habitual fuegos de unos 1000~m$^2$ (una milésima de su
+píxel) y, en condiciones muy favorables, de unos 100~m$^2$. VIIRS, con píxeles siete veces
+menores en área, detecta fuegos proporcionalmente más pequeños. El capítulo~\ref{cap:deteccion}
+explica el porqué con números.
+
+\resumen
+
+\begin{itemize}
+  \item MODIS y VIIRS forman la imagen por \textbf{barrido transversal}: un espejo recorre
+  líneas perpendiculares al avance.
+  \item El \textbf{IFOV} es un ángulo fijo; la huella en el suelo crece con el ángulo de
+  barrido. Con la Tierra curva el crecimiento es mucho mayor que con el modelo plano.
+  \item El píxel de MODIS pasa de $1\times1$~km en el nadir a unos $2{,}0\times4{,}8$~km en el
+  borde: diez veces más área y mucha menos sensibilidad.
+  \item El \textbf{efecto pajarita} hace que barridos consecutivos se solapen lejos del nadir y
+  produce focos duplicados en MODIS.
+  \item VIIRS limita el crecimiento con \textbf{agregación en tres zonas} (su píxel de 375~m no
+  supera 0,8~km) y elimina a bordo las líneas solapadas.
+  \item Las columnas \texttt{scan} y \texttt{track} dan el tamaño real del píxel de cada foco.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item Calcula el IFOV, en radianes y en grados, de la banda de 375~m de VIIRS a 824~km de
+  altura. ¿Es mayor o menor que el de MODIS?
+  \item Con el modelo plano, ¿a qué ángulo de barrido se duplica el tamaño del píxel a lo largo
+  del barrido? ¿Y a lo largo de la traza?
+  \item Repite el ejemplo del borde de la franja para $\theta = 40^\circ$ con el modelo curvo.
+  ¿Cuántas veces mayor que en el nadir es el área del píxel?
+  \item En la figura~\ref{fig:tamano}, estima el cociente entre el área del píxel de MODIS y el
+  de VIIRS en el nadir y a 1100~km del nadir. ¿Dónde es mayor la ventaja de VIIRS?
+  \item Explica por qué el efecto pajarita produce duplicados en los bordes de la franja pero no
+  en el centro.
+  \item Tienes un archivo de focos de MODIS de una región. Describe un procedimiento, usando
+  solo las columnas de fecha, hora, coordenadas, \texttt{scan} y \texttt{track}, para identificar
+  parejas de focos que probablemente sean el mismo fuego visto en dos barridos.
+  \item Un colega dice: <<MODIS no puede ver fuegos menores de un kilómetro>>. Corrígelo en dos
+  frases.
+\end{enumerate}

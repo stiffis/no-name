@@ -1,0 +1,420 @@
+\chapter{Del píxel al foco: cómo se detecta un fuego}\label{cap:deteccion}
+
+\objetivos{
+\begin{itemize}
+  \item Plantear el modelo del píxel mixto y calcular la temperatura de brillo de un píxel que
+  contiene un fuego pequeño.
+  \item Explicar por qué el tamaño mínimo detectable es proporcional al área del píxel.
+  \item Describir, paso a paso, el algoritmo contextual de detección.
+  \item Interpretar el valor de confianza de MODIS y de VIIRS.
+\end{itemize}}
+
+\section{El problema}
+
+Un fuego casi nunca llena un píxel. Una quema de rastrojo ocupa unas decenas o centenas de
+metros cuadrados dentro de un píxel de un millón. La pregunta de este capítulo es cómo puede un
+sensor notar algo que ocupa una diezmilésima parte de lo que está mirando, y cómo decide un
+programa, sin intervención humana y para todo el planeta varias veces al día, qué píxeles tienen
+fuego.
+
+\section{El píxel mixto}
+
+El detector no distingue las partes del píxel: suma toda la radiación que llega de su huella. Si
+una fracción $p$ del área está ocupada por fuego a temperatura $T_f$ y el resto, $1-p$, por un
+fondo a temperatura $T_b$, la radiancia que mide en un canal de longitud de onda $\lambda$ es el
+promedio ponderado por área:
+\begin{equation}\label{eq:mixto}
+  L_\lambda = p\,B_\lambda(T_f) + (1-p)\,B_\lambda(T_b).
+\end{equation}
+Este es el \termino{modelo del píxel mixto} (figura~\ref{fig:mixto}). Supone cuerpos negros y
+desprecia la atmósfera, pero recoge lo esencial.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+  \fill[bosque!30] (0,0) rectangle (4.5,4.5);
+  \draw[ceniza,thick] (0,0) rectangle (4.5,4.5);
+  \shade[inner color=yellow,outer color=fuego] (3.1,1.2) rectangle (3.55,1.65);
+  \node[font=\small,align=center] at (2.25,3.75) {fondo\\ $T_b$, fracción $1-p$};
+  \draw[<-] (3.33,1.7)--(3.33,2.3) node[above,font=\footnotesize,align=center]{fuego\\ $T_f$, fracción $p$};
+  \draw[<->] (0,-0.3)--(4.5,-0.3) node[midway,below,font=\footnotesize]{un píxel};
+  \node[font=\Large] at (5.6,2.25) {$\Longrightarrow$};
+  \node[caja,align=left,text width=6.3cm,anchor=west] at (6.5,2.25) {%
+    El sensor mide una sola radiancia por canal:\\[4pt]
+    $L_4 = p\,B_4(T_f) + (1-p)\,B_4(T_b)$\\[2pt]
+    $L_{11} = p\,B_{11}(T_f) + (1-p)\,B_{11}(T_b)$\\[4pt]
+    y las convierte en dos temperaturas de brillo, $T_4$ y $T_{11}$.};
+\end{tikzpicture}
+\caption{El modelo del píxel mixto: una pequeña fracción muy caliente dentro de un fondo
+uniforme.}
+\label{fig:mixto}
+\end{figure}
+
+\begin{ejemplo}{un fuego de 100 metros cuadrados en un píxel de MODIS}
+Un píxel de \SI{1}{\kilo\metre\squared} con fondo a 300~K contiene un fuego de
+\SI{100}{\metre\squared} a 1000~K. Calcula las temperaturas de brillo a 3,96 y a 11~\um.
+\solucion La fracción de fuego es $p = 100/10^6 = 10^{-4}$. Con las radiancias del
+capítulo~\ref{cap:radiacion} ($B_4$: 0,673 para el fondo y 3320 para el fuego; $B_{11}$: 9,57 y
+274):
+\begin{align*}
+  L_4 &= 10^{-4}\times 3320 + 0{,}9999\times 0{,}673 = 0{,}332 + 0{,}673 = 1{,}005,\\
+  L_{11} &= 10^{-4}\times 274 + 0{,}9999\times 9{,}573 = 0{,}027 + 9{,}572 = 9{,}599.
+\end{align*}
+Convirtiendo con la ecuación~\eqref{eq:tb}: $T_4 = \SI{310.3}{\kelvin}$ y $T_{11} = \SI{300.2}{\kelvin}$.
+
+Un fuego que ocupa una diezmilésima del píxel sube la temperatura de brillo a 4~\um{} en
+\textbf{10 kelvin} y la de 11~\um{} en apenas \textbf{0,2 kelvin}. A 4~\um, la contribución del
+fuego (0,332) es la mitad de la del fondo entero (0,673).
+\end{ejemplo}
+
+La figura~\ref{fig:mixto-curvas} generaliza el ejemplo a cualquier fracción de fuego.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=7.2cm,xmode=log,xmin=1e-5,xmax=1e-1,ymin=295,ymax=520,
+  xlabel={Fracción del píxel ocupada por fuego a 1000 K},
+  ylabel={Temperatura de brillo del píxel (K)},
+  legend style={at={(0.5,1.04)},anchor=south,font=\small,draw=none,legend columns=2,
+    /tikz/every even column/.append style={column sep=10pt}},
+  grid=major,grid style={ceniza!15},samples=120,domain=1e-5:1e-1,
+  declare function={
+    planck(\l,\T)=1.191e8/(\l^5*(exp(14388/(\l*\T))-1));
+    tb(\l,\L)=14388/(\l*ln(1+1.191e8/(\l^5*\L)));}]
+\addplot[fuego,very thick] {tb(3.96, x*planck(3.96,1000)+(1-x)*planck(3.96,300))};
+\addplot[cielo,very thick] {tb(11, x*planck(11,1000)+(1-x)*planck(11,300))};
+\legend{$T_4$ (3{,}96~\um),$T_{11}$ (11~\um)}
+\draw[ceniza,dashed] (axis cs:1e-4,295)--(axis cs:1e-4,520);
+\draw[ceniza,dashed] (axis cs:1e-3,295)--(axis cs:1e-3,520);
+\node[font=\footnotesize,rotate=90,anchor=south east] at (axis cs:1e-4,518) {100 m$^2$ en 1 km$^2$};
+\node[font=\footnotesize,rotate=90,anchor=south east] at (axis cs:1e-3,518) {1000 m$^2$ en 1 km$^2$};
+\draw[<->,thick] (axis cs:1e-3,301.9)--(axis cs:1e-3,351.7);
+\node[font=\footnotesize,anchor=west,fill=white,inner sep=1pt] at (axis cs:1.15e-3,327) {$\Delta T \approx 50$ K};
+\end{axis}
+\end{tikzpicture}
+\caption{Temperaturas de brillo de un píxel con fondo a 300~K según la fracción ocupada por un
+fuego a 1000~K, calculadas con las ecuaciones~\eqref{eq:mixto} y~\eqref{eq:tb}. El canal de
+4~\um{} reacciona a fracciones minúsculas; el de 11~\um{} casi no se entera hasta que el fuego
+ocupa cerca del 1\,{}\% del píxel.}
+\label{fig:mixto-curvas}
+\end{figure}
+
+Dos conclusiones de la figura.
+
+\textbf{La firma del fuego es la separación entre los dos canales.} Un píxel sin fuego tiene
+$T_4$ y $T_{11}$ parecidas (de día, $T_4$ es algo mayor por la luz solar reflejada). Un píxel
+con fuego tiene $T_4$ mucho mayor que $T_{11}$. Por eso la variable clave es
+\begin{equation}
+  \Delta T = T_4 - T_{11}.
+\end{equation}
+
+\textbf{Dos incógnitas, dos ecuaciones.} El modelo tiene dos incógnitas del fuego, $p$ y $T_f$,
+y dos mediciones, $L_4$ y $L_{11}$. En principio pueden despejarse el tamaño y la temperatura
+del fuego. Es el \emph{método biespectral}, propuesto por Dozier en 1981. En la práctica es muy
+sensible a los errores (como el canal de 11~\um{} apenas cambia, cualquier imprecisión en el
+fondo arruina la solución) y no se usa para producir los datos habituales, pero es el origen
+conceptual de todo el campo.
+
+\section{El tamaño mínimo detectable depende del píxel}
+
+Supón que el algoritmo exige que $T_4$ supere al fondo en cierto margen, digamos 10~K. Para un
+fondo a 300~K eso equivale a que la radiancia a 4~\um{} suba de 0,673 a 1,00, es decir, un
+exceso de $\Delta L = 0{,}33$ unidades. Del modelo del píxel mixto, despreciando $p$ frente a 1:
+\begin{equation}
+  \Delta L \approx p\,B_4(T_f)
+  \quad\Longrightarrow\quad
+  p_{\min} \approx \frac{\Delta L}{B_4(T_f)} .
+\end{equation}
+La \emph{fracción} mínima no depende del tamaño del píxel. Pero el \emph{área} mínima del fuego
+sí:
+\begin{equation}\label{eq:amin}
+  A_{\min} = p_{\min}\times A_{\text{píxel}} .
+\end{equation}
+
+\begin{definicion}{tamaño mínimo detectable}
+El tamaño mínimo detectable es el área del fuego más pequeño que produce una anomalía
+suficiente para que el algoritmo lo acepte. Es proporcional al área del píxel y depende
+fuertemente de la temperatura del fuego y de las condiciones del fondo.
+\end{definicion}
+
+\begin{ejemplo}{el mismo fuego en MODIS y en VIIRS}
+Con el criterio de 10~K sobre un fondo a 300~K, calcula el área mínima detectable de un fuego a
+1000~K y de una brasa a 600~K para: (a) un píxel de MODIS en el nadir, 1~km$^2$; (b) un píxel de
+MODIS en el borde, $2{,}0\times4{,}8$~km; (c) un píxel de VIIRS en el nadir, $375\times375$~m.
+\solucion Las fracciones mínimas son $p_{\min} = 0{,}33/3320 = \num{1.0e-4}$ para 1000~K y
+$p_{\min} = 0{,}33/287{,}5 = \num{1.1e-3}$ para 600~K (con $B_4(600) = 287{,}5$). Multiplicando
+por el área de cada píxel:
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Píxel & Área & Fuego a 1000 K & Brasa a 600 K \\
+\midrule
+MODIS, nadir & \SI{1.0}{\kilo\metre\squared} & \SI{100}{\metre\squared} & \SI{1100}{\metre\squared} \\
+MODIS, borde & \SI{9.6}{\kilo\metre\squared} & \SI{960}{\metre\squared} & \SI{11000}{\metre\squared} \\
+VIIRS, nadir & \SI{0.14}{\kilo\metre\squared} & \SI{14}{\metre\squared} & \SI{160}{\metre\squared} \\
+\bottomrule
+\end{tabular}
+\end{center}
+Un fuego de \SI{50}{\metre\squared} a 1000~K (una quema de 7 por 7 metros) es detectable por
+VIIRS y no por MODIS. Y una brasa a 600~K necesita ser diez veces más extensa que una llama a
+1000~K para detectarse.
+\end{ejemplo}
+
+\begin{atencion}[Estos números son ilustrativos]
+El criterio real no es un umbral fijo de 10~K sino un conjunto de pruebas, y el umbral efectivo
+cambia con la variabilidad del fondo, la hora y la geometría. Los valores de la tabla sirven
+para comparar sensores, no como especificación. Lo que sí es sólido es la proporcionalidad de la
+ecuación~\eqref{eq:amin}.
+\end{atencion}
+
+\begin{parareto}
+La ecuación~\eqref{eq:amin} es la explicación física, en una línea, de por qué VIIRS detecta más
+que MODIS, y por qué la diferencia es mayor para quemas pequeñas y de baja temperatura. Es un
+buen argumento para el pitch: la razón VIIRS/MODIS \emph{tiene que} depender del tipo de fuego,
+porque depende de cuántos fuegos caen entre los dos límites de detección.
+\end{parareto}
+
+\section{El algoritmo contextual}
+
+Detectar un fuego sería sencillo si el fondo fuera siempre igual: bastaría un umbral fijo. Pero
+el fondo va desde un glaciar a 260~K hasta un desierto a 330~K, y de día la luz reflejada lo
+altera todo. Un umbral único daría miles de falsas alarmas en el Sahara y dejaría pasar la
+mayoría de los fuegos de Siberia.
+
+La solución es comparar cada píxel con sus vecinos.
+
+\begin{definicion}{algoritmo contextual}
+Un algoritmo contextual decide si un píxel contiene fuego comparando sus temperaturas de brillo
+con las de los píxeles de su entorno, que se toman como estimación de cómo se vería ese píxel
+si no ardiera.
+\end{definicion}
+
+El algoritmo de MODIS procesa cada píxel en la secuencia de la figura~\ref{fig:algoritmo}. El de
+VIIRS de 375~m sigue el mismo esquema con las bandas I4 e I5 y umbrales adaptados.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=7mm,
+  paso/.style={caja,text width=5.6cm,fill=cieloClaro},
+  fin/.style={caja,fill=cenizaClaro,text width=2.9cm},
+  si/.style={caja,fill=fuegoClaro,text width=2.9cm,font=\small\bfseries}]
+  \node[paso] (a) {\textbf{1. Máscaras}\\ ¿es nube o agua?};
+  \node[paso,below=of a] (b) {\textbf{2. Candidato}\\ ¿$T_4$ y $\Delta T$ superan un mínimo?};
+  \node[paso,below=of b] (c) {\textbf{3. Prueba absoluta}\\ ¿$T_4$ es altísima?};
+  \node[paso,below=of c] (d) {\textbf{4. Fondo}\\ estadísticas de los vecinos válidos};
+  \node[paso,below=of d] (e) {\textbf{5. Pruebas contextuales}\\ ¿destaca sobre su fondo?};
+  \node[paso,below=of e] (f) {\textbf{6. Rechazos}\\ ¿brillo solar, desierto, costa?};
+  \node[si,below=of f] (g) {FUEGO\\ + confianza};
+  \node[fin,right=14mm of a] (a2) {descartado};
+  \node[fin,right=14mm of b] (b2) {sin fuego};
+  \node[fin,right=14mm of e] (e2) {sin fuego};
+  \node[fin,right=14mm of f] (f2) {sin fuego};
+  \node[fin,right=14mm of d] (d2) {<<desconocido>>};
+  \draw[flujo] (a)--(b) node[midway,left,font=\footnotesize]{no};
+  \draw[flujo] (b)--(c) node[midway,left,font=\footnotesize]{sí};
+  \draw[flujo] (c)--(d) node[midway,left,font=\footnotesize]{no};
+  \draw[flujo] (d)--(e);
+  \draw[flujo] (e)--(f) node[midway,left,font=\footnotesize]{sí};
+  \draw[flujo] (f)--(g) node[midway,left,font=\footnotesize]{no};
+  \draw[flujo] (a)--(a2) node[midway,above,font=\footnotesize]{sí};
+  \draw[flujo] (b)--(b2) node[midway,above,font=\footnotesize]{no};
+  \draw[flujo] (e)--(e2) node[midway,above,font=\footnotesize]{no};
+  \draw[flujo] (f)--(f2) node[midway,above,font=\footnotesize]{sí};
+  \draw[flujo] (d)--(d2) node[midway,above,font=\footnotesize,align=center]{pocos\\[-2pt] vecinos};
+  \draw[flujo] (c.west) -- ++(-1.0,0) |- (f.west) node[pos=0.25,left,font=\footnotesize]{sí};
+\end{tikzpicture}
+\caption{Esquema del algoritmo contextual de detección de fuego activo.}
+\label{fig:algoritmo}
+\end{figure}
+
+\subsection{Paso 1: máscaras de nubes y de agua}
+
+Los píxeles nubosos se identifican con pruebas sencillas de reflectancia y de temperatura: una
+nube es muy brillante en el visible y fría a 12~\um. Los píxeles de agua se toman de un mapa
+fijo. Ninguno de los dos se evalúa como posible fuego ni se usa como vecino <<de fondo>>.
+
+\subsection{Paso 2: candidatos}
+
+Para no gastar cálculo en los millones de píxeles que evidentemente no arden, se descartan los
+que no alcanzan unos mínimos muy permisivos. En MODIS, de día, un píxel es
+\termino{candidato a fuego} si
+\begin{equation}
+  T_4 > \SI{310}{\kelvin}, \qquad \Delta T > \SI{10}{\kelvin}, \qquad \rho_{0{,}86} < 0{,}3,
+\end{equation}
+donde $\rho_{0{,}86}$ es la reflectancia en el infrarrojo cercano (un valor alto delata nube o
+brillo solar). De noche, el umbral de $T_4$ baja a 305~K y no se usa la reflectancia.
+
+\subsection{Paso 3: prueba absoluta}
+
+Si el píxel está tan caliente que no cabe otra explicación, se acepta sin mirar el entorno. En
+MODIS: $T_4 > \SI{360}{\kelvin}$ de día o $T_4 > \SI{320}{\kelvin}$ de noche.
+
+\subsection{Paso 4: caracterización del fondo}
+
+Para el resto de candidatos se abre una ventana cuadrada centrada en el píxel y se reúnen los
+vecinos \termino{válidos}: los que no son nube, ni agua, ni a su vez posibles fuegos. La ventana
+empieza pequeña y crece (hasta $21\times21$ píxeles en MODIS) hasta juntar al menos una cuarta
+parte de vecinos válidos y un mínimo de ocho. Si ni así se consigue, el píxel queda clasificado
+como <<desconocido>> (figura~\ref{fig:ventana}).
+
+Con los vecinos válidos se calculan la media y una medida de dispersión de $T_4$, de $T_{11}$ y
+de $\Delta T$. Se usa la \termino{desviación absoluta media}, $\delta$, que es el promedio de
+las distancias de cada valor a la media; es menos sensible a valores extremos que la desviación
+estándar. Llamaremos $\overline{T_4}$, $\delta_4$, $\overline{\Delta T}$ y $\delta_{\Delta T}$ a
+los valores del fondo.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.62cm,y=0.62cm]
+  \foreach \i in {0,...,8}{\foreach \j in {0,...,8}{\fill[bosque!22] (\i,\j) rectangle ++(1,1);}}
+  \foreach \i/\j in {0/8,1/8,2/8,0/7,1/7,2/7,3/8,0/6,1/6}{\fill[white] (\i,\j) rectangle ++(1,1);}
+  \foreach \i/\j in {6/0,7/0,8/0,7/1,8/1,8/2}{\fill[cielo!45] (\i,\j) rectangle ++(1,1);}
+  \foreach \i/\j in {5/4,5/5,3/3}{\fill[brasa!60] (\i,\j) rectangle ++(1,1);}
+  \fill[fuego] (4,4) rectangle ++(1,1);
+  \foreach \i in {0,...,9}{\draw[ceniza!70,thin] (\i,0)--(\i,9); \draw[ceniza!70,thin] (0,\i)--(9,\i);}
+  \draw[black,very thick] (4,4) rectangle ++(1,1);
+  \draw[black,thick,dashed] (2,2) rectangle (7,7);
+  \begin{scope}[shift={(10.3,7.6)}]
+    \fill[fuego] (0,0) rectangle ++(0.7,0.7); \node[right,font=\footnotesize] at (0.9,0.35) {píxel que se evalúa};
+    \fill[bosque!22] (0,-1.1) rectangle ++(0.7,0.7); \node[right,font=\footnotesize] at (0.9,-0.75) {vecino válido (fondo)};
+    \fill[brasa!60] (0,-2.2) rectangle ++(0.7,0.7); \node[right,font=\footnotesize] at (0.9,-1.85) {otro posible fuego: excluido};
+    \fill[white] (0,-3.3) rectangle ++(0.7,0.7); \draw[ceniza] (0,-3.3) rectangle ++(0.7,0.7); \node[right,font=\footnotesize] at (0.9,-2.95) {nube: excluida};
+    \fill[cielo!45] (0,-4.4) rectangle ++(0.7,0.7); \node[right,font=\footnotesize] at (0.9,-4.05) {agua: excluida};
+    \draw[black,thick,dashed] (0,-5.5) rectangle ++(0.7,0.7); \node[right,font=\footnotesize] at (0.9,-5.15) {ventana actual ($5\times5$)};
+  \end{scope}
+\end{tikzpicture}
+\caption{Ventana de fondo. Solo los vecinos válidos entran en las estadísticas. Si no hay
+suficientes, la ventana se agranda.}
+\label{fig:ventana}
+\end{figure}
+
+\subsection{Paso 5: pruebas contextuales}
+
+El candidato se acepta como fuego si destaca de su fondo en las dos variables. Las condiciones
+centrales del algoritmo de MODIS son
+\begin{align}
+  \Delta T &> \overline{\Delta T} + 3{,}5\,\delta_{\Delta T}, \label{eq:ctx1}\\
+  \Delta T &> \overline{\Delta T} + \SI{6}{\kelvin}, \label{eq:ctx2}\\
+  T_4 &> \overline{T_4} + 3\,\delta_4 . \label{eq:ctx3}
+\end{align}
+La primera y la tercera son relativas: exigen que el píxel se aparte de la media varias veces lo
+que suelen apartarse sus vecinos. En un entorno homogéneo ($\delta$ pequeña) basta una anomalía
+modesta; en uno heterogéneo se exige más. La segunda impone un mínimo absoluto de 6~K para que,
+en fondos extremadamente uniformes, una diferencia insignificante no dispare una detección. De
+día hay condiciones adicionales sobre el canal de 11~\um.
+
+\begin{ejemplo}{aplicar las pruebas contextuales}
+Un píxel diurno tiene $T_4 = \SI{318.0}{\kelvin}$ y $T_{11} = \SI{299.5}{\kelvin}$. Sus vecinos
+válidos tienen $\overline{T_4} = \SI{304.0}{\kelvin}$, $\delta_4 = \SI{1.8}{\kelvin}$,
+$\overline{\Delta T} = \SI{5.5}{\kelvin}$ y $\delta_{\Delta T} = \SI{1.2}{\kelvin}$. ¿Es fuego?
+\solucion $\Delta T = 318{,}0 - 299{,}5 = \SI{18.5}{\kelvin}$. Es candidato: $T_4 > 310$ y
+$\Delta T > 10$. No pasa la prueba absoluta ($318 < 360$). Pruebas contextuales:
+\begin{itemize}
+  \item \eqref{eq:ctx1}: $5{,}5 + 3{,}5\times1{,}2 = 9{,}7$; $18{,}5 > 9{,}7$. Se cumple.
+  \item \eqref{eq:ctx2}: $5{,}5 + 6 = 11{,}5$; $18{,}5 > 11{,}5$. Se cumple.
+  \item \eqref{eq:ctx3}: $304{,}0 + 3\times1{,}8 = 309{,}4$; $318{,}0 > 309{,}4$. Se cumple.
+\end{itemize}
+El píxel se clasifica como fuego, salvo que lo rechace alguna prueba del paso 6.
+
+Si el mismo píxel estuviera en un paisaje muy heterogéneo con $\delta_{\Delta T} =
+\SI{4.5}{\kelvin}$, la primera condición exigiría $\Delta T > 5{,}5 + 15{,}75 = 21{,}3$~K y el
+píxel \emph{no} sería fuego. El mismo fuego se detecta o no según cómo sea su entorno.
+\end{ejemplo}
+
+\subsection{Paso 6: rechazo de falsas alarmas}
+
+Por último se descartan las detecciones diurnas que coinciden con las situaciones del
+capítulo~\ref{cap:atmosfera}: geometría de brillo solar, límites de desierto (cuando muchos
+vecinos quedaron excluidos por ser candidatos sin serlo realmente) y bordes de costa.
+
+\section{Confianza}
+
+Cada detección lleva una estimación de cuán segura es.
+
+En \textbf{MODIS} es un número entre 0 y 100. Se calcula combinando cuánto supera el píxel los
+umbrales: qué tan alto es $T_4$, cuántas desviaciones se aparta del fondo en $T_4$ y en
+$\Delta T$, y cuántos vecinos son nube o agua. Por convención se agrupa en tres clases:
+\emph{baja} (menos de 30), \emph{nominal} (de 30 a 80) y \emph{alta} (más de 80).
+
+En \textbf{VIIRS} de 375~m es directamente una de tres categorías:
+\begin{itemize}
+  \item \emph{low} (\texttt{l}): detecciones diurnas en zona de posible brillo solar o con una
+  anomalía térmica débil;
+  \item \emph{nominal} (\texttt{n}): detecciones sin esas circunstancias y con una anomalía
+  clara;
+  \item \emph{high} (\texttt{h}): píxeles saturados, de día o de noche.
+\end{itemize}
+
+\begin{atencion}[La confianza no es una probabilidad y no es comparable entre sensores]
+Un valor de 70 en MODIS no significa <<70\,{}\% de probabilidad de ser fuego>>. Y la clase <<alta>>
+de VIIRS (píxel saturado) no equivale a la clase <<alta>> de MODIS (número mayor que 80). Si
+filtras por confianza, define el filtro por separado para cada sensor y mantén ese criterio fijo
+en todo el periodo. Un criterio habitual y fácil de defender: descartar solo la clase baja en
+ambos.
+\end{atencion}
+
+\section{Diferencias del algoritmo de VIIRS}
+
+El algoritmo de 375~m hereda el esquema de MODIS, con adaptaciones a su instrumento:
+
+\begin{itemize}
+  \item usa I4 (3,74~\um) e I5 (11,45~\um), más las bandas I1 a I3 para nubes, agua y brillo
+  solar;
+  \item como I4 se satura a 367~K, trata de forma especial los píxeles saturados, e incluso los
+  casos en que la saturación extrema produce valores anómalamente bajos;
+  \item ajusta sus umbrales de candidatura según las condiciones de la escena;
+  \item presta atención a la región de la Anomalía del Atlántico Sur, donde la radiación del
+  espacio produce ruido en el detector que puede simular fuegos nocturnos. Esa región incluye
+  buena parte de Sudamérica.
+\end{itemize}
+
+El resultado es un producto con errores de comisión bajos (del orden del 1\,{}\% para la clase
+nominal en la evaluación inicial) y una sensibilidad a fuegos pequeños muy superior a la de
+MODIS, sobre todo de noche.
+
+\resumen
+
+\begin{itemize}
+  \item El \textbf{modelo del píxel mixto} combina fuego y fondo ponderados por área:
+  $L = p\,B(T_f) + (1-p)\,B(T_b)$.
+  \item Un fuego de 100~m$^2$ a 1000~K en un píxel de 1~km$^2$ eleva $T_4$ unos 10~K y $T_{11}$
+  unos 0,2~K. La firma del fuego es $\Delta T = T_4 - T_{11}$.
+  \item El \textbf{área mínima detectable} es proporcional al área del píxel: unas siete veces
+  menor en VIIRS que en MODIS en el nadir, y la diferencia crece hacia los bordes.
+  \item El \textbf{algoritmo contextual} filtra nubes y agua, selecciona candidatos, caracteriza
+  el fondo con los vecinos válidos y acepta el píxel si destaca varias desviaciones sobre él.
+  \item Que un fuego se detecte depende también de la homogeneidad de su entorno.
+  \item La \textbf{confianza} es un número de 0 a 100 en MODIS y una categoría en VIIRS. No son
+  equivalentes.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item Repite el primer ejemplo del capítulo para un fuego de \SI{1000}{\metre\squared} a
+  800~K ($B_4(800) = 1317$, $B_{11}(800) = 179$). Obtén $T_4$, $T_{11}$ y $\Delta T$.
+  \item ¿Qué fracción de un píxel debe ocupar un fuego a 1000~K para \emph{saturar} la banda I4
+  de VIIRS (367~K) con fondo a 300~K? Exprésala como área dentro de un píxel de
+  $375\times375$~m. Pista: calcula primero la radiancia de un cuerpo negro a 367~K en
+  3,74~\um.
+  \item Usando la ecuación~\eqref{eq:amin}, ¿cuánto mayor es el fuego mínimo detectable por
+  MODIS a 900~km del nadir (píxel de unos $1{,}7\times3{,}1$~km) que en el nadir?
+  \item Un píxel nocturno tiene $T_4 = \SI{309}{\kelvin}$, $T_{11} = \SI{287}{\kelvin}$, y su
+  fondo $\overline{T_4} = \SI{289}{\kelvin}$, $\delta_4 = \SI{0.9}{\kelvin}$,
+  $\overline{\Delta T} = \SI{1.5}{\kelvin}$, $\delta_{\Delta T} = \SI{0.6}{\kelvin}$. Aplica los
+  pasos 2, 3 y 5.
+  \item Explica por qué se excluyen del fondo los vecinos que son a su vez candidatos a fuego.
+  ¿Qué le pasaría a la detección en el centro de un incendio grande si no se excluyeran?
+  \item Dos quemas idénticas ocurren a la vez: una en una pampa uniforme y otra en un mosaico de
+  chacras, eriazos y bosque. ¿Cuál tiene más probabilidad de ser detectada? ¿Qué implica esto
+  para comparar el número de focos entre dos paisajes distintos?
+  \item ¿Por qué no es correcto filtrar <<confianza $\geq 50$>> en un archivo que mezcla
+  detecciones de MODIS y de VIIRS?
+\end{enumerate}
+
+\lecturas
+
+Giglio, Descloitres, Justice y Kaufman (2003) describen el algoritmo contextual original de
+MODIS, y Giglio, Schroeder y Justice (2016) su versión actual (Colección~6). Schroeder y
+colaboradores (2014) presentan el algoritmo de VIIRS de 375~m. Véase el
+apéndice~\ref{ap:fuentes}.

@@ -1,0 +1,122 @@
+[
+  {
+    "archivo": "viirs-jpss1_2018_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2018/viirs-jpss1_2018_Peru.csv",
+    "sha256": "eae6e26913a27f200e6714e103a07d142e8b3bc21e721dd96ea6901a326ff78e",
+    "bytes": 4718494,
+    "fecha_descarga_utc": "2026-11-14T00:51:36.321973+00:00",
+    "filas_originales": 57747,
+    "filas_aceptadas": 49590,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 57747
+    },
+    "primera_fecha_deteccion": "2018-04-01",
+    "ultima_fecha_deteccion": "2018-12-31"
+  },
+  {
+    "archivo": "viirs-jpss1_2019_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2019/viirs-jpss1_2019_Peru.csv",
+    "sha256": "0c0439dabc39e00ddfe7fd04cc68aa356952f2cf1c657fe6d31de08366f377b4",
+    "bytes": 6173111,
+    "fecha_descarga_utc": "2026-11-14T00:51:37.844972+00:00",
+    "filas_originales": 75471,
+    "filas_aceptadas": 63606,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 75471
+    },
+    "primera_fecha_deteccion": "2019-01-01",
+    "ultima_fecha_deteccion": "2019-12-31"
+  },
+  {
+    "archivo": "viirs-jpss1_2020_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2020/viirs-jpss1_2020_Peru.csv",
+    "sha256": "58cfcadc17b9246ea14b82596335747a08f26c966f25724377e0e79b143d453a",
+    "bytes": 8090224,
+    "fecha_descarga_utc": "2026-11-14T00:51:42.955968+00:00",
+    "filas_originales": 98915,
+    "filas_aceptadas": 83584,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 98915
+    },
+    "primera_fecha_deteccion": "2020-01-01",
+    "ultima_fecha_deteccion": "2020-12-31"
+  },
+  {
+    "archivo": "viirs-jpss1_2021_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2021/viirs-jpss1_2021_Peru.csv",
+    "sha256": "19b3ca6d0fdc2400b832bdb9ab7701ea7ef416eea037c0a3361193c0e7537f28",
+    "bytes": 5598518,
+    "fecha_descarga_utc": "2026-11-14T00:51:44.377967+00:00",
+    "filas_originales": 68444,
+    "filas_aceptadas": 58200,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 68444
+    },
+    "primera_fecha_deteccion": "2021-01-01",
+    "ultima_fecha_deteccion": "2021-12-31"
+  },
+  {
+    "archivo": "viirs-jpss1_2022_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2022/viirs-jpss1_2022_Peru.csv",
+    "sha256": "bfa1173f2a5539ff26b05e7883fdb1c816e0fc5daf40f51327e7687184b89b9a",
+    "bytes": 7441561,
+    "fecha_descarga_utc": "2026-11-14T00:51:45.926965+00:00",
+    "filas_originales": 91024,
+    "filas_aceptadas": 74287,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 91024
+    },
+    "primera_fecha_deteccion": "2022-01-01",
+    "ultima_fecha_deteccion": "2022-12-31"
+  },
+  {
+    "archivo": "viirs-jpss1_2023_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2023/viirs-jpss1_2023_Peru.csv",
+    "sha256": "fdafabb965b01f9f128471fb22337379255bd1bc2a1437c1e486e278a8422548",
+    "bytes": 6454227,
+    "fecha_descarga_utc": "2026-11-14T00:51:47.527964+00:00",
+    "filas_originales": 78995,
+    "filas_aceptadas": 65520,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 78995
+    },
+    "primera_fecha_deteccion": "2023-01-01",
+    "ultima_fecha_deteccion": "2023-12-31"
+  },
+  {
+    "archivo": "viirs-jpss1_2024_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2024/viirs-jpss1_2024_Peru.csv",
+    "sha256": "e0c74d8b9aca38cb82b913c6f140054d730f1e7d66ad88a0618affb54ff2c702",
+    "bytes": 8581906,
+    "fecha_descarga_utc": "2026-11-14T00:51:49.035962+00:00",
+    "filas_originales": 105055,
+    "filas_aceptadas": 81338,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 105055
+    },
+    "primera_fecha_deteccion": "2024-01-01",
+    "ultima_fecha_deteccion": "2024-12-31"
+  },
+  {
+    "archivo": "viirs-jpss1_2025_Peru.csv",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2025/viirs-jpss1_2025_Peru.csv",
+    "sha256": "db9b8b03347adea387c797302337a0d6b9939be6a0f5d812cc466d1408487fe2",
+    "bytes": 4382809,
+    "fecha_descarga_utc": "2026-11-14T00:51:50.442961+00:00",
+    "filas_originales": 53646,
+    "filas_aceptadas": 44968,
+    "duplicados_identicos_descartados": 0,
+    "versiones": {
+      "2": 53646
+    },
+    "primera_fecha_deteccion": "2025-01-01",
+    "ultima_fecha_deteccion": "2025-12-31"
+  }
+]

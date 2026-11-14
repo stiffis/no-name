@@ -1,0 +1,335 @@
+\chapter{Errores y sesgos: lo que el registro no cuenta}\label{cap:errores}
+
+\objetivos{
+\begin{itemize}
+  \item Distinguir errores de omisión y de comisión y calcular sus tasas.
+  \item Diferenciar un error aleatorio de un sesgo sistemático.
+  \item Enumerar las fuentes de omisión, de falsas alarmas y de conteo múltiple de cada sensor.
+  \item Reconocer las fuentes térmicas persistentes que no son fuego de vegetación.
+  \item Decidir qué errores afectan a la armonización y cuáles no.
+\end{itemize}}
+
+\section{Ningún detector es perfecto}
+
+Los capítulos anteriores mostraron cómo se llega de las llamas a un punto en un archivo. Cada
+paso puede fallar en dos sentidos: dejar pasar un fuego real o inventar uno que no existe. Este
+capítulo ordena esos fallos, porque la armonización consiste, en el fondo, en entender en qué se
+diferencian los errores de los dos sensores.
+
+\section{Omisión y comisión}
+
+Comparemos lo que dice el sensor con la realidad. Para cada píxel hay cuatro posibilidades,
+recogidas en la \termino{matriz de confusión} de la tabla~\ref{tab:confusion}.
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{l|cc}
+ & \textbf{Hay fuego} & \textbf{No hay fuego} \\
+\hline
+\textbf{El sensor detecta} & acierto (VP) & \cellcolor{fuegoClaro}falsa alarma (FP) \\
+\textbf{El sensor no detecta} & \cellcolor{brasaClaro}fuego omitido (FN) & rechazo correcto (VN) \\
+\end{tabular}
+\caption{Matriz de confusión de un detector de fuego. VP: verdadero positivo; FP: falso
+positivo; FN: falso negativo; VN: verdadero negativo.}
+\label{tab:confusion}
+\end{table}
+
+\begin{definicion}{error de omisión y error de comisión}
+El \textbf{error de omisión} es la fracción de los fuegos reales que el sensor no detectó:
+\[
+  \text{omisión} = \frac{FN}{VP + FN}.
+\]
+El \textbf{error de comisión} es la fracción de las detecciones que no corresponden a un fuego
+real:
+\[
+  \text{comisión} = \frac{FP}{VP + FP}.
+\]
+\end{definicion}
+
+Son cosas distintas y se miden respecto de totales distintos: la omisión, respecto de lo que
+había; la comisión, respecto de lo que se detectó. El complemento de la omisión se llama
+\emph{probabilidad de detección} o sensibilidad; el de la comisión, \emph{precisión}.
+
+\begin{ejemplo}{tasas de error}
+En una zona de validación había 200 fuegos confirmados con imágenes de alta resolución. Un
+sensor reportó 150 detecciones, de las cuales 144 coincidían con fuegos reales. Calcula sus
+errores.
+\solucion $VP = 144$, $FP = 150 - 144 = 6$, $FN = 200 - 144 = 56$.
+\[
+ \text{omisión} = \frac{56}{200} = 28\,{}\%, \qquad \text{comisión} = \frac{6}{150} = 4\,{}\%.
+\]
+El sensor casi nunca se equivoca cuando dice que hay fuego, pero se le escapa más de la cuarta
+parte de los fuegos.
+\end{ejemplo}
+
+El ejemplo refleja la situación real. Los algoritmos de fuego están diseñados para ser
+\textbf{conservadores}: se prefiere perder fuegos pequeños a inundar los mapas de falsas
+alarmas. La comisión de MODIS y de VIIRS es de unos pocos puntos porcentuales o menos; la
+omisión, en cambio, es grande, muy variable y depende sobre todo del tamaño de los fuegos.
+
+\begin{intuicion}[La omisión no es un número, es una curva]
+No tiene sentido decir <<MODIS omite el 30\,{}\% de los fuegos>>. Omite casi todos los de
+50~m$^2$ y casi ninguno de 10~hectáreas. Lo que existe es una \emph{curva de probabilidad de
+detección} en función del tamaño (figura~\ref{fig:pdet}), y la omisión total en una región
+depende de qué tamaños de fuego abundan allí.
+\end{intuicion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=6.8cm,xmode=log,xmin=5,xmax=100000,ymin=0,ymax=1.08,
+  xlabel={Área del fuego (m$^2$)},ylabel={Probabilidad de detección},
+  ytick={0,0.5,1},yticklabels={0,{0,5},1},
+  legend style={at={(0.97,0.06)},anchor=south east,font=\small,draw=ceniza!40},
+  grid=major,grid style={ceniza!15},samples=120,domain=5:100000]
+\addplot[viirs,very thick] {1/(1+exp(-3.2*(ln(x)/ln(10)-ln(40)/ln(10))))};
+\addplot[modis,very thick] {1/(1+exp(-3.2*(ln(x)/ln(10)-ln(300)/ln(10))))};
+\addplot[modis,very thick,dashed] {1/(1+exp(-3.2*(ln(x)/ln(10)-ln(2900)/ln(10))))};
+\legend{VIIRS 375 m (nadir),MODIS (nadir),MODIS (borde de la franja)}
+\fill[brasa,opacity=0.15] (axis cs:40,0) rectangle (axis cs:300,1.08);
+\node[font=\footnotesize,align=center,fill=white,inner sep=2pt] at (axis cs:100,0.93) {solo\\ VIIRS};
+\end{axis}
+\end{tikzpicture}
+\caption{Forma esperada de la probabilidad de detección según el tamaño del fuego (curvas
+esquemáticas basadas en la proporcionalidad de la ecuación~\eqref{eq:amin}; no son mediciones).
+Los fuegos de la banda sombreada los detecta VIIRS y no MODIS.}
+\label{fig:pdet}
+\end{figure}
+
+\section{Error aleatorio y sesgo}
+
+Hay otra distinción, igual de importante, que atraviesa todo el capítulo.
+
+\begin{definicion}{error aleatorio y sesgo}
+Un \textbf{error aleatorio} varía de una medición a otra sin dirección preferente; al promediar
+muchas mediciones tiende a cancelarse. Un \textbf{sesgo}, o error sistemático, empuja siempre en
+el mismo sentido; promediar no lo reduce.
+\end{definicion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+  \foreach \x/\t/\cx/\cy/\s in {0/{Poco sesgo, poca dispersión}/0/0/0.18,4.6/{Poco sesgo, mucha dispersión}/0/0/0.75,9.2/{Mucho sesgo, poca dispersión}/0.75/0.6/0.18}{
+    \begin{scope}[shift={(\x,0)}]
+      \foreach \r in {1.6,1.1,0.6}{\draw[ceniza!70] (0,0) circle (\r);}
+      \fill[ceniza] (0,0) circle (0.06);
+      \pgfmathsetseed{7}
+      \foreach \i in {1,...,12}{\fill[fuego] ({\cx+\s*rand},{\cy+\s*rand}) circle (0.07);}
+      \node[font=\footnotesize,align=center,text width=4cm] at (0,-2.15) {\t};
+    \end{scope}
+  }
+\end{tikzpicture}
+\caption{Dispersión y sesgo. El centro de la diana es el valor verdadero. Promediar muchos
+tiros arregla el segundo caso, pero no el tercero.}
+\label{fig:diana}
+\end{figure}
+
+Para un calendario de quemas, que suma detecciones de muchos días y muchos píxeles, los errores
+aleatorios pesan poco. Los sesgos lo son todo. Y la diferencia entre MODIS y VIIRS es,
+precisamente, una diferencia de sesgos: ambos subestiman la actividad real, pero en distinta
+medida.
+
+\begin{parareto}
+No hace falta eliminar los sesgos para armonizar; basta con que ambos registros tengan
+\emph{el mismo}. La meta realista no es reconstruir <<el fuego verdadero>>, sino una serie cuyo
+sesgo sea constante en el tiempo, de modo que sus variaciones sean reales. Hay que decirlo así
+en la presentación: el calendario muestra actividad \emph{detectable}, no actividad total.
+\end{parareto}
+
+\section{Fuentes de omisión}
+
+Reunimos aquí todo lo que hace que un fuego real no llegue al registro.
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[Tamaño y temperatura.] El fuego no eleva lo suficiente la señal del píxel
+  (capítulo~\ref{cap:deteccion}). Afecta mucho más a MODIS.
+  \item[Nubes.] Una nube espesa oculta el fuego (capítulo~\ref{cap:atmosfera}). Afecta a ambos
+  por igual en el mismo instante.
+  \item[Hora.] El fuego no ardía cuando pasó el satélite (capítulo~\ref{cap:orbitas}). La
+  duración importa: una quema de una hora tiene pocas posibilidades de coincidir con una pasada.
+  \item[Geometría.] Píxeles grandes en el borde de la franja y huecos entre órbitas
+  (capítulos~\ref{cap:orbitas} y~\ref{cap:escaneo}). Afecta sobre todo a MODIS.
+  \item[Dosel y relieve.] Un fuego de sotobosque bajo copas densas, o en una ladera que da la
+  espalda al sensor, queda parcialmente oculto.
+  \item[Entorno.] Un fondo heterogéneo eleva los umbrales contextuales; un fuego rodeado de
+  otros fuegos tiene pocos vecinos válidos.
+\end{description}
+
+\begin{ejemplo}{probabilidad de coincidir con una pasada}
+Una quema agrícola dura en promedio 1,5 horas y se enciende en cualquier momento entre las 9:00
+y las 17:00 con igual probabilidad. ¿Qué probabilidad hay de que esté ardiendo en una pasada a
+las 13:30?
+\solucion La quema está activa a las 13:30 si empezó entre las 12:00 y las 13:30: un intervalo
+de 1,5~h dentro de las 8~h posibles. La probabilidad es $1{,}5/8 \approx 0{,}19$, un 19\,{}\%. Aun con un
+sensor perfecto y cielo despejado, cuatro de cada cinco quemas de este tipo son invisibles para
+una sola pasada diurna. Con tres satélites VIIRS que pasan dentro de un intervalo de unos 100
+minutos, la ventana efectiva se alarga y la probabilidad sube aproximadamente a
+$(1{,}5 + 1{,}7)/8 \approx 0{,}40$, un 40\,{}\%.
+\end{ejemplo}
+
+El ejemplo deja una lección de humildad sobre lo que mide un registro de focos, y explica por
+qué añadir satélites a la misma órbita aumenta tanto las detecciones de quemas breves.
+
+\section{Fuentes de comisión}
+
+Menos frecuentes, pero concentradas en ciertos lugares, de modo que localmente pueden dominar.
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[Brillo solar.] Agua, arrozales inundados, techos metálicos, invernaderos, paneles
+  solares. Solo de día.
+  \item[Suelos calientes y reflectantes.] Desiertos, salares, canteras, campos arados.
+  \item[Bordes.] Costas, orillas, límites de nubes, claros recientes en el bosque.
+  \item[Ruido del detector.] En VIIRS, sobre todo de noche y dentro de la Anomalía del
+  Atlántico Sur.
+\end{description}
+
+\section{Fuentes térmicas persistentes}
+
+Hay una categoría que no es ni omisión ni comisión, porque la detección es correcta: hay algo
+muy caliente. Pero no es fuego de vegetación.
+
+\begin{definicion}{fuente térmica estática}
+Una fuente térmica estática es una anomalía térmica que aparece siempre en el mismo lugar por
+causas distintas de la quema de vegetación: volcanes activos, antorchas de quema de gas en
+pozos y refinerías, altos hornos, fundiciones, hornos de cemento, incendios de carbón
+subterráneos.
+\end{definicion}
+
+Su firma es inconfundible en el tiempo: mientras que un fuego de vegetación dura horas o días y
+no se repite en el mismo píxel hasta la temporada siguiente, una antorcha de gas genera
+detecciones en la misma ubicación durante todo el año, de día y de noche
+(figura~\ref{fig:estatica}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=5.4cm,ybar,bar width=9pt,ymin=0,ymax=32,
+  symbolic x coords={E,F,M,A,My,J,Jl,Ag,S,O,N,D},xtick=data,
+  xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
+  ylabel={Días con detección},axis lines*=left,ymajorgrids,grid style={ceniza!20},
+  legend style={at={(0.5,1.04)},anchor=south,font=\small,draw=none,legend columns=2,
+    /tikz/every even column/.append style={column sep=10pt}}]
+\addplot[fill=bosque!70,draw=none,area legend] coordinates {(E,0)(F,0)(M,0)(A,0)(My,1)(J,2)(Jl,4)(Ag,9)(S,7)(O,2)(N,0)(D,0)};
+\addplot[fill=ceniza!80,draw=none,area legend] coordinates {(E,22)(F,19)(M,21)(A,24)(My,26)(J,27)(Jl,28)(Ag,27)(S,25)(O,23)(N,20)(D,21)};
+\legend{Quemas de vegetación,Fuente estática}
+\end{axis}
+\end{tikzpicture}
+\caption{Firma temporal de dos celdas (datos ilustrativos). La de vegetación tiene temporada; la
+de la fuente estática registra detecciones casi todos los días despejados del año.}
+\label{fig:estatica}
+\end{figure}
+
+Los datos archivados de FIRMS incluyen una columna \texttt{type} que clasifica cada detección
+(capítulo~\ref{cap:firms}): 0 para presunto fuego de vegetación, 1 para volcán activo, 2 para
+otra fuente estática en tierra y 3 para detecciones en el mar.
+
+\begin{atencion}[Las fuentes estáticas contaminan el calendario]
+Una sola antorcha de gas puede aportar más detecciones al año que todas las quemas de una
+provincia, y las aporta de forma uniforme, aplanando la estacionalidad. Fíltralas con
+\texttt{type = 0}. Como esa clasificación puede no estar disponible en los datos más recientes,
+ten un segundo criterio propio: excluir las celdas con detecciones en, por ejemplo, más de 150
+días distintos al año.
+\end{atencion}
+
+\section{Conteo múltiple}
+
+Por último están los mecanismos que no añaden ni quitan fuegos, sino que hacen que un mismo
+fuego aparezca varias veces. No son errores del algoritmo; son consecuencia de contar puntos.
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}Xcc}
+\toprule
+Mecanismo & Qué ocurre & MODIS & VIIRS \\
+\midrule
+Extensión espacial & un fuego grande ocupa varios píxeles & sí & sí, más \\
+Solape entre píxeles vecinos & la huella real es más ancha que el espaciado & sí & menor \\
+Efecto pajarita & barridos consecutivos se pisan lejos del nadir & sí & eliminado \\
+Órbitas consecutivas & en latitudes altas las franjas se solapan & poco & sí \\
+Varios satélites & cada satélite observa el mismo fuego & 2 & hasta 3 \\
+Persistencia & el fuego sigue ardiendo en la pasada siguiente & sí & sí \\
+\bottomrule
+\end{tabularx}
+\caption{Mecanismos por los que un mismo fuego genera más de un foco.}
+\label{tab:multiple}
+\end{table}
+
+Una idea sencilla desactiva casi toda la tabla: no contar puntos, sino preguntar, para cada
+celda de una cuadrícula y cada día, \emph{si hubo o no hubo detección}. Un fuego visto cinco
+veces en una celda en un día cuenta lo mismo que uno visto una vez. Esta unidad, la
+\termino{celda-día con fuego}, se desarrolla en el capítulo~\ref{cap:armonizacion}.
+
+\section{Qué errores importan para armonizar}
+
+No todos los errores afectan por igual a la comparación entre sensores. La
+figura~\ref{fig:clasif-errores} los clasifica según dos preguntas: ¿afecta a ambos sensores por
+igual? ¿cambia a lo largo del tiempo?
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=6.6cm,y=3.1cm]
+  \fill[bosqueClaro] (0,1) rectangle (1,2); \fill[brasaClaro] (1,1) rectangle (2,2);
+  \fill[brasaClaro] (0,0) rectangle (1,1); \fill[fuegoClaro] (1,0) rectangle (2,1);
+  \draw[ceniza] (0,0) rectangle (2,2); \draw[ceniza] (1,0)--(1,2) (0,1)--(2,1);
+  \node[font=\small\bfseries] at (0.5,2.15) {Igual en ambos sensores};
+  \node[font=\small\bfseries] at (1.5,2.15) {Distinto en cada sensor};
+  \node[font=\small\bfseries,rotate=90] at (-0.09,1.5) {Estable};
+  \node[font=\small\bfseries,rotate=90] at (-0.09,0.5) {Cambia con el tiempo};
+  \node[font=\small,align=center,text width=6cm] at (0.5,1.5) {Nubes en un instante dado\\ Fuegos bajo el dosel\\[3pt] \emph{No estorba: se cancela}};
+  \node[font=\small,align=center,text width=6cm] at (1.5,1.5) {Tamaño del píxel\\ Crecimiento en los bordes\\ Huecos entre órbitas\\[3pt] \emph{Se corrige con calibración}};
+  \node[font=\small,align=center,text width=6cm] at (0.5,0.5) {Nubosidad de cada año\\[3pt] \emph{Parte de la variabilidad real observable}};
+  \node[font=\small,align=center,text width=6cm] at (1.5,0.5) {Número de satélites\\ Deriva orbital de Terra y Aqua\\ Versiones del algoritmo\\[3pt] \emph{Lo más peligroso: hay que controlarlo}};
+\end{tikzpicture}
+\caption{Clasificación de los errores según su efecto sobre la armonización.}
+\label{fig:clasif-errores}
+\end{figure}
+
+El cuadrante inferior derecho es el que más cuidado exige. Una calibración entre MODIS y VIIRS
+supone que la relación entre ambos es estable. Todo lo que la haga variar de un año a otro
+(añadir un satélite, que una órbita derive, cambiar de versión de los datos a mitad de la serie)
+rompe ese supuesto. De ahí las tres reglas prácticas que han ido apareciendo: fijar el conjunto
+de satélites, calibrar con los años centrales del solape y usar una sola colección de datos para
+todo el periodo.
+
+\resumen
+
+\begin{itemize}
+  \item \textbf{Omisión}: fracción de fuegos reales no detectados. \textbf{Comisión}: fracción
+  de detecciones que no son fuego. Los algoritmos son conservadores: poca comisión, mucha
+  omisión.
+  \item La omisión depende del tamaño del fuego; es una curva, no un número.
+  \item Un \textbf{error aleatorio} se promedia; un \textbf{sesgo} no. Armonizar es igualar
+  sesgos, no eliminarlos.
+  \item Omiten fuegos: el tamaño, las nubes, la hora, la geometría, el dosel y el entorno.
+  \item Las \textbf{fuentes estáticas} (volcanes, antorchas de gas, industria) son detecciones
+  correctas que no son fuego de vegetación; se filtran con la columna \texttt{type} o por su
+  persistencia.
+  \item El \textbf{conteo múltiple} se neutraliza contando celdas-día con fuego en lugar de
+  puntos.
+  \item Los errores más peligrosos son los que difieren entre sensores \emph{y} cambian con el
+  tiempo.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item Un sensor reporta 420 detecciones en una zona donde había 600 fuegos; 12 de las
+  detecciones eran falsas. Calcula omisión, comisión, probabilidad de detección y precisión.
+  \item Un colega afirma que, como la comisión de VIIRS es del 1\,{}\%, <<VIIRS detecta el 99\,{}\%
+  de los fuegos>>. Explica el error.
+  \item Con las curvas de la figura~\ref{fig:pdet}, estima la probabilidad de detección de un
+  fuego de \SI{100}{\metre\squared} y de uno de \SI{1000}{\metre\squared} para cada curva.
+  \item Repite el ejemplo de la coincidencia con la pasada para un incendio forestal que dura
+  30 horas. ¿Por qué el registro de focos representa mejor los incendios largos que las quemas
+  breves?
+  \item Para cada uno de estos casos, indica si es omisión, comisión, fuente estática o conteo
+  múltiple: (a) un arrozal inundado aparece como foco al mediodía; (b) una refinería aparece 300
+  días al año; (c) un incendio aparece con 40 focos en una pasada; (d) una quema bajo una nube
+  no aparece; (e) un fuego aparece en Suomi NPP y en NOAA-20 con 50 minutos de diferencia.
+  \item Coloca en los cuadrantes de la figura~\ref{fig:clasif-errores}: el brillo solar; la
+  entrada en servicio de NOAA-21; una sequía que reduce la nubosidad.
+  \item Diseña un criterio, usando solo fecha y coordenadas, para marcar como <<probable fuente
+  estática>> una celda de 1~km. Discute qué fuegos reales podrías eliminar por error.
+\end{enumerate}

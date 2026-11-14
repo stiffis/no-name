@@ -1,0 +1,391 @@
+\chapter{Órbitas: cuándo y cada cuánto pasa el satélite}\label{cap:orbitas}
+
+\objetivos{
+\begin{itemize}
+  \item Calcular el periodo de un satélite a partir de su altura.
+  \item Explicar qué es una órbita polar heliosíncrona y por qué el satélite cruza cada lugar
+  siempre a la misma hora local.
+  \item Decir a qué hora observa cada satélite de este libro y qué parte del ciclo diario del
+  fuego capta.
+  \item Explicar por qué MODIS deja huecos de cobertura cerca del ecuador y VIIRS no.
+\end{itemize}}
+
+\section{Por qué importa la órbita}
+
+Un foco de calor es una observación instantánea. Qué fuegos entran en el registro depende, antes
+que de cualquier algoritmo, de \emph{cuándo} mira el satélite y de \emph{cuántas veces} mira. Dos
+sensores idénticos en órbitas distintas producirían registros distintos. Para comparar MODIS con
+VIIRS hay que entender primero cómo se mueven sus plataformas.
+
+\section{Movimiento orbital}
+
+Un satélite en órbita está en caída libre permanente: avanza tan rápido en horizontal que, a
+medida que cae, la superficie curva de la Tierra se aleja bajo él al mismo ritmo. Para una
+órbita circular, la gravedad proporciona exactamente la fuerza centrípeta necesaria:
+\begin{equation}
+  \frac{G M m}{r^2} = \frac{m v^2}{r}
+  \quad\Longrightarrow\quad
+  v = \sqrt{\frac{GM}{r}},
+\end{equation}
+donde $r$ es la distancia al centro de la Tierra (radio terrestre más altura), y $GM =
+\SI{3.986e5}{\kilo\metre\cubed\per\second\squared}$ es el parámetro gravitacional de la Tierra.
+La masa del satélite se cancela: todos los objetos a la misma altura orbitan a la misma
+velocidad.
+
+El \termino{periodo} $P$, el tiempo de una vuelta completa, es la longitud de la circunferencia
+dividida por la velocidad:
+\begin{equation}\label{eq:periodo}
+  P = \frac{2\pi r}{v} = 2\pi\sqrt{\frac{r^3}{GM}} .
+\end{equation}
+Esta es la tercera ley de Kepler para órbitas circulares.
+
+\begin{ejemplo}{periodo de los satélites de MODIS y de VIIRS}
+Terra y Aqua vuelan a 705~km de altura; Suomi NPP, NOAA-20 y NOAA-21, a unos 824~km. Con el
+radio terrestre $R_\oplus = \SI{6378}{\kilo\metre}$, calcula su velocidad, su periodo y cuántas
+órbitas dan al día.
+\solucion Para MODIS, $r = 6378 + 705 = \SI{7083}{\kilo\metre}$.
+\[
+ v = \sqrt{\frac{\num{3.986e5}}{7083}} = \SI{7.50}{\kilo\metre\per\second},\qquad
+ P = 2\pi\sqrt{\frac{7083^3}{\num{3.986e5}}} = \SI{5933}{\second} = \SI{98.9}{\minute}.
+\]
+En un día caben $1440/98{,}9 = 14{,}56$ órbitas. Para VIIRS, $r = \SI{7202}{\kilo\metre}$, y se
+obtiene $v = \SI{7.44}{\kilo\metre\per\second}$, $P = \SI{101.4}{\minute}$ y 14,20 órbitas al
+día. Ambos dan una vuelta al planeta en poco más de hora y media, a unos 27\,000~km/h.
+\end{ejemplo}
+
+\section{Órbita polar}
+
+Si el satélite orbitara sobre el ecuador solo vería una franja ecuatorial. Para observar todo el
+planeta se usa una \termino{órbita polar}: el satélite pasa cerca de los dos polos en cada
+vuelta. La órbita mantiene su orientación en el espacio mientras la Tierra gira debajo, de modo
+que en cada vuelta el satélite sobrevuela una franja distinta, desplazada hacia el oeste respecto
+de la anterior (figura~\ref{fig:polar}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+  \begin{scope}
+    \shade[ball color=cielo!45] (0,0) circle (2.3);
+    \draw[ceniza!70] (-2.3,0) arc (180:360:2.3 and 0.55);
+    \draw[ceniza!70,dashed] (2.3,0) arc (0:180:2.3 and 0.55);
+    \draw[fuego,very thick] (0.35,2.9) arc (90:-90:0.75 and 2.9);
+    \draw[fuego,very thick,dashed] (0.35,-2.9) arc (270:90:0.75 and 2.9);
+    \fill[black] (1.02,1.3) circle (0.08);
+    \draw[ceniza] (1.12,1.35)--(2.25,1.85);
+    \node[anchor=west,font=\footnotesize,fill=white,inner sep=2pt] at (2.25,1.85) {satélite};
+    \draw[->,thick] (2.75,0.5) arc (10:-35:1.2) node[midway,right,font=\footnotesize,align=left]{la Tierra\\ gira};
+    \draw[->] (0,2.3)--(0,3.3) node[above,font=\footnotesize]{N};
+    \node[font=\small\bfseries] at (0,-3.5) {(a) Órbita casi polar};
+  \end{scope}
+  \begin{scope}[shift={(8.2,0)}]
+    \fill[cieloClaro] (-3.8,-2.2) rectangle (3.8,2.2);
+    \draw[ceniza] (-3.8,-2.2) rectangle (3.8,2.2);
+    \draw[ceniza,dashed] (-3.8,0)--(3.8,0) node[right,font=\footnotesize]{ecuador};
+    \foreach \x/\n in {2.6/1,1.3/2,0/3,-1.3/4,-2.6/5}{
+      \fill[fuego,opacity=0.22] (\x-0.75,-2.2)--(\x-0.15,-2.2)--(\x+0.55,2.2)--(\x-0.05,2.2)--cycle;
+      \draw[fuego,thick,->] (\x-0.45,-2.2)--(\x+0.25,2.2);
+      \node[font=\footnotesize] at (\x+0.25,2.45) {órbita \n};
+    }
+    \draw[<->] (1.2,-1.6)--(-0.1,-1.6) node[midway,below,font=\footnotesize]{$\approx$ 2750 km};
+    \node[font=\small\bfseries] at (0,-3.5) {(b) Trazas sucesivas sobre el mapa};
+  \end{scope}
+\end{tikzpicture}
+\caption{Órbita polar. (a) El plano de la órbita permanece casi fijo mientras la Tierra gira
+debajo. (b) Vistas en un mapa, las pasadas sucesivas quedan desplazadas hacia el oeste; la franja
+sombreada es la zona que el sensor alcanza a ver en cada pasada.}
+\label{fig:polar}
+\end{figure}
+
+¿Cuánto se desplaza la traza entre una órbita y la siguiente? En el tiempo de una vuelta, la
+Tierra gira una fracción $P/\SI{1440}{\minute}$ de su circunferencia. En el ecuador, cuya
+longitud es de \SI{40075}{\kilo\metre}:
+\begin{equation}\label{eq:separacion}
+  d_{\text{ecuador}} = \SI{40075}{\kilo\metre}\times\frac{P}{\SI{1440}{\minute}} .
+\end{equation}
+Para MODIS resulta $40075 \times 98{,}9/1440 \approx \SI{2750}{\kilo\metre}$; para VIIRS, unos
+\SI{2820}{\kilo\metre}. Recuerda estos dos números; volverán en la
+sección~\ref{sec:huecos}.
+
+\section{Órbita heliosíncrona: siempre a la misma hora}
+
+Las órbitas de estos satélites no son exactamente polares. Tienen una inclinación de unos
+98$^\circ$, es decir, pasan a unos 8$^\circ$ de los polos y giran en sentido ligeramente
+contrario a la rotación terrestre. Esa pequeña desviación está elegida con un propósito.
+
+La Tierra no es una esfera perfecta: está achatada, con un abultamiento en el ecuador. Ese
+abultamiento tira del plano de la órbita y lo hace girar lentamente, como gira el eje de un
+trompo inclinado. El fenómeno se llama \termino{precesión}. Escogiendo bien la altura y la
+inclinación, se consigue que el plano orbital dé exactamente una vuelta al año,
+$360^\circ/365{,}24 \approx 0{,}986^\circ$ por día, la misma velocidad angular con que la Tierra
+gira alrededor del Sol.
+
+\begin{definicion}{órbita heliosíncrona}
+Una órbita heliosíncrona es aquella cuyo plano gira al mismo ritmo que la Tierra alrededor del
+Sol, de modo que conserva una orientación fija respecto del Sol durante todo el año. Su
+consecuencia práctica: el satélite cruza cada latitud siempre a la misma \textbf{hora solar
+local}.
+\end{definicion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \shade[inner color=yellow!80!white,outer color=brasa] (0,0) circle (0.5);
+  \node[font=\footnotesize] at (0,-0.8) {Sol};
+  \draw[ceniza!50,dashed] (0,0) circle (3.6);
+  \foreach \a/\m in {0/marzo,90/junio,180/septiembre,270/diciembre}{
+    \begin{scope}[shift={(\a:3.6)}]
+      \shade[ball color=cielo!50] (0,0) circle (0.42);
+      \draw[fuego,very thick,rotate=\a+90] (-0.85,0)--(0.85,0);
+    \end{scope}
+  }
+  \node[font=\footnotesize,anchor=west] at (4.2,0) {marzo};
+  \node[font=\footnotesize,anchor=south] at (0,4.25) {junio};
+  \node[font=\footnotesize,anchor=east] at (-4.2,0) {septiembre};
+  \node[font=\footnotesize,anchor=north] at (0,-4.25) {diciembre};
+  \node[font=\footnotesize,align=left,fuego,anchor=west] at (5.8,1.0) {plano de la órbita\\ (visto de canto)};
+  \node[font=\footnotesize,align=left,anchor=west] at (5.8,-0.6) {El plano mantiene el\\ mismo ángulo con la\\ dirección al Sol\\ todo el año.};
+\end{tikzpicture}
+\caption{Órbita heliosíncrona vista desde encima del polo norte. A lo largo del año el plano
+orbital (línea roja) va girando para conservar su orientación respecto del Sol. Por eso el
+satélite sobrevuela cada punto a la misma hora local en enero que en julio.}
+\label{fig:helio}
+\end{figure}
+
+Para el fuego esto es fundamental. Si la hora de paso fuera variando a lo largo del año, el
+sensor observaría unas veces el máximo de actividad de la tarde y otras la calma de la mañana, y
+sería imposible separar los cambios reales de los cambios de horario. Con una órbita
+heliosíncrona, la hora de observación es una constante del sistema.
+
+\begin{definicion}{hora de cruce ecuatorial}
+La hora de cruce ecuatorial es la hora solar local a la que el satélite atraviesa el ecuador.
+Cada órbita tiene dos cruces, separados doce horas: el \emph{nodo ascendente}, cuando viaja de
+sur a norte, y el \emph{nodo descendente}, de norte a sur.
+\end{definicion}
+
+\section{A qué hora mira cada satélite}
+
+La tabla~\ref{tab:horas} reúne las horas nominales de cruce.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{llccc}
+\toprule
+Satélite & Sensor & Altura & Cruce diurno & Cruce nocturno \\
+\midrule
+Terra & MODIS & 705 km & 10:30 & 22:30 \\
+Aqua & MODIS & 705 km & 13:30 & 01:30 \\
+Suomi NPP & VIIRS & 824 km & 13:30 & 01:30 \\
+NOAA-20 & VIIRS & 824 km & 13:30 & 01:30 \\
+NOAA-21 & VIIRS & 824 km & 13:30 & 01:30 \\
+\bottomrule
+\end{tabular}
+\caption{Horas solares locales nominales de cruce del ecuador. Los tres satélites VIIRS
+comparten la misma órbita, repartidos a lo largo de ella: NOAA-20 va media órbita (unos 50
+minutos) separado de Suomi NPP, y NOAA-21 se sitúa entre ambos.}
+\label{tab:horas}
+\end{table}
+
+Tres observaciones sobre la tabla, todas con consecuencias directas para la armonización.
+
+\textbf{Aqua y los satélites VIIRS son compañeros de horario.} Todos cruzan a las 13:30. Aqua y
+Suomi NPP observan los mismos fuegos casi a la misma hora, con diferencias que rara vez superan
+unas decenas de minutos. Es la pareja natural para comparar los dos sensores.
+
+\textbf{Terra no tiene sucesor.} Su pasada de las 10:30 capta el fuego de media mañana, y no
+existe ningún VIIRS en ese horario. Cuando Terra se apague, esa ventana de observación
+desaparecerá.
+
+\textbf{Las horas son nominales.} En sus últimos años de vida, Terra y Aqua han dejado de hacer
+las maniobras que mantenían su órbita, y sus horas de cruce se han ido desplazando: la de Terra
+hacia más temprano y la de Aqua hacia más tarde. Para los años más recientes de MODIS la hora de
+observación ya no es la de la tabla.
+
+\begin{atencion}[La deriva orbital de MODIS]
+Desde aproximadamente 2020--2022, Terra y Aqua derivan. Un cambio en la hora de paso altera qué
+parte del ciclo diario del fuego se observa, y por tanto el número de focos, sin que el fuego
+haya cambiado. Si tu calibración entre MODIS y VIIRS usa los últimos años del solape, parte de
+la diferencia que midas se deberá a esta deriva. Es un buen motivo para calibrar con los años
+centrales del solape (por ejemplo, 2012--2020) y decirlo expresamente.
+\end{atencion}
+
+\section{El ciclo diario del fuego}
+
+¿Por qué tanta insistencia con la hora? Porque el fuego no arde igual a lo largo del día. La
+humedad del aire es mínima y la temperatura y el viento son máximos a primera hora de la tarde;
+el combustible está más seco y las llamas avanzan con más energía. Además, las quemas agrícolas
+se encienden de día. El resultado es un \termino{ciclo diurno} muy marcado, con el máximo entre
+las 13 y las 15 horas y el mínimo de madrugada (figura~\ref{fig:diurno}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=13.5cm,height=6.6cm,xmin=0,xmax=24,ymin=0,ymax=1.25,
+  xlabel={Hora solar local},ylabel={Actividad de fuego (relativa)},
+  xtick={0,3,6,9,12,15,18,21,24},ytick={0,0.5,1},yticklabels={0,{0,5},1},
+  axis lines*=left,samples=200,domain=0:24]
+\addplot[fill=fuego!25,draw=fuego,very thick] {0.04+exp(-((x-14)^2)/(2*2.6^2))} \closedcycle;
+\foreach \h/\n/\c/\y in {10.5/Terra/modis/1.12,13.5/{Aqua y VIIRS}/viirs/1.2,22.5/Terra/modis/1.12}{
+  \edef\temp{\noexpand\draw[\c,very thick,dashed] (axis cs:\h,0)--(axis cs:\h,\y-0.09);
+             \noexpand\node[font=\noexpand\footnotesize,\c] at (axis cs:\h,\y-0.03) {\n};}
+  \temp
+}
+\draw[viirs,very thick,dashed] (axis cs:1.5,0)--(axis cs:1.5,1.11);
+\node[font=\footnotesize,viirs,anchor=west] at (axis cs:.25,1.17) {Aqua y VIIRS};
+\end{axis}
+\end{tikzpicture}
+\caption{Forma típica del ciclo diario del fuego de vegetación (curva esquemática) y horas
+nominales de paso. La pasada de las 13:30 cae cerca del máximo; la de las 10:30 encuentra los
+fuegos todavía creciendo; las nocturnas ven solo lo que sobrevive a la noche.}
+\label{fig:diurno}
+\end{figure}
+
+La forma exacta de la curva cambia con la región y con el tipo de fuego. Las quemas de residuos
+agrícolas producen un pico estrecho, casi sin actividad nocturna; los grandes incendios
+forestales tienen un ciclo más ancho y siguen ardiendo de noche.
+
+\begin{ejemplo}{lo que ve cada pasada}
+Supón que en una región la actividad sigue la curva de la figura~\ref{fig:diurno}, que
+aproximaremos por una campana centrada en las 14:00 con desviación de 2,6 horas. ¿Qué fracción
+del máximo observan la pasada de las 10:30 y la de las 13:30?
+\solucion La campana vale $\exp[-(h-14)^2/(2\cdot 2{,}6^2)]$. A las 13:30, $h - 14 = -0{,}5$ y
+el valor es $\exp(-0{,}018) = 0{,}98$. A las 10:30, $h-14 = -3{,}5$ y el valor es
+$\exp(-0{,}906) = 0{,}40$. La pasada de la mañana encuentra menos de la mitad de la actividad
+que la de la tarde. Un sensor que solo pasara a las 10:30 contaría, en esta región, alrededor
+del 40\,{}\% de lo que cuenta uno que pasa a las 13:30, aunque ambos fueran idénticos.
+\end{ejemplo}
+
+\section{Franja de observación y huecos de cobertura}\label{sec:huecos}
+
+El sensor no observa solo el punto que tiene debajo. Barre una franja perpendicular a su
+trayectoria, la \termino{franja de barrido} o \emph{swath}, cuyo ancho depende de la altura y
+del ángulo máximo con que mira hacia los lados. El punto situado exactamente bajo el satélite se
+llama \termino{nadir}.
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & MODIS & VIIRS \\
+\midrule
+Ancho de la franja & 2330 km & 3040 km \\
+Separación entre órbitas en el ecuador & 2750 km & 2820 km \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Compara las dos filas. La franja de MODIS es \emph{más estrecha} que la distancia entre trazas
+consecutivas: en el ecuador, entre una pasada y la siguiente queda un hueco de unos 420~km que
+ese día no se observa (figura~\ref{fig:huecos}). La franja de VIIRS es \emph{más ancha} que la
+separación: las pasadas se solapan y no queda ningún hueco.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.00175cm,y=1cm]
+  \begin{scope}
+    \node[font=\small\bfseries,modis] at (2750,2.1) {MODIS};
+    \foreach \c in {0,2750,5500}{
+      \fill[modis,opacity=0.3] (\c-1165,0) rectangle (\c+1165,1.4);
+      \draw[modis,thick] (\c,0)--(\c,1.4);
+    }
+    \foreach \c in {1375,4125}{
+      \fill[pattern=north east lines,pattern color=fuego] (\c-210,0) rectangle (\c+210,1.4);
+    }
+    \draw[<->] (0,-0.3)--(2750,-0.3) node[midway,below,font=\footnotesize]{2750 km};
+    \draw[<->] (-1165,1.65)--(1165,1.65) node[midway,above,font=\footnotesize]{2330 km};
+    \node[font=\footnotesize,fuego] at (4125,-0.35) {hueco};
+  \end{scope}
+  \begin{scope}[shift={(0,-4.2)}]
+    \node[font=\small\bfseries,viirs] at (2820,2.1) {VIIRS};
+    \foreach \c in {0,2820,5640}{
+      \fill[viirs,opacity=0.25] (\c-1520,0) rectangle (\c+1520,1.4);
+      \draw[viirs,thick] (\c,0)--(\c,1.4);
+    }
+    \draw[<->] (0,-0.3)--(2820,-0.3) node[midway,below,font=\footnotesize]{2820 km};
+    \draw[<->] (-1520,1.65)--(1520,1.65) node[midway,above,font=\footnotesize]{3040 km};
+    \node[font=\footnotesize] at (4230,0.7) {solape};
+  \end{scope}
+\end{tikzpicture}
+\caption{Cobertura en el ecuador de tres órbitas consecutivas, a escala. MODIS deja franjas sin
+observar (rayadas) entre pasadas; las franjas de VIIRS se solapan.}
+\label{fig:huecos}
+\end{figure}
+
+A medida que aumenta la latitud las trazas convergen hacia los polos y los huecos de MODIS se
+cierran; por encima de unos 30$^\circ$ ya no existen. Pero el Perú está entre 0$^\circ$ y
+18$^\circ$ de latitud sur: de lleno en la zona de huecos.
+
+\begin{intuicion}[Qué significa un hueco]
+Los huecos no caen siempre en el mismo sitio; se desplazan de un día a otro. Para un lugar dado
+cerca del ecuador, lo que ocurre es que algunos días, aproximadamente uno de cada seis o siete,
+Aqua no lo observa de día. Ese día cualquier fuego en ese lugar es invisible para Aqua, pero no
+para VIIRS. La figura~\ref{fig:worldview} del capítulo~\ref{cap:modisviirs} muestra un caso
+real sobre el centro del Perú.
+\end{intuicion}
+
+\section{Número de observaciones por día}
+
+Juntando todo, para un lugar de latitud baja como Junín, el número de oportunidades de
+observación por día ha cambiado mucho a lo largo del registro:
+
+\begin{center}
+\begin{tabular}{lcl}
+\toprule
+Periodo & Pasadas diarias (día + noche) & Sensores \\
+\midrule
+2000--2002 & hasta 2 & Terra \\
+2002--2011 & hasta 4 & Terra, Aqua \\
+2012--2017 & hasta 4 MODIS + 2 VIIRS & + Suomi NPP \\
+2018--2023 & hasta 4 MODIS + 4 VIIRS & + NOAA-20 \\
+2024-- & hasta 4 MODIS + 6 VIIRS & + NOAA-21 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+<<Hasta>> porque los huecos de MODIS reducen el número real. La consecuencia es directa: si se
+suman los focos de todos los satélites disponibles en cada época, el total crece simplemente
+porque hay más ojos mirando.
+
+\begin{parareto}
+Antes de calibrar nada, \textbf{fija el conjunto de satélites} que entra en la serie. Una opción
+limpia: usar solo Aqua para la era MODIS y solo Suomi NPP para la era VIIRS, que comparten la
+hora de las 13:30. La columna \texttt{satellite} de los datos permite filtrar. Añadir NOAA-20 y
+NOAA-21 mejora la detección reciente, pero rompe la comparabilidad con los años anteriores a
+menos que se corrija expresamente.
+\end{parareto}
+
+\resumen
+
+\begin{itemize}
+  \item El periodo de una órbita circular depende solo de su altura:
+  $P = 2\pi\sqrt{r^3/GM}$. MODIS orbita en unos 99 minutos y VIIRS en unos 101.
+  \item Una órbita \textbf{polar} permite ver todo el planeta; una \textbf{heliosíncrona}
+  garantiza que el satélite pase siempre a la misma hora solar local.
+  \item \textbf{Terra} cruza a las 10:30/22:30; \textbf{Aqua} y los tres \textbf{VIIRS}, a las
+  13:30/01:30. Aqua y Suomi NPP forman la pareja natural de comparación. Terra no tiene sucesor.
+  \item El fuego tiene un \textbf{ciclo diurno} con máximo a primera hora de la tarde. La hora
+  de paso determina qué fracción de la actividad se observa.
+  \item Las órbitas de Terra y Aqua \textbf{derivan} en sus últimos años.
+  \item La franja de MODIS (2330~km) deja \textbf{huecos} en latitudes bajas; la de VIIRS
+  (3040~km) no.
+  \item El número de satélites en vuelo ha cambiado; hay que fijar cuáles se usan.
+\end{itemize}
+
+\ejercicios
+
+\begin{enumerate}
+  \item Calcula el periodo de un satélite a 500~km de altura y el de uno a 1000~km. ¿Cuántas
+  órbitas diarias da cada uno?
+  \item Con la ecuación~\eqref{eq:separacion}, calcula la separación entre trazas consecutivas
+  en el ecuador para un satélite con periodo de 95 minutos. ¿Qué ancho mínimo de franja necesita
+  para no dejar huecos?
+  \item La separación entre trazas a una latitud $\varphi$ es aproximadamente la del ecuador
+  multiplicada por $\cos\varphi$. ¿A partir de qué latitud dejan de existir los huecos de
+  MODIS? ¿Y a la latitud de Huancayo ($12^\circ$~S), cuánto mide el hueco?
+  \item Con la campana del ejemplo de este capítulo, calcula qué fracción del máximo observa una
+  pasada a las 15:00 y otra a las 09:00. Si Aqua deriva de las 13:30 hacia las 15:00, ¿sube o
+  baja su conteo en esa región? ¿Y si Terra deriva de las 10:30 hacia las 09:00?
+  \item Un compañero propone sumar los focos de Terra y Aqua para la era MODIS y los de Suomi
+  NPP, NOAA-20 y NOAA-21 para la era VIIRS, <<para tener el máximo de datos>>. Escribe dos
+  objeciones.
+  \item ¿Por qué una órbita heliosíncrona necesita una inclinación mayor de 90$^\circ$ y no
+  exactamente 90$^\circ$? Explícalo en un párrafo usando la idea de precesión.
+\end{enumerate}

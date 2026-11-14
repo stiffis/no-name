@@ -1,0 +1,48 @@
+\documentclass[11pt,oneside,openany]{book}
+\input{preambulo}
+\input{datos/peru_macros}
+\input{datos/peru_modelos_macros}
+\input{datos/peru_regiones_macros}
+\input{datos/peru_noaa20_macros}
+
+\hypersetup{pdftitle={Fuego desde el espacio: teoría para armonizar los focos de calor de MODIS y VIIRS}}
+
+\begin{document}
+
+\frontmatter
+\input{capitulos/portada}
+\tableofcontents
+\input{capitulos/00_prefacio}
+
+\mainmatter
+
+\part{El fuego y la luz}
+\input{capitulos/01_problema}
+\input{capitulos/02_radiacion}
+\input{capitulos/03_atmosfera}
+
+\part{Satélites y sensores}
+\input{capitulos/04_orbitas}
+\input{capitulos/05_escaneo}
+\input{capitulos/06_modis_viirs}
+
+\part{Del píxel al foco de calor}
+\input{capitulos/07_deteccion}
+\input{capitulos/08_frp}
+\input{capitulos/09_errores}
+\input{capitulos/10_firms}
+
+\part{Armonizar dos registros}
+\input{capitulos/11_estadistica}
+\input{capitulos/12_armonizacion}
+\input{capitulos/13_calendario}
+
+\part{Hacia la aplicación}
+\input{capitulos/14_aplicacion}
+
+\appendix
+\input{capitulos/A_glosario}
+\input{capitulos/B_formulas}
+\input{capitulos/C_fuentes}
+
+\end{document}

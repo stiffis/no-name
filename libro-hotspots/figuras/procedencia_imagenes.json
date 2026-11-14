@@ -1,0 +1,78 @@
+[
+  {
+    "archivo": "camp_color.jpg",
+    "fecha_escena": "2018-11-09",
+    "bbox_sur_oeste_norte_este": "39.45,-121.95,40.05,-121.35",
+    "capas": "VIIRS_SNPP_CorrectedReflectance_TrueColor",
+    "fuente": "NASA GIBS/Worldview Snapshots",
+    "url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2018-11-09&BBOX=39.45,-121.95,40.05,-121.35&CRS=EPSG:4326&FORMAT=image/jpeg&WIDTH=1000&HEIGHT=1000&LAYERS=VIIRS_SNPP_CorrectedReflectance_TrueColor",
+    "sha256": "14755b7d96253dc75e5a6716436cd0bdee063bad49402d6401476cf97d12bd85",
+    "procedencia": "URL reconstruida de la descarga registrada en la conversación original de Claude; imagen conservada sin alterar."
+  },
+  {
+    "archivo": "camp_falso.jpg",
+    "fecha_escena": "2018-11-09",
+    "bbox_sur_oeste_norte_este": "39.45,-121.95,40.05,-121.35",
+    "capas": "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",
+    "fuente": "NASA GIBS/Worldview Snapshots",
+    "url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2018-11-09&BBOX=39.45,-121.95,40.05,-121.35&CRS=EPSG:4326&FORMAT=image/jpeg&WIDTH=1000&HEIGHT=1000&LAYERS=VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",
+    "sha256": "160e2aa5008f39a6548d0facf06b87fd7eaa826ef2f86cdd77d5ee8c82b43e7a",
+    "procedencia": "URL reconstruida de la descarga registrada en la conversación original de Claude; imagen conservada sin alterar."
+  },
+  {
+    "archivo": "camp_focos.jpg",
+    "fecha_escena": "2018-11-09",
+    "bbox_sur_oeste_norte_este": "39.45,-121.95,40.05,-121.35",
+    "capas": "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1,VIIRS_SNPP_Thermal_Anomalies_375m_Day",
+    "fuente": "NASA GIBS/Worldview Snapshots",
+    "url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2018-11-09&BBOX=39.45,-121.95,40.05,-121.35&CRS=EPSG:4326&FORMAT=image/jpeg&WIDTH=1000&HEIGHT=1000&LAYERS=VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1,VIIRS_SNPP_Thermal_Anomalies_375m_Day",
+    "sha256": "0a1d34bab351c0b7a8d23ba23189e281cdbb582ff09005e0188b8015827c3aed",
+    "procedencia": "URL reconstruida de la descarga registrada en la conversación original de Claude; imagen conservada sin alterar."
+  },
+  {
+    "archivo": "wv_viirs.jpg",
+    "fecha_escena": "2024-09-15",
+    "bbox_sur_oeste_norte_este": "-14,-77.5,-9,-72.5",
+    "capas": "VIIRS_SNPP_CorrectedReflectance_TrueColor,VIIRS_SNPP_Thermal_Anomalies_375m_All",
+    "fuente": "NASA GIBS/Worldview Snapshots",
+    "url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2024-09-15&BBOX=-14,-77.5,-9,-72.5&CRS=EPSG:4326&FORMAT=image/jpeg&WIDTH=1100&HEIGHT=1100&LAYERS=VIIRS_SNPP_CorrectedReflectance_TrueColor,VIIRS_SNPP_Thermal_Anomalies_375m_All",
+    "sha256": "3b00fd87b1d5e3441f6b60aedc6a19fb02412ae36e25c72c1444c50911608812",
+    "procedencia": "URL reconstruida de la descarga registrada en la conversación original de Claude; imagen conservada sin alterar."
+  },
+  {
+    "archivo": "wv_modis.jpg",
+    "fecha_escena": "2024-09-15",
+    "bbox_sur_oeste_norte_este": "-14,-77.5,-9,-72.5",
+    "capas": "MODIS_Aqua_CorrectedReflectance_TrueColor,MODIS_Aqua_Thermal_Anomalies_All",
+    "fuente": "NASA GIBS/Worldview Snapshots",
+    "url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2024-09-15&BBOX=-14,-77.5,-9,-72.5&CRS=EPSG:4326&FORMAT=image/jpeg&WIDTH=1100&HEIGHT=1100&LAYERS=MODIS_Aqua_CorrectedReflectance_TrueColor,MODIS_Aqua_Thermal_Anomalies_All",
+    "sha256": "4776b9dd5ac442316626ae63ba4d493bcae58892568a6ff6454e29c9220da7ff",
+    "procedencia": "URL reconstruida de la descarga registrada en la conversación original de Claude; imagen conservada sin alterar."
+  },
+  {
+    "archivo": "peru_selva_color.jpg",
+    "fecha_escena": "2024-09-15",
+    "bbox_sur_oeste_norte_este": "-10.5,-75.5,-9.5,-74.5",
+    "capas": "VIIRS_SNPP_CorrectedReflectance_TrueColor",
+    "fuente": "NASA GIBS/Worldview Snapshots",
+    "url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2024-09-15&BBOX=-10.5,-75.5,-9.5,-74.5&CRS=EPSG:4326&FORMAT=image/jpeg&WIDTH=1000&HEIGHT=1000&LAYERS=VIIRS_SNPP_CorrectedReflectance_TrueColor",
+    "sha256": "500057045fbb8e3242c6622f55f68232270ea37eb0b6de7e328f2a72bd747244",
+    "procedencia": "URL reconstruida de la descarga registrada en la conversación original de Claude; imagen conservada sin alterar."
+  },
+  {
+    "archivo": "peru_selva_infrarrojo.jpg",
+    "fecha_escena": "2024-09-15",
+    "bbox_sur_oeste_norte_este": "-10.5,-75.5,-9.5,-74.5",
+    "capas": "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",
+    "fuente": "NASA GIBS/Worldview Snapshots",
+    "url": "https://wvs.earthdata.nasa.gov/api/v1/snapshot?REQUEST=GetSnapshot&TIME=2024-09-15&BBOX=-10.5,-75.5,-9.5,-74.5&CRS=EPSG:4326&FORMAT=image/jpeg&WIDTH=1000&HEIGHT=1000&LAYERS=VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",
+    "sha256": "6866c3d06c01d0cd40e2205ab9b15610d1ddcf18a28d9f30e6808edb0e6c4968",
+    "procedencia": "URL reconstruida de la descarga registrada en la conversación original de Claude; imagen conservada sin alterar."
+  },
+  {
+    "archivo": "camp_zoom.jpg",
+    "derivado_de": "camp_focos.jpg",
+    "transformacion": "Recorte realizado en el trabajo original; no aumenta la resolución del sensor.",
+    "sha256": "17543f3db69e8b157df15d6d6d3b6e852bff753af6b7c4a2b713be81a2d6e051"
+  }
+]

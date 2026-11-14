@@ -1,0 +1,213 @@
+\chapter{Fórmulas, unidades y comprobaciones}\label{ap:formulas}
+
+Una fórmula solo es útil si se conocen sus unidades y el problema para el que fue derivada.
+Este apéndice reúne las relaciones principales y añade controles que ayudan a detectar
+errores antes de que lleguen a una gráfica. Los capítulos contienen su desarrollo.
+
+\section{Constantes y conversiones}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+\toprule
+Magnitud & Valor utilizado \\
+\midrule
+Velocidad de la luz $c$ & \SI{299792458}{\metre\per\second} \\
+Constante de Planck $h$ & \SI{6.62607015e-34}{\joule\second} \\
+Constante de Boltzmann $k_{\mathrm B}$ & \SI{1.380649e-23}{\joule\per\kelvin} \\
+Stefan--Boltzmann $\sigma$ & $\SI{5.670374419e-8}{\watt\per\square\metre\per\kelvin\tothe{4}}$ \\
+Un micrómetro & $10^{-6}$ m \\
+Un megavatio & $10^6$ W $=10^6$ J/s \\
+Una hectárea & $10^4$ m$^2$ \\
+Un kilómetro cuadrado & $10^6$ m$^2=100$ ha \\
+Temperatura absoluta & $T\,[\mathrm K]=t\,[{}^\circ\mathrm C]+273{,}15$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Las tres primeras constantes tienen valores fijados en el SI; las cifras de $\sigma$
+se muestran redondeadas. En los ejemplos basta normalmente usar $5{,}67\times10^{-8}$.
+Nunca se sustituye una temperatura en Celsius en $T^4$ ni en la ley de Planck.
+
+\section{Radiación térmica}
+
+Para un cuerpo negro, la radiancia espectral por unidad de longitud de onda es
+\begin{equation}
+ B_\lambda(T)=\frac{2hc^2}{\lambda^5}
+ \frac{1}{\exp(hc/(\lambda k_{\mathrm B}T))-1}.
+\end{equation}
+Con $\lambda$ en metros, el resultado está en
+$\mathrm{W\,m^{-2}\,sr^{-1}\,m^{-1}}$. Para expresarlo por micrómetro se multiplica por
+$10^{-6}$. Esa conversión no es lo mismo que reemplazar sin más la longitud de onda
+por su valor numérico en micrómetros.
+
+La forma práctica del capítulo~\ref{cap:radiacion} usa
+\begin{equation}
+ B_\lambda(T)=\frac{c_1}{\lambda^5[\exp(c_2/(\lambda T))-1]},\quad
+ c_1\simeq1{,}19104\times10^8,\quad c_2\simeq14387{,}77,
+\end{equation}
+con $\lambda$ en micrómetros y radiancia en
+$\mathrm{W\,m^{-2}\,sr^{-1}\,\mu m^{-1}}$. Su inversión da
+\begin{equation}
+ T_b=\frac{c_2}{\lambda\ln[1+c_1/(\lambda^5L_\lambda)]}.
+\end{equation}
+El control más simple consiste en generar $L=B_\lambda(T)$ y comprobar que la inversión
+recupera $T$. En un instrumento real se integra sobre la respuesta espectral del canal;
+la longitud central usada aquí es una aproximación pedagógica.
+
+\begin{align}
+ \lambda_{\max}T&\simeq2898\ \mathrm{\mu m\,K},\\
+ M&=\sigma T^4,\qquad P=A\varepsilon\sigma T^4.
+\end{align}
+Wien localiza el máximo de $B_\lambda$, no el de una curva expresada por frecuencia.
+$M$ es potencia por área integrada en el hemisferio. Para emisión isotrópica, integrar
+la radiancia sobre el hemisferio incluye el factor geométrico $\pi$; no se deben
+intercambiar $B_\lambda$ y $M$ como si fueran la misma magnitud.\fuente{openstax}
+
+\section{Píxel mixto y potencia del fuego}
+
+Con emisividad uno, sin atmósfera ni reflexión, y fuego que ocupa una fracción $p$,
+\begin{equation}
+ L_\lambda=pB_\lambda(T_f)+(1-p)B_\lambda(T_b).
+\end{equation}
+Las \emph{radiancias} se promedian; las temperaturas de brillo no. La inversión de
+Planck es no lineal. Para una superficie de fuego $A_f$ a temperatura uniforme,
+\begin{equation}
+ P_{\mathrm{exceso}}\simeq A_f\varepsilon\sigma(T_f^4-T_b^4).
+\end{equation}
+El modelo es idealizado: un fuego real tiene una distribución de temperaturas.
+
+La aproximación MIR del capítulo~\ref{cap:frp} relaciona un exceso de radiancia con
+potencia mediante un coeficiente que depende de banda y rango de temperaturas:
+\begin{equation}
+ P\simeq\frac{\sigma}{a}A_{\mathrm{pixel}}
+ [L_{\mathrm{MIR}}-L_{\mathrm{fondo}}].
+\end{equation}
+Se debe usar $a$ con las mismas unidades espectrales de $L$. No es una constante
+universal de todos los sensores. Para usar FIRMS normalmente se parte de la FRP
+publicada, siguiendo la documentación del producto.\fuente{wooster2003}
+
+Si se conoce una curva temporal de potencia,
+\begin{equation}
+ E=\int_{t_0}^{t_1}P(t)\,\mathrm dt
+ \simeq\sum_i\frac{P_i+P_{i+1}}{2}(t_{i+1}-t_i).
+\end{equation}
+Con MW y segundos se obtiene MJ. Una potencia de 10 MW mantenida durante una hora
+equivale a $10\times3600=36000$ MJ, es decir, 36 GJ. Dos pasadas con FRP de 10 MW no
+demuestran que la potencia permaneciera constante entre ellas. La integral exige
+un modelo temporal o muestreo suficiente.\fuente{wooster2005}
+
+\section{Órbita, geometría y coordenadas}
+
+En una órbita circular de radio $r=R+h$, con parámetro gravitacional $\mu=GM$,
+\begin{equation}
+ T_{\mathrm{orb}}=2\pi\sqrt{\frac{r^3}{\mu}}.
+\end{equation}
+Si $r$ está en metros y $\mu$ en $\mathrm{m^3\,s^{-2}}$, el periodo sale en segundos.
+El periodo de una vuelta no es el intervalo entre observaciones de un punto del suelo.
+
+Para una esfera de radio $R$, una celda entre latitudes $\phi_1$ y $\phi_2$ y ancho
+longitudinal $\Delta\lambda$ tiene área
+\begin{equation}\label{eq:area-celda}
+ A=R^2\Delta\lambda(\sin\phi_2-\sin\phi_1),
+\end{equation}
+con ángulos en radianes. La aproximación local es
+$A\simeq R^2\Delta\phi\Delta\lambda\cos\phi$. Esto explica por qué una rejilla
+regular en grados no tiene área constante. En un elipsoide se usa una formulación
+geodésica o una proyección adecuada si esa precisión es necesaria.
+
+Los índices de una rejilla de paso $\Delta$ en grados son
+\begin{equation}
+ i=\left\lfloor\frac{\phi+90}{\Delta}\right\rfloor,\qquad
+ j=\left\lfloor\frac{\lambda+180}{\Delta}\right\rfloor.
+\end{equation}
+La operación es suelo matemático, no truncamiento hacia cero. Se define además la
+convención de bordes, por ejemplo intervalos cerrados a la izquierda y abiertos a la
+derecha. Los polos y $180^\circ$ necesitan tratamiento de frontera. En el caso peruano
+se usa aritmética decimal para no desplazar un punto exactamente sobre un borde por
+un error binario de redondeo.
+
+\section{Conteos y calibración}
+
+Bajo el modelo Poisson, $\operatorname{Var}(N)=\mu$; estimar $\mu$ por $N$ lleva a la
+aproximación relativa $1/\sqrt N$ para $N>0$. No es una ley universal de incertidumbre
+del fuego. Dependencias, omisiones y muestreo desigual pueden dominarla. Con $N=0$
+no se concluye incertidumbre cero ni se evalúa esa expresión.
+
+Para parejas $(X_i,Y_i)$ agregadas sobre soportes comparables, la razón de sumas es
+\begin{equation}
+ \widehat r=\frac{\sum_iY_i}{\sum_iX_i},\qquad\sum_iX_i>0.
+\end{equation}
+Promediar razones mensuales sin pesos estima otra cantidad. Además, que un mes con
+$X_i=0$ no impida calcular la razón global no significa que el modelo pueda recuperar
+su actividad: $\widehat r\,0=0$ aunque VIIRS haya registrado detecciones.
+
+Para la contracción del capítulo~\ref{cap:armonizacion},
+\begin{equation}
+ r_s=\frac{Y_s+kr_g}{X_s+k}
+ =\frac{X_s}{X_s+k}\frac{Y_s}{X_s}
+ +\frac{k}{X_s+k}r_g\quad(X_s>0).
+\end{equation}
+La segunda forma muestra los pesos. $k$ tiene unidades de conteo de referencia y no
+equivale necesariamente a $k$ observaciones independientes. Debe elegirse usando solo
+datos de ajuste y validación interna.
+
+Para el producto de dos factores, la propagación de primer orden da
+\begin{equation}
+ u_{12}^2\simeq u_1^2+u_2^2+2\rho u_1u_2,
+\end{equation}
+donde $u_i$ son incertidumbres estándar relativas y $\rho$ su correlación. La suma en
+cuadratura supone $\rho=0$. No se introduce directamente el ancho de un intervalo
+del 95\,{}\% como si fuera una desviación estándar. Cuando los factores comparten
+años o sensores, un remuestreo conjunto conserva mejor sus dependencias.
+
+\section{Métricas del calendario y de validación}
+
+Con referencia $b_m>0$, la anomalía relativa es $100(C_m/b_m-1)$; con $b_m=0$ se
+informa la diferencia absoluta y que la razón es indefinida. El perfil estacional
+normalizado por año cumple
+\begin{equation}
+ \sum_m p_{y,m}=1,\qquad \sum_m\bar p_m=1.
+\end{equation}
+Estas identidades detectan meses duplicados o denominadores mal construidos.
+
+Para $n$ predicciones de prueba y residuos $e_i=\widehat y_i-y_i$,
+\begin{align}
+ \mathrm{sesgo}&=\frac1n\sum_i e_i, &
+ \mathrm{MAE}&=\frac1n\sum_i|e_i|,\\
+ \mathrm{RMSE}&=\sqrt{\frac1n\sum_i e_i^2}, &
+ \mathrm{WAPE}&=100\frac{\sum_i|e_i|}{\sum_i y_i}.
+\end{align}
+WAPE requiere un total observado positivo; MAPE requiere además observaciones
+individuales no nulas. RMSE da mayor peso a errores grandes. Ninguna métrica reemplaza
+la inspección del error por mes, zona y calidad de observación.
+
+\begin{ejemplo}{un cero en la referencia observada}
+Para valores observados $0,10,50,100$ y predicciones $2,8,45,110$, calcula MAE y WAPE.
+\solucion Los errores absolutos son $2,2,5,10$; suman 19. Por tanto,
+$\mathrm{MAE}=19/4=4{,}75$ y $\mathrm{WAPE}=100(19/160)=11{,}875\,{}\%$.
+MAPE no está definido porque el primer observado es cero. Eliminar ese caso sin
+explicarlo escondería una falsa detección de actividad.
+\end{ejemplo}
+
+\section{Resultados que sirven para revisar el libro}
+
+El programa \texttt{scripts/verificar\_ejemplos.py} reproduce ejemplos aritméticos
+didácticos. El programa \texttt{scripts/analizar\_peru.py} calcula por separado el caso
+real; sus cifras no se mezclan con las inventadas para explicar una operación.
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Comprobación del caso real & Resultado \\
+\midrule
+Filas en los 24 CSV originales de Perú & \PeruFilas \\
+Celdas-día Aqua, ajuste 2018--2020 & \PeruAjusteAqua \\
+Celdas-día VIIRS, ajuste 2018--2020 & \PeruAjusteVIIRS \\
+Razón de sumas del ajuste & \PeruRatio \\
+WAPE mensual, prueba 2021--2022 & \PeruWAPE\,{}\% \\
+Mediana de septiembre, VIIRS 2013--2023 & \PeruSeptMediana \\
+Septiembre de 2024, misma selección & \PeruSeptActual \\
+\bottomrule
+\end{tabular}
+\end{center}
+Si otra ejecución difiere, primero se comparan huellas de archivos, versiones,
+filtros, zona horaria y claves de agrupación. Solo después se investiga la aritmética.

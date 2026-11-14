@@ -1,0 +1,270 @@
+{
+  "caso": "Perú, archivos nacionales de FIRMS; no equivale a un censo de incendios",
+  "fecha_calculo_utc": "2026-11-10T00:11:13.141740+00:00",
+  "periodo": [
+    2013,
+    2024
+  ],
+  "referencia_estacional": [
+    2013,
+    2023
+  ],
+  "entrenamiento": [
+    2018,
+    2020
+  ],
+  "prueba": [
+    2021,
+    2022
+  ],
+  "filtros": "Aqua / SNPP; D; type=0; confianza >=30 / n,h; sin duplicados idénticos",
+  "rejilla_grados": 0.05,
+  "zona_horaria": "UTC-05:00",
+  "total_filas_originales": 1100073,
+  "total_filas_seleccionadas": 908652,
+  "sum_aqua_ajuste": 26508,
+  "sum_viirs_ajuste": 124188,
+  "razon_ajuste": 4.684925305568131,
+  "mae_prueba": 717.3696431266034,
+  "sesgo_prueba": 115.39842688999556,
+  "wape_prueba_porcentaje": 21.637934138144075,
+  "anuales": [
+    {
+      "anio": 2013,
+      "aqua": 7034,
+      "viirs": 34295,
+      "razon": 4.87560420813193,
+      "aqua_convertido": 32953.76459936623,
+      "focos_aqua": 9754,
+      "focos_viirs": 56482
+    },
+    {
+      "anio": 2014,
+      "aqua": 6196,
+      "viirs": 31307,
+      "razon": 5.052775984506133,
+      "aqua_convertido": 29027.797193300135,
+      "focos_aqua": 8294,
+      "focos_viirs": 50228
+    },
+    {
+      "anio": 2015,
+      "aqua": 8305,
+      "viirs": 38107,
+      "razon": 4.588440698374473,
+      "aqua_convertido": 38908.30466274332,
+      "focos_aqua": 11469,
+      "focos_viirs": 60686
+    },
+    {
+      "anio": 2016,
+      "aqua": 10175,
+      "viirs": 45558,
+      "razon": 4.477444717444717,
+      "aqua_convertido": 47669.11498415573,
+      "focos_aqua": 13863,
+      "focos_viirs": 74526
+    },
+    {
+      "anio": 2017,
+      "aqua": 6440,
+      "viirs": 31551,
+      "razon": 4.899223602484472,
+      "aqua_convertido": 30170.91896785876,
+      "focos_aqua": 8749,
+      "focos_viirs": 49307
+    },
+    {
+      "anio": 2018,
+      "aqua": 7569,
+      "viirs": 34259,
+      "razon": 4.526225393050601,
+      "aqua_convertido": 35460.19963784518,
+      "focos_aqua": 10382,
+      "focos_viirs": 54188
+    },
+    {
+      "anio": 2019,
+      "aqua": 9491,
+      "viirs": 38286,
+      "razon": 4.033926878095038,
+      "aqua_convertido": 44464.62607514713,
+      "focos_aqua": 13258,
+      "focos_viirs": 63013
+    },
+    {
+      "anio": 2020,
+      "aqua": 9448,
+      "viirs": 51643,
+      "razon": 5.466024555461473,
+      "aqua_convertido": 44263.1742870077,
+      "focos_aqua": 12906,
+      "focos_viirs": 84056
+    },
+    {
+      "anio": 2021,
+      "aqua": 7344,
+      "viirs": 35548,
+      "razon": 4.84041394335512,
+      "aqua_convertido": 34406.09144409235,
+      "focos_aqua": 10096,
+      "focos_viirs": 57997
+    },
+    {
+      "anio": 2022,
+      "aqua": 10231,
+      "viirs": 44020,
+      "razon": 4.302609715570325,
+      "aqua_convertido": 47931.47080126755,
+      "focos_aqua": 14429,
+      "focos_viirs": 73399
+    },
+    {
+      "anio": 2023,
+      "aqua": 8606,
+      "viirs": 41447,
+      "razon": 4.816058563792703,
+      "aqua_convertido": 40318.46717971933,
+      "focos_aqua": 11789,
+      "focos_viirs": 66019
+    },
+    {
+      "anio": 2024,
+      "aqua": 10769,
+      "viirs": 46244,
+      "razon": 4.294177732379979,
+      "aqua_convertido": 50451.9606156632,
+      "focos_aqua": 15146,
+      "focos_viirs": 78616
+    }
+  ],
+  "climatologia": [
+    {
+      "mes": 1,
+      "q10": 626.0,
+      "mediana": 960,
+      "q90": 1740.0,
+      "actual2024": 850,
+      "fraccion_anual_media": 2.7572902398237478,
+      "anomalia_porcentual": -11.458333333333337,
+      "acumulado": 2.7572902398237478
+    },
+    {
+      "mes": 2,
+      "q10": 280.0,
+      "mediana": 495,
+      "q90": 752.0,
+      "actual2024": 477,
+      "fraccion_anual_media": 1.4216913857018332,
+      "anomalia_porcentual": -3.6363636363636376,
+      "acumulado": 4.178981625525581
+    },
+    {
+      "mes": 3,
+      "q10": 322.0,
+      "mediana": 343,
+      "q90": 467.0,
+      "actual2024": 612,
+      "fraccion_anual_media": 0.9870546689217089,
+      "anomalia_porcentual": 78.4256559766764,
+      "acumulado": 5.16603629444729
+    },
+    {
+      "mes": 4,
+      "q10": 466.0,
+      "mediana": 559,
+      "q90": 970.0,
+      "actual2024": 785,
+      "fraccion_anual_media": 1.711256946946977,
+      "anomalia_porcentual": 40.429338103756706,
+      "acumulado": 6.877293241394266
+    },
+    {
+      "mes": 5,
+      "q10": 508.0,
+      "mediana": 943,
+      "q90": 1177.0,
+      "actual2024": 1085,
+      "fraccion_anual_media": 2.371229668326252,
+      "anomalia_porcentual": 15.058324496288433,
+      "acumulado": 9.248522909720519
+    },
+    {
+      "mes": 6,
+      "q10": 1107.0,
+      "mediana": 1580,
+      "q90": 2346.0,
+      "actual2024": 2042,
+      "fraccion_anual_media": 4.609973953391052,
+      "anomalia_porcentual": 29.240506329113924,
+      "acumulado": 13.858496863111572
+    },
+    {
+      "mes": 7,
+      "q10": 2825.0,
+      "mediana": 3642,
+      "q90": 4493.0,
+      "actual2024": 3127,
+      "fraccion_anual_media": 9.749082223922468,
+      "anomalia_porcentual": -14.140582097748489,
+      "acumulado": 23.60757908703404
+    },
+    {
+      "mes": 8,
+      "q10": 7153.0,
+      "mediana": 9444,
+      "q90": 13419.0,
+      "actual2024": 12447,
+      "fraccion_anual_media": 26.007636217031354,
+      "anomalia_porcentual": 31.797966963151204,
+      "acumulado": 49.615215304065394
+    },
+    {
+      "mes": 9,
+      "q10": 8307.0,
+      "mediana": 10967,
+      "q90": 13110.0,
+      "actual2024": 15165,
+      "fraccion_anual_media": 28.46915912918069,
+      "anomalia_porcentual": 38.27847177897328,
+      "acumulado": 78.08437443324608
+    },
+    {
+      "mes": 10,
+      "q10": 3153.0,
+      "mediana": 4992,
+      "q90": 6070.0,
+      "actual2024": 6320,
+      "fraccion_anual_media": 12.338327554093087,
+      "anomalia_porcentual": 26.602564102564095,
+      "acumulado": 90.42270198733917
+    },
+    {
+      "mes": 11,
+      "q10": 1273.0,
+      "mediana": 1770,
+      "q90": 4318.0,
+      "actual2024": 2205,
+      "fraccion_anual_media": 6.270702623037624,
+      "anomalia_porcentual": 24.576271186440678,
+      "acumulado": 96.69340461037679
+    },
+    {
+      "mes": 12,
+      "q10": 779.0,
+      "mediana": 1222,
+      "q90": 1491.0,
+      "actual2024": 1129,
+      "fraccion_anual_media": 3.306595389623204,
+      "anomalia_porcentual": -7.610474631751229,
+      "acumulado": 99.99999999999999
+    }
+  ],
+  "limitaciones": [
+    "Sin máscara de observaciones despejadas: ninguna corrección de cobertura.",
+    "CSV nacional: se conserva la selección espacial de FIRMS.",
+    "La calibración es una línea base didáctica, no un producto NASA validado.",
+    "Prueba temporal elegida antes de mirar resultados; no se optimiza con ella."
+  ],
+  "segundos_procesamiento": 55.65089737800008
+}
