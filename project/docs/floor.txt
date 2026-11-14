@@ -1,0 +1,11 @@
+1. Floor: Suomi NPP predicted from NOAA-20 x 0.964, 2019-2021 (no gap filling)
+   department-month 10.5 %  country-month 6.0 %  department-season 3.8 %  department-year 3.1 %  country-year 0.9 %
+
+2. Chosen model (poisson_region_piece_k50), test 2018-2022
+   department-month 20.5 %  country-month 9.3 %  department-season 10.6 %  department-year 9.1 %  country-year 5.2 %
+
+3. Department-month test error by observed activity
+       0-20 cell-days: n= 580  WAPE  67.4 %  share of total error  6.3 %
+     20-100 cell-days: n= 514  WAPE  33.0 %  share of total error 21.6 %
+    100-500 cell-days: n= 279  WAPE  23.9 %  share of total error 38.3 %
+       500+ cell-days: n=  83  WAPE  13.4 %  share of total error 33.8 %

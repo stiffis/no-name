@@ -1,0 +1,646 @@
+[
+  {
+    "file": "modis_2002_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2002/modis_2002_Peru.csv",
+    "sha256": "0a4fe2c0b3a98613b429a6c324226c4e0d0a8a3e93a1d40650616b4b07455efd",
+    "bytes": 558765,
+    "downloaded_utc": "2026-11-14T01:27:55.558807+00:00",
+    "raw_rows": 7158,
+    "accepted_rows": 5781,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 7158
+    }
+  },
+  {
+    "file": "modis_2003_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2003/modis_2003_Peru.csv",
+    "sha256": "2b06be38fec8ebf243b9a166afdef70e44b00f6e0bc3f13e7bab5a85f8a113de",
+    "bytes": 1174416,
+    "downloaded_utc": "2026-11-14T01:27:56.736796+00:00",
+    "raw_rows": 15033,
+    "accepted_rows": 12463,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 15033
+    }
+  },
+  {
+    "file": "modis_2004_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2004/modis_2004_Peru.csv",
+    "sha256": "4379d0fb913d5677e6d444f95324b70667dc13ceb381bab1d7d4fee94cfdcc91",
+    "bytes": 864748,
+    "downloaded_utc": "2026-11-14T01:27:57.865786+00:00",
+    "raw_rows": 11147,
+    "accepted_rows": 9595,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 11147
+    }
+  },
+  {
+    "file": "modis_2005_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2005/modis_2005_Peru.csv",
+    "sha256": "a5a2c4a5e5002196b71746f57be26da8d9b3a991f447efe96c10c11da11ca93f",
+    "bytes": 1749897,
+    "downloaded_utc": "2026-11-14T01:27:59.183774+00:00",
+    "raw_rows": 22392,
+    "accepted_rows": 17608,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 22392
+    }
+  },
+  {
+    "file": "modis_2006_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2006/modis_2006_Peru.csv",
+    "sha256": "a4e40698c68cb4cc0de49ca41be82feb8fe6af793f2f3b05c0239d40f8d8ee97",
+    "bytes": 992040,
+    "downloaded_utc": "2026-11-14T01:28:00.309763+00:00",
+    "raw_rows": 12721,
+    "accepted_rows": 10099,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 12721
+    }
+  },
+  {
+    "file": "modis_2007_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2007/modis_2007_Peru.csv",
+    "sha256": "c47f088135ef8423c6c98bb3774e09b734790f69f8af4feae859d39833204563",
+    "bytes": 1376531,
+    "downloaded_utc": "2026-11-14T01:28:01.659751+00:00",
+    "raw_rows": 17676,
+    "accepted_rows": 14554,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 17676
+    }
+  },
+  {
+    "file": "modis_2008_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2008/modis_2008_Peru.csv",
+    "sha256": "c9418abbd457c4c4af368813fdf8b8c7146f4948c56e2fdd644d30837262abcd",
+    "bytes": 1061770,
+    "downloaded_utc": "2026-11-14T01:28:02.849741+00:00",
+    "raw_rows": 13614,
+    "accepted_rows": 11289,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 13614
+    }
+  },
+  {
+    "file": "modis_2009_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2009/modis_2009_Peru.csv",
+    "sha256": "bd129fedcb874f5f8e3ecd6ce41af866f921be24a58e50c8754745339464a708",
+    "bytes": 886650,
+    "downloaded_utc": "2026-11-14T01:28:04.038730+00:00",
+    "raw_rows": 11346,
+    "accepted_rows": 9123,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 11346
+    }
+  },
+  {
+    "file": "modis_2010_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2010/modis_2010_Peru.csv",
+    "sha256": "a871f09f991de57f1da31f8a84e719187070dd0677c64d705d0ae7be39c2d847",
+    "bytes": 1544170,
+    "downloaded_utc": "2026-11-14T01:28:05.245719+00:00",
+    "raw_rows": 19809,
+    "accepted_rows": 15591,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 19809
+    }
+  },
+  {
+    "file": "modis_2011_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2011/modis_2011_Peru.csv",
+    "sha256": "778ae3c125f8613475047d4bcc76d4f1710014e23134dfedcb54692f160bf4ca",
+    "bytes": 868443,
+    "downloaded_utc": "2026-11-14T01:28:06.453708+00:00",
+    "raw_rows": 11143,
+    "accepted_rows": 8929,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 11143
+    }
+  },
+  {
+    "file": "modis_2012_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2012/modis_2012_Peru.csv",
+    "sha256": "fcc8618cdb71ed11d9c3773433d579a4b75496d9250c8ad406d1857c34f66704",
+    "bytes": 1449190,
+    "downloaded_utc": "2026-11-14T01:28:07.773696+00:00",
+    "raw_rows": 18561,
+    "accepted_rows": 14518,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 18561
+    }
+  },
+  {
+    "file": "modis_2013_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2013/modis_2013_Peru.csv",
+    "sha256": "73534bd306c83ddd86045e8d50ef46a3441625ff6aa1924de093369e12fd1243",
+    "bytes": 956476,
+    "downloaded_utc": "2026-11-14T01:27:51.932840+00:00",
+    "raw_rows": 12268,
+    "accepted_rows": 9754,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 12268
+    }
+  },
+  {
+    "file": "modis_2014_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2014/modis_2014_Peru.csv",
+    "sha256": "43db4b41876e8abf691b66df9b08975cbb9c5b9225f51b5cef7aed03e6ab36cf",
+    "bytes": 832900,
+    "downloaded_utc": "2026-11-14T01:27:51.934839+00:00",
+    "raw_rows": 10677,
+    "accepted_rows": 8294,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 10677
+    }
+  },
+  {
+    "file": "modis_2015_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2015/modis_2015_Peru.csv",
+    "sha256": "405ceba40ff8292d49ec3aa7aa61d40a94ceccdb969e7d5ce0ebd974eb45b9f2",
+    "bytes": 1157203,
+    "downloaded_utc": "2026-11-14T01:27:51.935840+00:00",
+    "raw_rows": 14824,
+    "accepted_rows": 11469,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 14824
+    }
+  },
+  {
+    "file": "modis_2016_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2016/modis_2016_Peru.csv",
+    "sha256": "b0e94070316f64a90e7a3387df1400c2cbbf2749e17a7d0d43ad25b27a1328d4",
+    "bytes": 1509173,
+    "downloaded_utc": "2026-11-14T01:27:51.938839+00:00",
+    "raw_rows": 19285,
+    "accepted_rows": 13863,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 19285
+    }
+  },
+  {
+    "file": "modis_2017_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2017/modis_2017_Peru.csv",
+    "sha256": "ca099509ec154f2b1fe0d473f2a3af07217d7fc89c6dc196a4ddbcdd48588915",
+    "bytes": 897528,
+    "downloaded_utc": "2026-11-14T01:27:51.939921+00:00",
+    "raw_rows": 11481,
+    "accepted_rows": 8749,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.2": 11481
+    }
+  },
+  {
+    "file": "modis_2018_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2018/modis_2018_Peru.csv",
+    "sha256": "a1a8135a4ba921c74296abece6f89cb7a60a47f460a4cccb43127258616fdec0",
+    "bytes": 1068270,
+    "downloaded_utc": "2026-11-14T01:27:51.941839+00:00",
+    "raw_rows": 13522,
+    "accepted_rows": 10382,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.03": 13522
+    }
+  },
+  {
+    "file": "modis_2019_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2019/modis_2019_Peru.csv",
+    "sha256": "fcef7a8eedd119e7f1f3ab57de3687bbc457b14b743f402ef7a4349bef0df2c7",
+    "bytes": 1359092,
+    "downloaded_utc": "2026-11-14T01:27:51.944839+00:00",
+    "raw_rows": 17238,
+    "accepted_rows": 13258,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.03": 17238
+    }
+  },
+  {
+    "file": "modis_2020_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2020/modis_2020_Peru.csv",
+    "sha256": "5bdee0b014b4b7ef77f29f3759fa51805927cc95a7d9707e99769f4b1c0d3a32",
+    "bytes": 1417600,
+    "downloaded_utc": "2026-11-14T01:27:51.946839+00:00",
+    "raw_rows": 17919,
+    "accepted_rows": 12906,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.03": 17919
+    }
+  },
+  {
+    "file": "modis_2021_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2021/modis_2021_Peru.csv",
+    "sha256": "cee1283132b7d193741497eb6119db436733ebbc6d4da1850a593f449abbb9c1",
+    "bytes": 1088505,
+    "downloaded_utc": "2026-11-14T01:27:51.948839+00:00",
+    "raw_rows": 13727,
+    "accepted_rows": 10096,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.03": 13727
+    }
+  },
+  {
+    "file": "modis_2022_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2022/modis_2022_Peru.csv",
+    "sha256": "f1a88db3c05201c095c1e5e7002cf1af38808c155829b571d8295525d42c4750",
+    "bytes": 1507350,
+    "downloaded_utc": "2026-11-14T01:27:51.950840+00:00",
+    "raw_rows": 19025,
+    "accepted_rows": 14429,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "6.03": 19025
+    }
+  },
+  {
+    "file": "modis_2023_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2023/modis_2023_Peru.csv",
+    "sha256": "60dd6177f5bdd135254be93f25929ed158e4a460bb5dd8ca3d23dd930464eb6e",
+    "bytes": 1270810,
+    "downloaded_utc": "2026-11-14T01:27:51.952839+00:00",
+    "raw_rows": 15893,
+    "accepted_rows": 11789,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "61.03": 15893
+    }
+  },
+  {
+    "file": "modis_2024_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2024/modis_2024_Peru.csv",
+    "sha256": "7ed5a43eed0ca4a06ea40fde95110edfd31f97733c7719af306bb5633e55b065",
+    "bytes": 1697898,
+    "downloaded_utc": "2026-11-14T01:27:51.954839+00:00",
+    "raw_rows": 21201,
+    "accepted_rows": 15146,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "61.03": 21201
+    }
+  },
+  {
+    "file": "modis_2025_Peru.csv",
+    "sensor": "Aqua",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2025/modis_2025_Peru.csv",
+    "sha256": "291929cb3710cb66cb6671489e785d0c79ed090e1b33b7694f7182d5f83f3b82",
+    "bytes": 674842,
+    "downloaded_utc": "2026-11-14T01:28:08.941685+00:00",
+    "raw_rows": 8440,
+    "accepted_rows": 6548,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "61.03": 8440
+    }
+  },
+  {
+    "file": "viirs-snpp_2012_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2012/viirs-snpp_2012_Peru.csv",
+    "sha256": "d017d562a3c53e295983a716e6c65f404c18640c9fc2412c4dd0ecb1b21e8da2",
+    "bytes": 6410998,
+    "downloaded_utc": "2026-11-14T01:28:10.686669+00:00",
+    "raw_rows": 80482,
+    "accepted_rows": 69461,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 80482
+    }
+  },
+  {
+    "file": "viirs-snpp_2013_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2013/viirs-snpp_2013_Peru.csv",
+    "sha256": "4338c0e156e72ce11b68fb84912a57a7cb548a1a4693654abe1b813a85f83da2",
+    "bytes": 5130605,
+    "downloaded_utc": "2026-11-14T01:27:52.041839+00:00",
+    "raw_rows": 64406,
+    "accepted_rows": 56482,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 64406
+    }
+  },
+  {
+    "file": "viirs-snpp_2014_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2014/viirs-snpp_2014_Peru.csv",
+    "sha256": "146a72fe8519eee68657faa7f0ea1bc99cdab64563095940d6ef2ca44250d788",
+    "bytes": 4594579,
+    "downloaded_utc": "2026-11-14T01:27:52.049839+00:00",
+    "raw_rows": 57655,
+    "accepted_rows": 50228,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 57655
+    }
+  },
+  {
+    "file": "viirs-snpp_2015_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2015/viirs-snpp_2015_Peru.csv",
+    "sha256": "3045ffd6cc447fbf3e9d5967f016ab3cb0f61d81d7cec944fc815f8af0e1275c",
+    "bytes": 5578959,
+    "downloaded_utc": "2026-11-14T01:27:52.058838+00:00",
+    "raw_rows": 69996,
+    "accepted_rows": 60686,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 69996
+    }
+  },
+  {
+    "file": "viirs-snpp_2016_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2016/viirs-snpp_2016_Peru.csv",
+    "sha256": "078ec6bdc12b47ac37b6366c7e6843cf1f0a811336eedbf130100b41069e6702",
+    "bytes": 7281547,
+    "downloaded_utc": "2026-11-14T01:27:52.067838+00:00",
+    "raw_rows": 91343,
+    "accepted_rows": 74526,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 91343
+    }
+  },
+  {
+    "file": "viirs-snpp_2017_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2017/viirs-snpp_2017_Peru.csv",
+    "sha256": "dda594cbd9e482e66be7db9f6d8ab2fe3dcc1fac20ad68784e38a21c550b043e",
+    "bytes": 4558559,
+    "downloaded_utc": "2026-11-14T01:27:52.074838+00:00",
+    "raw_rows": 57168,
+    "accepted_rows": 49307,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 57168
+    }
+  },
+  {
+    "file": "viirs-snpp_2018_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2018/viirs-snpp_2018_Peru.csv",
+    "sha256": "a3c9ad7b9d45f12ef56208411a70d5a3d59120c4b0c58de29fdc3420da35d401",
+    "bytes": 5035858,
+    "downloaded_utc": "2026-11-14T01:27:52.080838+00:00",
+    "raw_rows": 63185,
+    "accepted_rows": 54188,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 63185
+    }
+  },
+  {
+    "file": "viirs-snpp_2019_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2019/viirs-snpp_2019_Peru.csv",
+    "sha256": "f7c3b65cbed4551a6d1e7db5a7d4ce668a897993b7d0992678c1a1b080b7bdf5",
+    "bytes": 5936720,
+    "downloaded_utc": "2026-11-14T01:27:52.291836+00:00",
+    "raw_rows": 74411,
+    "accepted_rows": 63013,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 74411
+    }
+  },
+  {
+    "file": "viirs-snpp_2020_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2020/viirs-snpp_2020_Peru.csv",
+    "sha256": "4b390a47f1726589a295428b19b24fcaa67326e42fdc2c1bd4683836cfbad4d6",
+    "bytes": 7853597,
+    "downloaded_utc": "2026-11-14T01:27:52.303836+00:00",
+    "raw_rows": 98416,
+    "accepted_rows": 84056,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 98416
+    }
+  },
+  {
+    "file": "viirs-snpp_2021_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2021/viirs-snpp_2021_Peru.csv",
+    "sha256": "e6899971029457ce8f03e4d9ffb2c1e18616d74d4edf0229fa7f63acf045c8de",
+    "bytes": 5371354,
+    "downloaded_utc": "2026-11-14T01:27:52.312836+00:00",
+    "raw_rows": 67345,
+    "accepted_rows": 57997,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 67345
+    }
+  },
+  {
+    "file": "viirs-snpp_2022_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2022/viirs-snpp_2022_Peru.csv",
+    "sha256": "a166cde959b0d11866b7634a3817d571c17998d98053f6bff92310cbe3420ab0",
+    "bytes": 7142122,
+    "downloaded_utc": "2026-11-14T01:27:52.328836+00:00",
+    "raw_rows": 89579,
+    "accepted_rows": 73399,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 89579
+    }
+  },
+  {
+    "file": "viirs-snpp_2023_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Peru.csv",
+    "sha256": "8f87cc4b4c76a44c941269e2c4313c72080564bfb454c1679f6f759f9e1d2fa3",
+    "bytes": 6342229,
+    "downloaded_utc": "2026-11-14T01:27:52.358836+00:00",
+    "raw_rows": 79577,
+    "accepted_rows": 66019,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 79577
+    }
+  },
+  {
+    "file": "viirs-snpp_2024_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2024/viirs-snpp_2024_Peru.csv",
+    "sha256": "21afe44401c95f7988950c425d23938dbaffd98d392b8702fcdbab49a7a68ef8",
+    "bytes": 7963113,
+    "downloaded_utc": "2026-11-14T01:27:52.366836+00:00",
+    "raw_rows": 99932,
+    "accepted_rows": 78616,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 99932
+    }
+  },
+  {
+    "file": "viirs-snpp_2025_Peru.csv",
+    "sensor": "SNPP",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2025/viirs-snpp_2025_Peru.csv",
+    "sha256": "dabd1155fd71d2f011ae8279c97df451022c431ae6a0e064d275c5b311d2b4ba",
+    "bytes": 4270586,
+    "downloaded_utc": "2026-11-14T01:28:12.175656+00:00",
+    "raw_rows": 53579,
+    "accepted_rows": 45437,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 53579
+    }
+  },
+  {
+    "file": "viirs-jpss1_2018_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2018/viirs-jpss1_2018_Peru.csv",
+    "sha256": "eae6e26913a27f200e6714e103a07d142e8b3bc21e721dd96ea6901a326ff78e",
+    "bytes": 4718494,
+    "downloaded_utc": "2026-11-14T01:27:51.956839+00:00",
+    "raw_rows": 57747,
+    "accepted_rows": 49590,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 57747
+    }
+  },
+  {
+    "file": "viirs-jpss1_2019_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2019/viirs-jpss1_2019_Peru.csv",
+    "sha256": "0c0439dabc39e00ddfe7fd04cc68aa356952f2cf1c657fe6d31de08366f377b4",
+    "bytes": 6173111,
+    "downloaded_utc": "2026-11-14T01:27:51.960839+00:00",
+    "raw_rows": 75471,
+    "accepted_rows": 63606,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 75471
+    }
+  },
+  {
+    "file": "viirs-jpss1_2020_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2020/viirs-jpss1_2020_Peru.csv",
+    "sha256": "58cfcadc17b9246ea14b82596335747a08f26c966f25724377e0e79b143d453a",
+    "bytes": 8090224,
+    "downloaded_utc": "2026-11-14T01:27:51.965839+00:00",
+    "raw_rows": 98915,
+    "accepted_rows": 83584,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 98915
+    }
+  },
+  {
+    "file": "viirs-jpss1_2021_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2021/viirs-jpss1_2021_Peru.csv",
+    "sha256": "19b3ca6d0fdc2400b832bdb9ab7701ea7ef416eea037c0a3361193c0e7537f28",
+    "bytes": 5598518,
+    "downloaded_utc": "2026-11-14T01:27:51.968839+00:00",
+    "raw_rows": 68444,
+    "accepted_rows": 58200,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 68444
+    }
+  },
+  {
+    "file": "viirs-jpss1_2022_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2022/viirs-jpss1_2022_Peru.csv",
+    "sha256": "bfa1173f2a5539ff26b05e7883fdb1c816e0fc5daf40f51327e7687184b89b9a",
+    "bytes": 7441561,
+    "downloaded_utc": "2026-11-14T01:27:51.972839+00:00",
+    "raw_rows": 91024,
+    "accepted_rows": 74287,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 91024
+    }
+  },
+  {
+    "file": "viirs-jpss1_2023_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2023/viirs-jpss1_2023_Peru.csv",
+    "sha256": "fdafabb965b01f9f128471fb22337379255bd1bc2a1437c1e486e278a8422548",
+    "bytes": 6454227,
+    "downloaded_utc": "2026-11-14T01:27:51.976839+00:00",
+    "raw_rows": 78995,
+    "accepted_rows": 65520,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 78995
+    }
+  },
+  {
+    "file": "viirs-jpss1_2024_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2024/viirs-jpss1_2024_Peru.csv",
+    "sha256": "e0c74d8b9aca38cb82b913c6f140054d730f1e7d66ad88a0618affb54ff2c702",
+    "bytes": 8581906,
+    "downloaded_utc": "2026-11-14T01:27:51.981839+00:00",
+    "raw_rows": 105055,
+    "accepted_rows": 81338,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 105055
+    }
+  },
+  {
+    "file": "viirs-jpss1_2025_Peru.csv",
+    "sensor": "NOAA20",
+    "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2025/viirs-jpss1_2025_Peru.csv",
+    "sha256": "db9b8b03347adea387c797302337a0d6b9939be6a0f5d812cc466d1408487fe2",
+    "bytes": 4382809,
+    "downloaded_utc": "2026-11-14T01:27:51.984839+00:00",
+    "raw_rows": 53646,
+    "accepted_rows": 44968,
+    "repeated_rows_dropped": 0,
+    "versions": {
+      "2": 53646
+    }
+  }
+]
