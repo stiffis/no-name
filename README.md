@@ -42,8 +42,3 @@ make reproducir   # descarga lo que falte, recalcula todo, verifica y compila
 make verificar    # comprueba huellas, cifras y tablas
 make pdf          # compila el libro
 ```
-
-## Pendiente para la entrega
-
-- Citar FIRMS, NASA Worldview, las teselas de relieve y los artículos (apéndice C del libro).
-- Confirmar con el Local Lead si se puede usar el análisis hecho antes del 14.
