@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.21)  13 NOV 2026 20:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.21)  14 NOV 2026 10:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2743,7 +2743,7 @@ f-dist/fonts/type1/public/txfonts/t1xbtt.pfb></usr/share/texmf-dist/fonts/type1
 .pfb></usr/share/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/share/texmf
 -dist/fonts/type1/public/newpx/zplbi.pfb></usr/share/texmf-dist/fonts/type1/pub
 lic/newpx/zplr.pfb></usr/share/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on build/libro.pdf (148 pages, 1579439 bytes).
+Output written on build/libro.pdf (148 pages, 1579549 bytes).
 PDF statistics:
  2837 PDF objects out of 2984 (max. 8388607)
  2503 compressed objects within 26 object streams
